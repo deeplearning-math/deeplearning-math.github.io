@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="MATLAB R2016a"><meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1"><title>Untitled</title><style type="text/css">
+* {margin: 0; padding: 0;}
+body {text-align: start; line-height: 17.2339992523193px; min-height: 0px; white-space: normal; color: rgb(0, 0, 0); font-family: Consolas, Inconsolata, Menlo, monospace; font-style: normal; font-size: 14px; font-weight: normal; text-decoration: none; white-space: normal; }
+h1, h2 {font-weight: normal;}
+.content { padding: 30px; }
+
+.S0 { margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 0px;  }
+.S1 { margin-left: 3px; margin-top: 4px; margin-bottom: 4px; margin-right: 3px;  }
+.S2 { line-height: 15.5926666259766px; min-height: 18px; white-space: nowrap; font-size: 12.6666669845581px; white-space: nowrap; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 0px;  }
+.S3 { line-height: 15.5926675796509px; min-height: 0px; white-space: pre; color: rgb(34, 139, 34); font-size: 12.6666679382324px; white-space: pre; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 45px;  }
+.S4 { line-height: 15.5926675796509px; min-height: 0px; white-space: pre; font-size: 12.6666679382324px; white-space: pre; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 45px;  }
+.S5 { line-height: 15.5926675796509px; min-height: 0px; white-space: pre; font-size: 12.6666679382324px; white-space: pre; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 0px;  }
+.S6 { line-height: 15.5926675796509px; min-height: 0px; white-space: pre; color: rgb(160, 32, 240); font-size: 12.6666679382324px; white-space: pre; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 0px;  }
+.S7 { line-height: 15.5926675796509px; min-height: 0px; white-space: pre; color: rgb(160, 32, 240); font-size: 12.6666679382324px; white-space: pre; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 45px;  }
+.S8 { line-height: 15.5926675796509px; min-height: 0px; white-space: pre; color: rgb(0, 0, 255); font-size: 12.6666679382324px; white-space: pre; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 45px;  }
+.S9 { color: rgb(64, 64, 64); margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 0px;  }
+.S10 { line-height: 15.5926675796509px; min-height: 0px; white-space: pre; color: rgb(0, 0, 255); font-size: 12.6666679382324px; white-space: pre; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; margin-right: 0px;  }
+
+.LineNodeBlock {margin: 10px 0 10px 0;}
+.LineNodeBlock+.paragraphNode {margin-top: 10px;}
+.lineNode {padding-left: 10px; background-color: #F7F7F7; border-left: 1px solid #E9E9E9; border-right: 1px solid #E9E9E9;}
+.inlineWrapper:first-child .lineNode,.inlineWrapper.outputs+.inlineWrapper .lineNode {padding-top: 5px; border-top: 1px solid #E9E9E9;}
+.inlineWrapper:last-child .lineNode,.inlineWrapper.outputs .lineNode {padding-bottom: 5px; border-bottom: 1px solid #E9E9E9;}
+.lineNode .textBox {white-space: pre;}
+.outputGroup {margin: 2px 0 2px 0; padding: 2px 2px 2px 4px;}
+.outputRegion {}
+.outputParagraph {color: rgba(64, 64, 64, 1); padding: 10px 0 6px 17px; background: white; overflow-x: hidden;}
+.inlineWrapper:last-child .outputParagraph {border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;}
+.outputParagraph:empty {margin: 0;}
+.inlineElement .symbolicElement {}
+.embeddedOutputsSymbolicElement .MathEquation {margin-top: 5px; margin-bottom: 5px;}
+.embeddedOutputsSymbolicElement .MathEquation.displaySymbolicElement {margin-left: 15px;}
+.embeddedOutputsSymbolicElement .MathEquation.inlineSymbolicElement {margin-left: 5px;}
+.embeddedOutputsSymbolicElement {overflow-x: auto; overflow-y: hidden;}
+.embeddedOutputsSymbolicElement { overflow: initial !important;}
+.embeddedOutputsTextElement,.embeddedOutputsVariableStringElement {font-family: Consolas, Inconsolata, Menlo, monospace; font-size: 12px; white-space: pre; word-wrap: initial; min-height: 18px; max-height: 250px; overflow: auto;}
+.textElement {padding-top: 3px;}
+.embeddedOutputsTextElement.inlineElement {}
+.inlineElement .textElement {}
+.embeddedOutputsTextElement,.embeddedOutputsVariableStringElement { max-height: none !important; overflow: initial !important;}
+.veSpecifier {}
+.veContainer {}
+.veSpecifierBox {height: 400px; width: 500px;}
+.veSpecifier .veTable {padding-top: 3px; padding-bottom: 4px;}
+.veSpecifierBox .veSpecifier .veContainer {position: relative; width: 100%; height: 370px;}
+.veSpecifierBox .dijitDialogPaneContent {width: 97% !important; height: 88% !important;}
+.veSpecifier .veTable .rowHeadersWrapper {padding-bottom: 0;}
+.veSpecifier .veTable .scroller .variableEditorRenderers {padding-right: 3px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;}
+.veVariableValueSummary {display: inline-block;}
+.veSpecifier .veTable .topHeaderWrapper,.veSpecifier .veTable .bottomRowHeaderWrapper {visibility: hidden; z-index: 0;}
+.veMetaSummary {font-style: italic;}
+.veSpecifier .veTable .scroller {overflow: hidden;}
+.veSpecifier .veTable:hover .scroller {overflow: auto;}
+.veSpecifier .veVariableName,.veSpecifier .veDimensionFont {font-family: Consolas, Inconsolata, Menlo, monospace; font-size: 12px;}
+.veSpecifier .veVariableName {padding-top: 3px;}
+.veSpecifier .veDimensionFont {font-style: italic; color: #9A9A9A;}
+.veSpecifier .scroller::-webkit-scrollbar-track {background-color: white;}
+.veSpecifier .scroller::-webkit-scrollbar-corner {background-color: white;}
+.veSpecifier .veTable .topRowHeaderWrapper {border: none; background-color: #F8F9FA;}
+.veSpecifier .mw_type_ListBase.showCellBorders,.veSpecifier .veTable .topHeaderWrapper,.veSpecifier .veTable .bottomRowHeaderWrapper,.veSpecifier .veTable .verticalScrollSpacer,.veSpecifier .veTable .horizontalScrollSpacer {border: none;}
+.veSpecifier .veTable .dataScrollerNode {border: 1px solid #BFBFBF;}
+.veSpecifier .veTable .columnHeaderNode,.veSpecifier .veTable .rowHeaderNode,.veSpecifier .veTable .dataBody {font-family: Arial; font-size: 13px;}
+.veSpecifier .veTable .columnHeaderNode,.veSpecifier .veTable .rowHeaderNode {color: #7F7F7F;}
+.veSpecifier .veTable .dataBody {color: #000000;}
+.veSpecifier .veTable .columnHeaderNode .cell .drag,.veSpecifier .veTable .columnHeaderNode .cell .header,.veSpecifier .veTable .topHeaderWrapper,.veSpecifier .veTable .bottomRowHeaderWrapper {background-color: #F8F9FA;}
+.veSpecifier .veTable .columnHeaderNode .cell .dragBorder {border-right: 1px solid #F8F9FA;}
+.veSpecifier .veTable .rowHeaderNode .cell {padding-top: 3px; text-align: center; border-bottom: 1px solid #F8F9FA;}
+.veSpecifier .veTable .dataBody .cell .plainText {text-align: right;}
+.veSpecifier .veTable .dataBody .row .cell {border-bottom: 1px solid #E9E9E9; border-right: 1px solid #E9E9E9;}
+.embeddedOutputsVariableElement {font-family: Consolas, Inconsolata, Menlo, monospace; font-size: 12px; white-space: pre-wrap; word-wrap: break-word; min-height: 18px; max-height: 250px; overflow: auto;}
+.variableElement {}
+.embeddedOutputsVariableElement.inlineElement {}
+.inlineElement .variableElement {}
+.variableValue { width: 100% !important; }
+.embeddedOutputsMatrixElement {min-height: 18px; box-sizing: border-box; font-family: Consolas, Inconsolata, Menlo, monospace; font-size: 12px;}
+.matrixElement .variableValue {white-space: pre; display: inline-block; vertical-align: top; overflow: hidden;}
+.embeddedOutputsMatrixElement.inlineElement {}
+.embeddedOutputsMatrixElement.inlineElement .topHeaderWrapper {display: none;}
+.embeddedOutputsMatrixElement.inlineElement .veTable .body {padding-top: 0 !important; max-height: 100px;}
+.embeddedOutputsMatrixElement.inlineElement .veVariableName {padding-top: 0;}
+.inlineElement .matrixElement {max-height: 300px;}
+.embeddedOutputsMatrixElement .matrixElement .valueContainer {white-space: nowrap; padding-top: 10px; margin-bottom: 3px;}
+.embeddedOutputsMatrixElement .matrixElement .valueContainer .horizontalEllipsis.hide,.embeddedOutputsMatrixElement .matrixElement .verticalEllipsis.hide {display: none;}
+.embeddedOutputsMatrixElement .matrixElement .valueContainer .horizontalEllipsis {margin-bottom: -3px;}
+.matrixElement { max-height: none !important; }
+.dijitTooltipDialog .dijitTooltipContainer .dijitTooltipContents .alertPlugin-alertMessage {min-width: 12px; max-width: 400px; max-height: 300px; overflow: auto;}
+.dijitTooltipDialog .alertPlugin-alertMessage::-webkit-scrollbar {width: 11px; height: 11px;}
+.dijitTooltipDialog .alertPlugin-alertMessage::-webkit-scrollbar-track {background-color: rgba(0, 0, 0, 0);}
+.dijitTooltipDialog .alertPlugin-alertMessage::-webkit-scrollbar-corner {background-color: rgba(0, 0, 0, 0);}
+.dijitTooltipDialog .alertPlugin-alertMessage::-webkit-scrollbar-thumb {border-radius: 7px; background-color: rgba(0, 0, 0, 0.1); border: 2px solid rgba(0, 0, 0, 0); background-clip: padding-box;}
+.dijitTooltipDialog .alertPlugin-alertMessage::-webkit-scrollbar-thumb:hover {background-color: rgba(0, 0, 0, 0.2);}
+.dijitTooltipDialog .alertPlugin-alertMessage::-webkit-scrollbar-thumb {background-color: rgba(0, 0, 0, 0);}
+.dijitTooltipDialog .alertPlugin-alertMessage:hover::-webkit-scrollbar-thumb {background-color: rgba(0, 0, 0, 0.1);}
+.dijitTooltipDialog .alertPlugin-alertMessage:hover::-webkit-scrollbar-thumb:hover {background-color: rgba(0, 0, 0, 0.2);}
+.alertPlugin-alertLine {position: absolute; display: initial; width: 40px; text-align: right; cursor: text;}
+.alertPlugin-onTextLine {visibility: hidden;}
+.alertPlugin-hasTooltip .alertPlugin-warningImg,.alertPlugin-hasTooltip .alertPlugin-errorImg {cursor: pointer;}
+.alertPlugin-isStale {-webkit-filter: opacity(0.4) grayscale(80%); filter: opacity(0.4) grayscale(80%);}
+.alertPlugin-alertLine .alertPlugin-errorElement {display: inline-block; margin-right: 4px;}
+.alertPlugin-errorImg {position: relative; display: inline-block; background-color: rgb(204, 55, 41); width: 14px; height: 14px; margin-top: 1px; -webkit-border-radius: 7px;}
+.alertPlugin-alertLine .alertPlugin-warningElement {display: inline-block; margin-right: 3px;}
+.alertPlugin-warningImg {position: relative; display: inline-block; width: 16px; height: 15px; overflow: hidden;}
+.diagnosticMessage-wrapper {font-family: Consolas, Inconsolata, Menlo, monospace; font-size: 12px;}
+.diagnosticMessage-wrapper.diagnosticMessage-warningType {color: rgb(255,100,0);}
+.diagnosticMessage-wrapper.diagnosticMessage-warningType a {color: rgb(255,100,0); text-decoration: underline;}
+.diagnosticMessage-wrapper.diagnosticMessage-errorType {color: rgb(230,0,0);}
+.diagnosticMessage-wrapper.diagnosticMessage-errorType a {color: rgb(230,0,0); text-decoration: underline;}
+.diagnosticMessage-wrapper .diagnosticMessage-messagePart {white-space: pre-wrap;}
+.diagnosticMessage-wrapper .diagnosticMessage-stackPart {white-space: pre;}
+.embeddedOutputsWarningElement{min-height: 18px; max-height: 250px; overflow: auto;}
+.embeddedOutputsWarningElement.inlineElement {}
+.embeddedOutputsErrorElement {min-height: 18px; max-height: 250px; overflow: auto;}
+.embeddedOutputsErrorElement.inlineElement {}
+.alertPlugin-warningImg {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAPCAYAAADUFP50AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAB3RJTUUH3wgUDS0rRPm/rwAAAAd0RVh0QXV0aG9yAKmuzEgAAAAMdEVYdERlc2NyaXB0aW9uABMJISMAAAAKdEVYdENvcHlyaWdodACsD8w6AAAADnRFWHRDcmVhdGlvbiB0aW1lADX3DwkAAAAJdEVYdFNvZnR3YXJlAF1w/zoAAAALdEVYdERpc2NsYWltZXIAt8C0jwAAAAh0RVh0V2FybmluZwDAG+aHAAAAB3RFWHRTb3VyY2UA9f+D6wAAAAh0RVh0Q29tbWVudAD2zJa/AAAABnRFWHRUaXRsZQCo7tInAAAA80lEQVQokY2SPQrCQBCF3yaChUXS2eoNbOwschSPojfQG8QT6BEExcbKEyiCgYiSWFhIIs9iXONm488Hw+7OzOPNsguSsOI0JVe+xGnKqh5FEgZ5SqzbwD2Vs+sD3S1Q89V7m4My0agQAbKPRlabOUKWyHgL8MUCkssSY2TTsez2xbUQ5ilxGNsizWEsPZZwP6h2e3fdD0uOeUrEk88iTRy+XEWo78ZvKhh3VcwS891+8XxXB8fQFP3jegzh4DwzC/p/9ChRxXkGB/mfI5aowQuA68auLJWd0zQ6z08eh8RlDtx2RfF+kdX1ily9BXgB0OyrB6CCtdLfhGTSAAAAAElFTkSuQmCC)}
+.alertPlugin-errorImg {background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAB3RJTUUH3wgUDSwzTo4WuAAAAAd0RVh0QXV0aG9yAKmuzEgAAAAMdEVYdERlc2NyaXB0aW9uABMJISMAAAAKdEVYdENvcHlyaWdodACsD8w6AAAADnRFWHRDcmVhdGlvbiB0aW1lADX3DwkAAAAJdEVYdFNvZnR3YXJlAF1w/zoAAAALdEVYdERpc2NsYWltZXIAt8C0jwAAAAh0RVh0V2FybmluZwDAG+aHAAAAB3RFWHRTb3VyY2UA9f+D6wAAAAh0RVh0Q29tbWVudAD2zJa/AAAABnRFWHRUaXRsZQCo7tInAAABJ0lEQVQokZWSsWqDUBSG/3stQgpKxcU6OYl0FUI3hzrVxUfo3jeQOlXyBt37CC7pZAe3ECrdQpsuTkkXsWhoQJDbpTfExEDyjeecn/9wzk8YY+C0dcWKlxg/6St+5x8AgHPTwoVzA/XWhyDJhM8SLqyzKcujAM1ygT7ESx3GwwiSPSQbYZ1N2fz+rjNoT2YAgOz6qlM3n54h2UNC27pieRT0uvSRRwHaumK0GMcH1+ujWS5QjGPQMk2OFnHKNAFd/1/vFNZfn6AnqwCAMZwNTAur97e93u41txmYFqjiuCcbKo4Lqno+RE3fa9qT2eaX24iaDtXzQQVJJkY4OtrNCEcQJJl0I/cYoPk+EDlNhxHuRI7T1hUrxjHKNAF/08C0oDguVK8b8j+a03ZrT40rwQAAAABJRU5ErkJggg==)}
+</style></head><body><div class = "content"><div class = 'SectionBlock containment active'><div class = 'LineNodeBlock contiguous'><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% It is a Matlab live script for the project 1 of MATH6380O, Spring 2018.</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% In this script, we implement scattering transform and SVM on the authentication problem of the Raphael paintings.</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">%</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% Ng Ka Chung (SID: 20097188), LO Yi-Su (SID: 20399988)</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% Contact: yloab@ust.hk</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">%</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% The source code of this document is at https://goo.gl/xT4Kys</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">%</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% P.S. There is another code regarding transfer learning for this project.</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3"></span></p></div></div></div><p class = "S0"></p><div class = 'SectionBlock containment'><div class = 'LineNodeBlock contiguous'><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">%% Beginning</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4"></span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% clean the remains</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">close </span><span class = "S6">all</span><span class = "S5">;  clear </span><span class = "S6">variables</span><span class = "S4">;</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4"></span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% install the Scat Net software (http://www.di.ens.fr/data/software/scatnet/)</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">addpath </span><span class = "S7">../scatnet-0.2</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">addpath_scatnet</span></p></div></div></div><p class = "S0"></p><div class = 'SectionBlock containment'><div class = 'LineNodeBlock contiguous'><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">%% set image path and ids</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">imfld = </span><span class = "S6">'../../Data/Raphael/'</span><span class = "S4">;</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">imnam = {   </span><span class = "S6">'1. 185x354.TIF'</span><span class = "S5">,   </span><span class = "S6">'2. 202x216.TIF'</span><span class = "S5">,   </span><span class = "S6">'3. 272x369.TIF'</span><span class = "S5">,</span><span class = "S8">...</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S6">'4. 363x189.tiff'</span><span class = "S5">,  </span><span class = "S6">'5. 379x281.tiff'</span><span class = "S5">,  </span><span class = "S6">'6. 197x168.tiff'</span><span class = "S5">,</span><span class = "S8">...</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S6">'7. 243x413 .tiff'</span><span class = "S5">, </span><span class = "S6">'8. 329x232.tif'</span><span class = "S5">,   </span><span class = "S6">'9. 279x187.tif'</span><span class = "S5">,</span><span class = "S8">...</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S6">'10. 269x227.TIF'</span><span class = "S5">,  </span><span class = "S6">'11. 394x248.jpg'</span><span class = "S5">,  </span><span class = "S6">'12. 305x492.jpg'</span><span class = "S5">,</span><span class = "S8">...</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S6">'13. 206x184.jpg'</span><span class = "S5">,  </span><span class = "S6">'14. 279x152.jpg'</span><span class = "S5">,  </span><span class = "S6">'15. 279x152.jpg'</span><span class = "S5">,</span><span class = "S8">...</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S6">'16. 335x476.jpg'</span><span class = "S5">,  </span><span class = "S6">'17. 283x300.jpg'</span><span class = "S5">,  </span><span class = "S6">'18. 217x278.jpg'</span><span class = "S5">,</span><span class = "S8">...</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S6">'19. 283x191.jpg'</span><span class = "S5">,  </span><span class = "S6">'20. 135x390.tif'</span><span class = "S5">,  </span><span class = "S6">'21. 203x258.jpg'</span><span class = "S5">,</span><span class = "S8">...</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S6">'22. 257x375.jpg'</span><span class = "S5">,  </span><span class = "S6">'23. 84x68.tif'</span><span class = "S5">,    </span><span class = "S6">'24. 203x224.tif'</span><span class = "S5">,</span><span class = "S8">...</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S6">'25. 156x115.tif'</span><span class = "S5">,  </span><span class = "S6">'26. 197x187.tif'</span><span class = "S5">,  </span><span class = "S6">'27. 278x419.tiff'</span><span class = "S5">,</span><span class = "S8">...</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S6">'28. 267x264.TIF'</span><span class = "S4">};</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">idp = [2:6,8,9,21,22,24,27,28];   </span><span class = "S3">% Raphael: 2 3 4 5 6 8 9 21 22 24 27 28</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">idn = 11:19;                      </span><span class = "S3">% non-Raphael: 11-19</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">idd = [1,7,10,20,23,25,26];       </span><span class = "S3">% dispute: 1 7 10 20 23 25 26</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">imlab = [2 1 1 1 1 1 2 1 1 2 0 0 0 0 0 0 0 0 0 2 1 1 2 1 2 2 1 1 ]';</span></p></div></div></div><p class = "S0"></p><div class = 'SectionBlock containment'><div class = 'LineNodeBlock contiguous'><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">%% generate filters with Scat Net</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">szpat = 512;    </span><span class = "S3">% patch size</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">filt_opt.J = 3;    </span><span class = "S3">% Number of octaves;</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">filt_opt.L = 5;    </span><span class = "S3">% number of orientation</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">scat_opt.oversampling = 0;</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">Wop = wavelet_factory_2d([szpat szpat],filt_opt,scat_opt);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">features = @(x)(sum(sum(format_scat(scat(x,Wop)),2),3));</span></p></div><div class = 'inlineWrapper outputs'><p class = "S2 lineNode"><span class = "S5">disp(</span><span class = "S6">'Filters have been generalized.'</span><span class = "S4">);</span></p><div class="outputParagraph"><div class="inlineElement embeddedOutputsTextElement" data-width="870" style="width: 870px;"><div class="textElement">Filters have been generalized.</div></div></div></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">%% load images and compute scattering coefficients</span></p></div><div class = 'inlineWrapper outputs'><p class = "S2 lineNode"><span class = "S5">disp(</span><span class = "S6">'Load and transform paitings.'</span><span class = "S4">);</span></p><div class="outputParagraph"><div class="inlineElement embeddedOutputsTextElement" data-width="870" style="width: 870px;"><div class="textElement">Load and transform paitings.</div></div></div></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% allocating</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">fttr = []; labtr = []; idimtr = [];</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">ftte = []; labte = []; idimte = [];</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">ftdi = []; labdi = []; idimdi = [];</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S8"></span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% go over every painting</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S10">for </span><span class = "S4">iid = 1:28,   </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">    </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    </span><span class = "S3">% load image and transfer</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">    im = imread([imfld,imnam{iid}]);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    </span><span class = "S10">if </span><span class = "S5">max(max(im))&gt;255, im = im2uint8(im); </span><span class = "S8">end</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">    imG = double(rgb2gray(im(:,:,1:3)))/255;</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">        </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    </span><span class = "S3">% split image into patches</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">    nopat1 = floor(size(imG,1)/szpat);  nopat2 = floor(size(imG,2)/szpat);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    imGP = imG(1:szpat*nopat1,1:szpat*nopat2);    </span><span class = "S3">% remove the margin</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    imGPP = mat2cell(imGP,szpat*ones(1,nopat1),szpat*ones(1,nopat2));  </span><span class = "S3">% patches of imGP</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">    nopat = size(imGPP);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">    </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    </span><span class = "S3">% compute and arrange scattering coefficients  </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    </span><span class = "S10">for </span><span class = "S4">ix = 1:nopat(1),</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">        </span><span class = "S10">for </span><span class = "S4">iy = 1:nopat(2),</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">            impat = imGPP{ix,iy};</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">            ftpat = features(impat)';</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">            labpat = imlab(iid);            </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S10">if </span><span class = "S4">labpat==2,</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">                ftdi  = cat(1,ftdi,ftpat);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">                labdi = cat(1,labdi,labpat);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">                idimdi= cat(1,idimdi,iid);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S10">elseif </span><span class = "S4">rand()&gt;.2,</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">                fttr  = cat(1,fttr,ftpat);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">                labtr = cat(1,labtr,labpat);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">                idimtr= cat(1,idimtr,iid);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S8">else</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">                ftte  = cat(1,ftte,ftpat);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">                labte = cat(1,labte,labpat);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">                idimte= cat(1,idimte,iid);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">            </span><span class = "S8">end</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">        </span><span class = "S10">end</span><span class = "S4">                </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    </span><span class = "S10">end</span><span class = "S4">        </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">        </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    </span><span class = "S3">% output the no of patches</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    disp([</span><span class = "S6">'    '</span><span class = "S5">,num2str(nopat(1)),</span><span class = "S6">'*'</span><span class = "S5">,num2str(nopat(2)),</span><span class = "S6">' patches of painting No. '</span><span class = "S5">,num2str(iid),</span><span class = "S6">' have been transformed.'</span><span class = "S4">]);</span></p></div><div class = 'inlineWrapper outputs'><p class = "S2 lineNode"><span class = "S8">end</span></p><div class="outputParagraph"><div class="inlineElement embeddedOutputsTextElement" data-width="870" style="width: 870px; max-height: 406px;"><div class="textElement">&nbsp;&nbsp;&nbsp;&nbsp;4*8 patches of painting No. 1 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;5*5 patches of painting No. 2 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;5*7 patches of painting No. 3 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;11*6 patches of painting No. 4 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;11*8 patches of painting No. 5 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;9*8 patches of painting No. 6 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;6*11 patches of painting No. 7 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;12*8 patches of painting No. 8 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;12*8 patches of painting No. 9 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;9*7 patches of painting No. 10 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;9*5 patches of painting No. 11 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;5*9 patches of painting No. 12 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;9*8 patches of painting No. 13 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;9*5 patches of painting No. 14 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;12*6 patches of painting No. 15 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;6*8 patches of painting No. 16 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;9*5 patches of painting No. 17 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;9*11 patches of painting No. 18 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;8*5 patches of painting No. 19 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;6*17 patches of painting No. 20 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;6*8 patches of painting No. 21 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;6*9 patches of painting No. 22 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;2*1 patches of painting No. 23 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;6*6 patches of painting No. 24 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;4*3 patches of painting No. 25 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;5*5 patches of painting No. 26 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;4*6 patches of painting No. 27 have been transformed.<br>&nbsp;&nbsp;&nbsp;&nbsp;8*8 patches of painting No. 28 have been transformed.</div></div></div></div></div></div><p class = "S0"></p><div class = 'SectionBlock containment'><div class = 'LineNodeBlock contiguous'><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">%% SVM</span></p></div><div class = 'inlineWrapper outputs'><p class = "S2 lineNode"><span class = "S5">disp(</span><span class = "S5">[</span><span class = "S6">'SVM with RBF kernel function on scattering coefficients begins.'</span><span class = "S4">]);</span></p><div class="outputParagraph"><div class="inlineElement embeddedOutputsTextElement" data-width="870" style="width: 870px;"><div class="textElement">SVM with RBF kernel function on scattering coefficients begins.</div></div></div></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% train and compute training error</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">svmclf = fitcsvm(fttr,labtr,</span><span class = "S6">'KernelFunc'</span><span class = "S5">,</span><span class = "S6">'rbf'</span><span class = "S5">,</span><span class = "S6">'Standardize'</span><span class = "S5">,true,</span><span class = "S6">'KernelScale'</span><span class = "S5">,</span><span class = "S6">'auto'</span><span class = "S4">);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">fittr = predict(svmclf,fttr);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">raterr = sum(fittr~=labtr)/length(labtr);</span></p></div><div class = 'inlineWrapper outputs'><p class = "S2 lineNode"><span class = "S5">disp([</span><span class = "S6">'The error rate in training: '</span><span class = "S5">,num2str(100*raterr,</span><span class = "S6">'%1.2f'</span><span class = "S5">),</span><span class = "S6">'%.'</span><span class = "S4">]);</span></p><div class="outputParagraph"><div class="inlineElement embeddedOutputsTextElement" data-width="870" style="width: 870px;"><div class="textElement">The error rate in training: 0.00%.</div></div></div></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% test and compute test error</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">fitte = predict(svmclf,ftte);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">raterr = sum(fitte~=labte)/length(labte);</span></p></div><div class = 'inlineWrapper outputs'><p class = "S2 lineNode"><span class = "S5">disp([</span><span class = "S6">'The error rate in test: '</span><span class = "S5">,num2str(100*raterr,</span><span class = "S6">'%1.2f'</span><span class = "S5">),</span><span class = "S6">'%.'</span><span class = "S4">]);</span></p><div class="outputParagraph"><div class="inlineElement embeddedOutputsTextElement" data-width="870" style="width: 870px;"><div class="textElement">The error rate in test: 1.35%.</div></div></div></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S3">% authentication of the dispute paintings</span></p></div><div class = 'inlineWrapper outputs'><p class = "S2 lineNode"><span class = "S5">disp(</span><span class = "S6">'The authentication:'</span><span class = "S4">);</span></p><div class="outputParagraph"><div class="inlineElement embeddedOutputsTextElement" data-width="870" style="width: 870px;"><div class="textElement">The authentication:</div></div></div></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">fitdi = predict(svmclf,ftdi);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">ident = zeros(length(idd),1);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S10">for </span><span class = "S4">iid = idd,</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">    idvoters = find(idimdi==iid);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">    fitdi = predict(svmclf,ftdi(idvoters,:));</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">    ratvote = sum(fitdi)/length(fitdi);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    disp([</span><span class = "S6">'    Painting No.'</span><span class = "S5">,num2str(iid),</span><span class = "S6">' is '</span><span class = "S5">,num2str(ratvote*100,</span><span class = "S6">'%1.2f'</span><span class = "S5">),</span><span class = "S6">'% Raphael.'</span><span class = "S4">]);</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    </span><span class = "S10">if </span><span class = "S4">ratvote&gt;=.5,</span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4">        ident(iid) = 1;    </span></p></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S5">    </span><span class = "S8">end</span></p></div><div class = 'inlineWrapper outputs'><p class = "S2 lineNode"><span class = "S8">end</span></p><div class="outputParagraph"><div class="inlineElement embeddedOutputsTextElement" data-width="870" style="width: 870px;"><div class="textElement">&nbsp;&nbsp;&nbsp;&nbsp;Painting No.1 is 90.63% Raphael.<br>&nbsp;&nbsp;&nbsp;&nbsp;Painting No.7 is 60.61% Raphael.<br>&nbsp;&nbsp;&nbsp;&nbsp;Painting No.10 is 34.92% Raphael.<br>&nbsp;&nbsp;&nbsp;&nbsp;Painting No.20 is 99.02% Raphael.<br>&nbsp;&nbsp;&nbsp;&nbsp;Painting No.23 is 0.00% Raphael.<br>&nbsp;&nbsp;&nbsp;&nbsp;Painting No.25 is 25.00% Raphael.<br>&nbsp;&nbsp;&nbsp;&nbsp;Painting No.26 is 96.00% Raphael.</div></div></div></div><div class = 'inlineWrapper'><p class = "S2 lineNode"><span class = "S4"></span></p></div></div></div></div>
+<!-- 
+##### SOURCE BEGIN #####
+% It is a Matlab live script for the project 1 of MATH6380O, Spring 2018.
+% In this script, we implement scattering transform and SVM on the authentication problem of the Raphael paintings.
+%
+% Ng Ka Chung (SID: 20097188), LO Yi-Su (SID: 20399988)
+% Contact: yloab@ust.hk
+%
+% The source code of this document is at https://goo.gl/xT4Kys
+%
+% P.S. There is another code regarding transfer learning for this project.
+
+%% Beginning
+
+% clean the remains
+close all;  clear variables;
+
+% install the Scat Net software (http://www.di.ens.fr/data/software/scatnet/)
+addpath ../scatnet-0.2
+addpath_scatnet
+%% set image path and ids
+imfld = '../../Data/Raphael/';
+imnam = {   '1. 185x354.TIF',   '2. 202x216.TIF',   '3. 272x369.TIF',...
+            '4. 363x189.tiff',  '5. 379x281.tiff',  '6. 197x168.tiff',...
+            '7. 243x413 .tiff', '8. 329x232.tif',   '9. 279x187.tif',...
+            '10. 269x227.TIF',  '11. 394x248.jpg',  '12. 305x492.jpg',...
+            '13. 206x184.jpg',  '14. 279x152.jpg',  '15. 279x152.jpg',...
+            '16. 335x476.jpg',  '17. 283x300.jpg',  '18. 217x278.jpg',...
+            '19. 283x191.jpg',  '20. 135x390.tif',  '21. 203x258.jpg',...
+            '22. 257x375.jpg',  '23. 84x68.tif',    '24. 203x224.tif',...
+            '25. 156x115.tif',  '26. 197x187.tif',  '27. 278x419.tiff',...
+            '28. 267x264.TIF'};
+idp = [2:6,8,9,21,22,24,27,28];   % Raphael: 2 3 4 5 6 8 9 21 22 24 27 28
+idn = 11:19;                      % non-Raphael: 11-19
+idd = [1,7,10,20,23,25,26];       % dispute: 1 7 10 20 23 25 26
+imlab = [2 1 1 1 1 1 2 1 1 2 0 0 0 0 0 0 0 0 0 2 1 1 2 1 2 2 1 1 ]';
+%% generate filters with Scat Net
+szpat = 512;    % patch size
+filt_opt.J = 3;    % Number of octaves;
+filt_opt.L = 5;    % number of orientation
+scat_opt.oversampling = 0;
+Wop = wavelet_factory_2d([szpat szpat],filt_opt,scat_opt);
+features = @(x)(sum(sum(format_scat(scat(x,Wop)),2),3));
+disp('Filters have been generalized.');
+%% load images and compute scattering coefficients
+disp('Load and transform paitings.');
+% allocating
+fttr = []; labtr = []; idimtr = [];
+ftte = []; labte = []; idimte = [];
+ftdi = []; labdi = []; idimdi = [];
+
+% go over every painting
+for iid = 1:28,   
+    
+    % load image and transfer
+    im = imread([imfld,imnam{iid}]);
+    if max(max(im))>255, im = im2uint8(im); end
+    imG = double(rgb2gray(im(:,:,1:3)))/255;
+        
+    % split image into patches
+    nopat1 = floor(size(imG,1)/szpat);  nopat2 = floor(size(imG,2)/szpat);
+    imGP = imG(1:szpat*nopat1,1:szpat*nopat2);    % remove the margin
+    imGPP = mat2cell(imGP,szpat*ones(1,nopat1),szpat*ones(1,nopat2));  % patches of imGP
+    nopat = size(imGPP);
+    
+    % compute and arrange scattering coefficients  
+    for ix = 1:nopat(1),
+        for iy = 1:nopat(2),
+            impat = imGPP{ix,iy};
+            ftpat = features(impat)';
+            labpat = imlab(iid);            
+            if labpat==2,
+                ftdi  = cat(1,ftdi,ftpat);
+                labdi = cat(1,labdi,labpat);
+                idimdi= cat(1,idimdi,iid);
+            elseif rand()>.2,
+                fttr  = cat(1,fttr,ftpat);
+                labtr = cat(1,labtr,labpat);
+                idimtr= cat(1,idimtr,iid);
+            else
+                ftte  = cat(1,ftte,ftpat);
+                labte = cat(1,labte,labpat);
+                idimte= cat(1,idimte,iid);
+            end
+        end                
+    end        
+        
+    % output the no of patches
+    disp(['    ',num2str(nopat(1)),'*',num2str(nopat(2)),' patches of painting No. ',num2str(iid),' have been transformed.']);
+end
+%% SVM
+disp(['SVM with RBF kernel function on scattering coefficients begins.']);
+% train and compute training error
+svmclf = fitcsvm(fttr,labtr,'KernelFunc','rbf','Standardize',true,'KernelScale','auto');
+fittr = predict(svmclf,fttr);
+raterr = sum(fittr~=labtr)/length(labtr);
+disp(['The error rate in training: ',num2str(100*raterr,'%1.2f'),'%.']);
+% test and compute test error
+fitte = predict(svmclf,ftte);
+raterr = sum(fitte~=labte)/length(labte);
+disp(['The error rate in test: ',num2str(100*raterr,'%1.2f'),'%.']);
+% authentication of the dispute paintings
+disp('The authentication:');
+fitdi = predict(svmclf,ftdi);
+ident = zeros(length(idd),1);
+for iid = idd,
+    idvoters = find(idimdi==iid);
+    fitdi = predict(svmclf,ftdi(idvoters,:));
+    ratvote = sum(fitdi)/length(fitdi);
+    disp(['    Painting No.',num2str(iid),' is ',num2str(ratvote*100,'%1.2f'),'% Raphael.']);
+    if ratvote>=.5,
+        ident(iid) = 1;    
+    end
+end
+##### SOURCE END #####
+--></body></html>
