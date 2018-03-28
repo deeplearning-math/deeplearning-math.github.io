@@ -1,0 +1,201 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathcal N}}
+\def\R{{\mathcal R}}
+\def\E{{\mathbb E}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Math 4432: Statistical Machine Learning \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Project 2: Midterm}{Yuan Yao}{Due: April 12 11:59pm, 2018}{March 29, 2018}
+
+\section*{Requirement}
+
+\begin{enumerate}
+\item Pick up ONE (or more if you like) favorite challenges \emph{below}. %or \emph{from the datasets in textbook} to attack. 
+If you would like to work on a different problem outside the candidates we proposed, please email course instructors about your proposal. Brave hearts for explorations will be encouraged!
+\item Team work: we encourage you to form small team, up to THREE persons per group, to work on the same problem. Each team just submit ONE report, \emph{with a clear remark on each person's contribution}. The report can be in the format of either Python (Jupyter) Notebooks with a detailed documentation, a \emph{poster} such as 
+\begin{center}%\url{http://math.stanford.edu/~yuany/publications/poster_CleaveBioCPH2017_ForReview.pptx}
+\url{https://github.com/yuany-pku/2017_math6380/blob/master/project1/DongLoXia_poster.pptx}
+\end{center}
+or a \emph{technical report within 8 pages}, e.g. NIPS conference style 
+\begin{center}
+\url{https://nips.cc/Conferences/2016/PaperInformation/StyleFiles} 
+\end{center}
+%Team work: we encourage you to form small team, up to THREE persons per group, to work on the same problem. Each team just submit ONE report. For example a \emph{poster} report, with a clear remark on each person's contribution. A sample poster file with PKU logo can be found at \\
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/poster_v5.pdf} \\
+%whose source LATEX codes can be downloaded at \\
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/pkuposter.zip}
+\item In the report, show your proposed scientific questions to explore and main results with a careful analysis supporting the results toward answering your problems. Remember: scientific analysis and reasoning are more important than merely the performance tables. Separate source codes may be submitted through email as a .zip file, GitHub link, or as an appendix if it is not large. There is no restriction on the programming languages to use, but R or Python are recommended.
+\item Submit your report by email or paper version no later than the deadline, to the following address (\href{mailto:statml.hw@gmail.com}{statml.hw@gmail.com}) with Title: \underline{Math4432: Project 2}. Late submissions may consume grades. %   (\href{mailto:statlearning\_hw@126.com}{statlearning\_hw@126.com}). We plan a poster session on Saturday June 21 (evening) for peer reviews.
+\end{enumerate}
+
+\section{Kaggle contest classification: Predict survival on the Titanic}
+The following website contains the Kaggle contest on predicting survival (binary classification) on the Titanic: 
+
+\url{https://www.kaggle.com/c/titanic/}
+
+\noindent Register the Kaggle and join the contest by submitting your predictions. Report your methods and the corresponding scores (accuracy) on the leaderboard. 
+
+\section{Kaggle contest regression: Predict house sales prices}
+The following website contains a Kaggle contest on predicting house sales prices (regression) using the Ames Housing dataset: 
+
+\url{https://www.kaggle.com/c/house-prices-advanced-regression-techniques/}
+
+It is aimed for practicing feature engineering, RFs, and gradient boosting etc. Register the Kaggle and join the contest by submitting your predictions. Report your methods and the corresponding scores (RMSE) on the leaderboard.
+
+
+%\section{Regression: Animal Species Sleeping Hours}
+%The following dataset contains $n=62$ species with several features including the average sleeping hours per day ({\tt sleep}). Some values are missing ({\tt NA}). 
+%
+%\url{https://github.com/yuany-pku/data/blob/master/sleep1.csv}
+%
+%Explore the question that \emph{what might affect the sleep that an animal needs}. In this explorative study, you probably need to deal with
+%\begin{itemize}
+%\item remove or fill-in missing values;
+%\item design your models, e.g. multiple linear regression;
+%\item mixed-type of features: real-valued features (e.g. body weight ({\tt body}) and life time ({\tt life})) and discrete-valued (categorical) features (e.g. predation ({\tt predation}) and danger level ({\tt danger}));
+%\item estimation of prediction/test error by cross-validation, e.g. in MSE, and choose your favourite model;
+%\item quantification of uncertainty in your model estimates, e.g. error bar for sleeping hour prediction by bootstrap.
+%\end{itemize}
+
+%A sample R code can be found at
+%
+%\url{http://math.stanford.edu/~yuany/course/2015.spring/Lecture19.R}
+%
+%You need to create your own design of analysis.
+
+%\section{Bi-Classification: Switch unsafe wells}
+%The following data set contains decision of switching unsafe wells for arsenic pollution in Bangladesh.
+%
+%\url{https://github.com/yuany-pku/data/blob/master/wells.csv}
+%
+%The predictor {\tt arsenic} described the measured amount of arsenic pollution and the {\tt distance} is how far is the well from the nearest living area. The response is a binary decision variable on switching-off the well ({\tt TRUE/FALSE}). You may explore the models on prediction of switching unsafe wells given various features about the situation. For example, 
+%\begin{itemize}
+%\item logistic regression with your chosen predictors, such as real-valued features ({\tt arsenic}, {\tt unsafe}, and {\tt distance} etc.) and categorical features ({\tt education});
+%\item fit your models with z-values, p-values;
+%\item estimate the misclassification error, confusion matrix (type I and type II errors);
+%\item compute the ROC curve and Area-Under-Curve to evaluate your model;
+%\item choose your favourite model by cross-validation;
+%\item quantify the uncertainty of your model, e.g. by bootstrap.
+%\end{itemize}
+
+%A sample R code can be found at
+%
+%\url{http://math.stanford.edu/~yuany/course/2015.spring/Lecture20.R}
+%
+%You need to create your own design of analysis.
+
+%\section{Multi-classification: Fashion-MNIST dataset}
+%
+%Zalando's Fashion-MNIST dataset of 60,000 training images and 10,000 test images, of size 28-by-28 in grayscale. 
+%
+%\url{https://github.com/zalandoresearch/fashion-mnist}
+%
+%As a reference, here is Jason Wu, Peng Xu, and Nayeon Lee's exploration on the dataset in project 1:
+%
+%\url{https://deeplearning-math.github.io/slides/Project1_WuXuLee.pdf}
+%
+%Explore the dataset with your classifiers. 
+%
+%\section{Multi-classification: MNIST Hand-written Digits}
+%The following website about the Elements of Statistical Learning contains a subset of hand-written digit MNIST dataset, which contains 7,291 training examples and 2007 test examples, each example being 16-by-16 256 grayscale images. There are ten classes with id from 0 to 9. 
+%
+%\url{https://web.stanford.edu/~hastie/ElemStatLearn/datasets/zip.info.txt}
+%
+%Training (1.7M): \url{https://web.stanford.edu/~hastie/ElemStatLearn/datasets/zip.train.gz}
+%
+%Test (429K): \url{https://web.stanford.edu/~hastie/ElemStatLearn/datasets/zip.test.gz}
+%
+%Explore the dataset with your classifiers. %, such as LDA, QDA, logistic regression with various models. 
+
+%\section{Crime Rate}
+%Explore the following dataset about crime rates in 59 US cities during 1970-1992.
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/crime.xlsx}
+%
+%
+%\section{Keyword Pricing (Regression)}
+%
+%The following data, collected by Prof. Hansheng Wang in Guanghua Business School at PKU,
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/math2010_spring/Keyword/SE.csv}
+%
+%\noindent contains two columns: the first column is a list of keywords; the second column is the profit value (positive for earning and negative for loss). Figure \ref{fig:keywords} gives some example.
+%
+%%\begin{figure}[htbp]
+%%\begin{center}
+%%\includegraphics[width=0.6\textwidth]{keywords.png}
+%%\caption{Keywords and profit value}
+%%\label{fig:keywords}
+%%\end{center}
+%%\end{figure}
+%
+%The purpose is to predict the profit value based on features extracted from the keywords, which might be linguistic, geographic, and any new features in your creation. Since the profit values are of real numbers, this problem is regarded as a regression problem by default.
+%
+%A reference can be found in Mr. Jiaqi Zhu's bachelor thesis work:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/Thesis_ZHUJiaqi.pdf}
+%
+%\section{Beer Popularity and Rating}
+%
+%The following data, provided by Mr. Richard (\url{sun.richard@yahoo.com}) from Shanghai,
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/Beers_20140514.xlsx}
+%
+%\noindent contains 877 brands (rows) of beers in Chinese market, with a few attributes about ingradients, alcoholicity, price (and unit price), reviewers count, mean scores, and as well as sources of reviewers (e.g. amazon, jd, yhd etc.). Two questions are interesting to explore such data
+%
+%\begin{enumerate}
+%\item What factors are highly correlated with the popularity of beers indicated by reviewers count?
+%\item What factors accounts for the mean rating scores? Why are those beers lowly rated?
+%\end{enumerate}
+%
+%Note that the data does not contain lots of attributes, so think about your goal before you take a try.
+%
+%
+%$$ A A^T = A^T A = I $$
+%
+%$$ AA^T = I \Leftrightarrow \|x\|_2 = \|A^Tx\|_2, \forall x$$
+%
+%\[ J(A,s) = \|s - A^T x\|_2^2 + \lambda \sqrt{s^2+\epsilon} + \gamma \|A\|_2^2\]
+%
+%\[ \|A\|_2^2 := trace(A^T A)\]
+\end{document}
+
+
