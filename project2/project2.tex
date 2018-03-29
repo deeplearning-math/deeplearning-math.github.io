@@ -50,7 +50,7 @@
 
 \begin{document}
 
-\lecture{Project 2: Midterm}{Yuan Yao}{Due: 9? Apr, 23:59, 2018}{29 Mar, 2018}
+\lecture{Project 2: Midterm}{Yuan Yao}{Due: 12 Apr, 23:59, 2018}{29 Mar, 2018}
 
 %The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
 %
@@ -109,11 +109,11 @@ The following best award paper in ICLR 2017,
 \begin{figure}
 \center
 \includegraphics[width=0.5\textwidth]{Recht1.png}  
-\caption{Achieve zero \emph{training error} as SGD epochs grow, in standard and randomized experiments}
+\caption{Overparametric models achieve zero \emph{training error} (or near zero \emph{training loss}) as SGD epochs grow, in standard and randomized experiments.}
 \label{fig:Recht1}
 \end{figure}
 
-2. Non-overfitting of test error and overfitting of test loss when model complexity grows. Train several CNNs (ResNet) of different number of parameters, stop your SGD at certain large enough epochs (e.g. 1000) or zero training error is reached. Then compare the test error or loss as model complexity grows to see if you observe similar phenomenon in Figure~\ref{fig:Poggio1}: when \emph{training error} becomes zero, \emph{test error} (misclassification) does not overfit but \emph{test loss} (cross-entropy or hinge in your choice) shows overfitting as model complexity grows. This is for reproducing experiments in the following paper: 
+2. Non-overfitting of test error and overfitting of test loss when model complexity grows. Train several CNNs (ResNet) of different number of parameters, stop your SGD at certain large enough epochs (e.g. 1000) or zero \emph{training error (misclassification)} is reached. Then compare the \emph{test (validation) error} or \emph{test loss} as model complexity grows to see if you observe similar phenomenon in Figure~\ref{fig:Poggio1}: when \emph{training error} becomes zero, \emph{test error} (misclassification) does not overfit but \emph{test loss} (e.g. cross-entropy, exponential) shows overfitting as model complexity grows. This is for reproducing experiments in the following paper: 
 
 \emph{Tomaso Poggio, K. Kawaguchi, Q. Liao, B. Miranda, L. Rosasco, X. Biox, J. Hidary, and H. Mhaskar. Theory of Deep Learning III: the non-overfitting puzzle}. Jan 30, 2018. \url{http://cbmm.mit.edu/publications/theory-deep-learning-iii-explaining-non-overfitting-puzzle} 
 
@@ -122,7 +122,7 @@ The following best award paper in ICLR 2017,
 \begin{figure}
 \center
 \includegraphics[width=0.9\textwidth]{Poggio1.png}  
-\caption{When \emph{training error} becomes zero, \emph{test error} (misclassification) does not increase (resistance to overfitting) but \emph{test loss} (cross-entropy/hinge) shows overfitting as model complexity grows}
+\caption{When \emph{training error} becomes zero, \emph{test error} (misclassification) does not increase (resistance to overfitting) but \emph{test loss} (cross-entropy/hinge) increases showing overfitting as model complexity grows.}
 \label{fig:Poggio1}
 \end{figure}
 
