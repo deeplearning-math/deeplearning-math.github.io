@@ -1,0 +1,1 @@
+Download the cifar10 yourself by pytorch torchvision cifar10

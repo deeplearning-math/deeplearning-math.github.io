@@ -1,0 +1,9 @@
+normal-normal : testing error 0.6461
+normal-random : testing error 0.9025
+normal-partially-0.1 : testing error 0.8744
+normal-partially-0.3 : testing error 0.8244
+normal-partially-0.5 : testing error 0.7724
+normal-partially-0.7 : testing error 0.7167
+normal-partially-0.9 : testing error 0.6715
+random-normal : testing error 0.8916
+shuffled-normal : testing error 0.8906

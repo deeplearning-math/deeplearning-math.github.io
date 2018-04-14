@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@ssh://yhuangcc@gpu1.math.ust.hk:22/usr/local/anaconda3/envs/tensorflow/bin/python" />
+      </list>
+    </list>
+  </component>
+</project>

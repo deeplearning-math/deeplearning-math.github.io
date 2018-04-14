@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="ssh://yhuangcc@gpu1.math.ust.hk:22/usr/local/anaconda3/envs/tensorflow/bin/python" autoUploadExternalChanges="true" compareModeInSync="TIMESTAMP" showExcludedInSync="true">
+    <serverData>
+      <paths name="ssh://yhuangcc@gpu1.math.ust.hk:22/usr/local/anaconda3/envs/tensorflow/bin/python">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/PycharmRemote/Project2" local="$PROJECT_DIR$/../Project2" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
