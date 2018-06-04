@@ -1,0 +1,2 @@
+INFO:root:Number of parameters: 369498
+INFO:root:000: Acc-tr:  49.51, Acc-val:  49.09, L-tr: 1.3822, L-val: 1.3873
