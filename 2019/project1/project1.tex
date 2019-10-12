@@ -178,6 +178,34 @@ The following paper by Haixia Liu, Raymond Chan, and me studies Van Gogh's paint
 \url{http://dx.doi.org/10.1016/j.acha.2015.11.005}
 
 
+%\newpage
+%\section{Permutation Invariant and Equivariant Representations}
+%$$
+%\begin{array}{l}{\text { Definition 2.1. Let } G \text { be a group and } X \text { and } Y \text { two sets. We assume that } G \text { acts on } X \text { (resp. } Y) \text { by }} \\ {g \cdot x \text { (resp. } g * y) \text { for } g \in G \text { and } x \in X \text { (resp. } y \in Y) . \text { We say that a map } f : X \rightarrow Y \text { is }} \\ {\qquad \begin{array}{l}{\bullet G \text { -invariant if } f(g \cdot x)=f(x) \text { for any } g \in G \text { and any } x \in X} \\ {\bullet G \text { -equivariant if } f(g \cdot x)=g * f(x) \text { for any } g \in G \text { and any } x \in X}\end{array}}\end{array}
+%$$
+%
+%Replace the translation convolution
+%$$
+%{\left[f * \psi^{i}\right](x)=\sum_{y \in \mathbb{Z}^{2}} \sum_{k=1}^{K^{l}} f_{k}(y) \psi_{k}^{i}(x-y)} $$
+%by group-convolution [Cohen and Welling, https://arxiv.org/abs/1602.07576]
+%$$
+%{[f \star \psi](g)=\sum_{h \in G} \sum_{k} f_{k}(h) \psi_{k}\left(g^{-1} h\right)}
+%$$
+%
+%When $G=S_{n}$ and the actions are induced by permutation, we call $G$-invariant (resp. G-equivariant) functions as permutation invariant (resp. permutation equivariant) functions. 
+%
+%{\bf Theorem 3.1}[Sannai, Takai, Cordonnier, https://arxiv.org/abs/1903.01939v2] (Kolmogorov-Arnold's representation theorem for permutation actions). Let $K \subset {\mathbb{R}^{n}}$ be a compact set. Then, any continuous $S_{n}$-invariant function $f : K \longmapsto \mathbb{R}$ can be represented as  
+%$$ f\left(x_{1}, \ldots, x_{n}\right)=\rho\left(\sum_{i=1}^{n} \phi\left(x_{i}\right)\right), $$ 
+%for some continuous function $\rho : \mathbb{R}^{n+1} \rightarrow \mathbb{R} $. Here, $\phi : \mathbb{R} \rightarrow \mathbb{R}^{n+1} ; x \mapsto\left(1, x, x^{2}, \ldots, x^{n}\right)^{\top}$. 
+%
+%$$
+%\begin{array}{l}{\text { Proposition 4.1. A map } F : \mathbb{R}^{n} \rightarrow \mathbb{R}^{n} \text { is } S_{n} \text { is } S_{n} \text { and variant if and only if there is a Stab(1)-invariant }} \\ {\text { function } f : \mathbb{R}^{n} \rightarrow \mathbb{R} \text { satisfying } F=(f, f \circ(12), \ldots, f \circ(1 n))^{\top} \text { . Here, }(1 i) \in S_{n} \text { is the }} \\ {\text { transposition between 1 and i. }}\end{array}
+%$$
+%
+%$$
+%\begin{array}{l}{\text { Corollary } 4.1 \text { (Representation of Stab( } 1) \text { -invariant function). Let } K \subset \mathbb{R}^{n} \text { be } a \text { compact set, let }} \\ {f : K \longrightarrow \mathbb{R} \text { be a continuous and Stab }(1) \text { -invariant function. Then, } f(\boldsymbol{x}) \text { can be represented as }} \\ {\qquad f(\boldsymbol{x})=f\left(x_{1}, \ldots, x_{n}\right)=\rho\left(x_{1}, \sum_{i=2}^{n} \phi\left(x_{i}\right)\right)} \\ {\text { for some continuous function } \rho : \mathbb{R}^{n+1} \longrightarrow \mathbb{R} . \text { Here, } \phi : \mathbb{R} \rightarrow \mathbb{R}^{n} \text { is similar as in Theorem } 3.1}\end{array}
+%$$
+
 %\section{Air Quality Weibo Data} (courtesy of Prof. Xiaojin Zhu from University of Wisconsin at Madison) 
 %You can login my server:
 %
@@ -483,6 +511,47 @@ The following paper by Haixia Liu, Raymond Chan, and me studies Van Gogh's paint
 %A kernel-induced $l_2$-distances between 162 virus sequences are given in 
 %
 %\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_l2dist.txt}
+
+\newpage
+
+\section*{Peer Review}
+
+In this exercise of open peer review, please write down your comments of the \emph{reports rather than of your own team} in the following format. Be considerate and careful with a precise description, avoiding offensive language. 
+
+Deadline is \emph{to-be-announced}, 2019. Submit your review in plain text to the email address (\href{mailto:deeplearning.math@gmail.com}{deeplearning.math@gmail.com}) with Title: \underline{Math 6380o: Project 1 Review}. Rebuttal is open afterwards.
+
+\begin{itemize}
+\item Summary of the report.
+\item Describe the strengths of the report. 
+\item Describe the weaknesses of the report.
+\item Evaluation on Clarity and quality of writing (1-5): Is the report clearly written? Is there a good use of examples and figures? Is it well organized? Are there problems with style and grammar? Are there issues with typos, formatting, references, etc.? Please make suggestions to improve the clarity of the paper, and provide details of typos.
+\item Evaluation on Technical Quality (1-5): Are the results technically sound? Are there obvious flaws in the reasoning? Are claims well-supported by theoretical analysis or experimental results? Are the experiments well thought out and convincing? Will it be possible for other researchers to replicate these results? Is the evaluation appropriate? Did the authors clearly assess both the strengths and weaknesses of their approach? Are relevant papers cited, discussed, and compared to the presented work?
+\item Overall rating: (5- My vote as the best-report. 4- A good report. 3- An average one. 2- below average. 1- a poorly written one). 
+\item Confidence on your assessment (1-3)
+(3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong)
+\end{itemize}
+
+Then please vote your top THREE favourite reports on Doodle: 
+
+\url{xxx}
+
+%\newpage
+%
+%\section*{Rebuttal}
+%The rebuttal period starts from now, till 11:59pm April 21, 2019. Restrict the number of characters of your rebuttal within {\bf{5,000}}. Submit your rebuttal in PLAIN TEXT or word DOC format to the email address (\href{mailto:datascience.hw@gmail.com}{datascience.hw@gmail.com}) with Title: \underline{CSIC 5011: Project 1 Rebuttal}.
+%
+%The following tips of rebuttal might be helpful for you to follow:
+%
+%1. The main aim of the rebuttal is to answer any specific questions that the reviewers might have raised, or to clarify any misunderstanding of the technical content of the paper.
+%
+%2. Keep your rebuttal short, to-the-point, and specific. In our experience, such rebuttals have the maximum impact.
+%
+%3. Always be polite and professional. Refrain from name calling or rude comments, especially in response to negative reviews.
+%
+%4. Highlight the changes in your manuscripts had you made a simple revision.
+%
+%
+
 \end{document}
 
 
