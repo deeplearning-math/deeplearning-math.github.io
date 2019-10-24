@@ -1,0 +1,20 @@
+• Summary of the report.
+The authors used MNIST dataset in this project.
+visualization using PCA
+ResNet and Scatteering Net to extract features
+SVM and VGG for classification
+
+• Describe the strengths of the report.
+Contains a discussion about the results.
+
+• Describe the weaknesses of the report.
+
+
+• Evaluation on Clarity and quality of writing (1-5): 4
+Sometimes "we" is used and sometimes "I" is used in the report. Might need to be consistent.
+
+• Evaluation on Technical Quality (1-5): 4
+
+• Overall rating: 4
+
+• Confidence on your assessment (1-3): 3

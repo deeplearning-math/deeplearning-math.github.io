@@ -1,0 +1,24 @@
+Peer review for group 4
+
+
+Summary
+- introduce stationary principle
+- intoduce and train WGAN-GP
+- introduce signature of rough path, a machine learning feature extraction technique. Approach is explained clearly.
+- introduce variational autoencoder.
+- implementation in LSTM and dilated CNN
+
+Strength
+- introdunction of the inspriing 'signature of rough path' methiod. Clear, short but simple explaination is given. I really appreciate how the writes go around the challenge of missing data and high dimensional raw data.
+- Although dilated CNN is not successful, the result leaves impact on myself personally as for me it is kind of brand new stuff. I really appreciate yoir worlk on trying to combine it with GAN too.
+
+Weakness:
+
+
+Evaluation on Clarity and quality of writing: 5
+
+Evaluation on Technical Quality (1-5): 5
+
+Overall rating: 5
+
+Confidence on your assessment: 3

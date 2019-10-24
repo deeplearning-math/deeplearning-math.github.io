@@ -1,0 +1,19 @@
+Summary of the report:
+This project extract feature by Scattering Net and pretrained neural network VGG19. 
+They implement classfication by both supervised and unsupervised methods.
+
+Strengths of the report:
+*Report is written clearly.
+*Its evaluation is appropriate.
+
+Weeknesses of the report:
+*The pretrained Vgg can be introduced with more details.
+*They can try different supervised classification methods and make comparasion.
+
+Evaluation:
+Clarity and quality of writing: 3;
+Technical quality: 3;
+Overall rating: 3;
+Confidence on assessment: 2.
+
+

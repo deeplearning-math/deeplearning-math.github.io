@@ -1,0 +1,12 @@
+• Summary
+Bitcoin price prediction is performed by multiple modern models.
+• Strength
+Various methods are used in the Bitcoin price prediction task.
+• Weakness
+The paper organization is to be improved, and more discussion should be added.
+• Evaluation on Clarity and quality of writing: 3
+I could not get what the authors trying to do before I read over half of the report. It would be better if the task could be introduced at the beginnning. Also, I suggest the author could just briefly introduce the basic ideas of the referred methods (VAE, GAN, Dilated CNN, etc.) and be more focused on their own contribution, as the details of their work are not thoroughly presented.
+• Evaluation on Technical Quality: 3
+Though multiple methods are used, the results are not well analyzed: reasons for results should be discussed. Also, classical methods for time-series prediction (ARIMA, etc.) should be referred as baselines.
+• Overall rating: 2
+• Confidence: 3

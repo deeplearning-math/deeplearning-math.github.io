@@ -1,0 +1,26 @@
+Peer review for group 6
+
+Summary:
+i. Feature Extraction
+Mathematical analysis of scattering network is presented.
+Architecture of VGG 19 is shown.
+ii. Feature Visualization
+Implement TSNE on features extracted by scattering net and VGG 19 respectively.
+iii. Image classification
+Logistic regression/stochastic gradient descent is used for classification.
+
+Strength:
+Formulas of scattering networks are well derived.
+Give explaination on why tsne leads to a better visualization result. 
+
+Weakness:
+Too little visualizattion method and classification method. I look forward to see comparsion between various methods and whyu some methods are better than others.
+Maybe can list out the feature map of scattering network and VGG19 in feature extraction part.
+
+Evaluation on Clarity and quality of writing: 3
+
+Evaluation on Technical Quality (1-5): 2
+
+Overall rating: 2
+
+Confidence on your assessment: 3

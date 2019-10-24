@@ -1,0 +1,14 @@
+Summary of the report:
+This project reproduce MAML and conduct ablation&hyper-parameter study on image classification by using Omniglot dataset nd MiniImagenet dataset.
+
+Strengths of the report:
+*Very clear organization.
+*Claims are supported by both theoretical analysis and experiemntal results.
+*They also find some strategies to improve MAML and verify them by experiments.
+*A relevant paper is compared to the presented work.
+
+Evaluation:
+Clarity and quality of writing: 5;
+Technical quality: 5;
+Overall rating: 5;
+Confidence on assessment: 2.

@@ -1,0 +1,7 @@
+Summary: The authors use scattering net and Resnet for classification of MNIST and Raphael paintings.
+Strengths: Extensive evaluation and good results on Raphael paintings.
+Weaknesses: Some figure captions are misleading.
+Evaluation on Clarity and quality of writing: 4. For figure 4, what are 4 datasets? It looks like there are 4 different image sources.
+Evaluation on Technical Quality: 4
+Overall rating: 4
+Confidence on my assessment: 2

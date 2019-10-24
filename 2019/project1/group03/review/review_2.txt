@@ -1,0 +1,12 @@
+• Summary
+MNIST classification using SVM or fine-tuned ResNet, with pretrained ResNet or ScatNet as feature extractor.
+• Strength
+Multiple feature extractors and classifiers are evaluated, which give a comprehensive result. Particularly, the fine-tuned ResNet gives impressive results.
+• Weakness
+It would be better if some more classifiers are involved, as comparison between SVM and fine-tuned NN are not so fair since the mechanisms behind are much too different.
+• Evaluation on Clarity and quality of writing: 4
+The poster is well-written, while there're some issues. As image settings of MNIST are different from ImageNet, it should be clearly stated that how the features are extracted. Also, the experiment settings should be given in Part 4: what is the classifier? Is it an SVM (as mentioned in 5)? What does it mean by "Raw image"?
+• Evaluation on Technical Quality: 5
+The results are well supported. Also, the fine-tuning results are impressive. More, it would be good if the results on both dev and test sets, as well as the loss curves for training and dev set are given.
+• Overall rating: 4
+• Confidence: 3

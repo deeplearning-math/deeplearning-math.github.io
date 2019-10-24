@@ -1,0 +1,12 @@
+• Summary
+Logistic Regression and Random Forests are performed on features extracted by multiple pretrained CNNs and Scattering Wavelets from MNIST.
+• Strength
+Multiple feature extractors and classifiers are evaluated, which give a comprehensive result.
+• Weakness
+Analysis and explanation in the report are not so developed.
+• Evaluation on Clarity and quality of writing: 4
+The report is well-written, though some verbose outputs from IPython could be omitted. References should be clearly listed.
+• Evaluation on Technical Quality: 4
+Results are sound and well-supported, while within expectation as there're limited findings beyond the basic requirements. More citation could be provided. Also, the author’s understanding on both Wavelet Scattering and CNN could be improved. As for CNN, the explanation of network modules is not precise. It should be noted that the design of AlexNet, VGG16 and ResNet are guided by different ideas. More, the author discussed and visualized the weights of Logistic Regression, but the results are not so convincing (I don’t think statements like “how far apart they are in a low dimensional space” make clear claim, and the distances after t-SNE are not so meaningful unless the author gives more interpretation).
+• Overall rating: 3
+• Confidence: 3

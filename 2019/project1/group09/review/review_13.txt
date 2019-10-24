@@ -1,0 +1,17 @@
+Summary of the report:
+This project extract feature of MNIST by Scattering Net, VGG19 and ResNet50.
+They implement classfication by both supervised and unsupervised methods.
+They also try SNN and CNN combined with Scattering Net on Raphael's dataset.
+
+Strengths of the report:
+*Clear statement and good organization.
+*Appropriate discussion.
+*A good use of figures.
+
+Evaluation:
+Clarity and quality of writing: 4;
+Technical quality: 4;
+Overall rating: 4;
+Confidence on assessment: 2.
+
+

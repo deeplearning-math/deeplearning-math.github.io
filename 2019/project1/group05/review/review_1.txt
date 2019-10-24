@@ -1,0 +1,20 @@
+Peer review for group 5
+
+summary
+Briefly introduce meta learning and few shot learning. Then the write implement the algorithm to multiple classification tasks in which shot number and performance is investigated.
+Effect of inner loop learning rate, meta learning rate, number of stages and a few more things are investigated too.
+Finally the write further introduce strategies to improve MAML and investigate each of their performance.
+
+Strength
+This paper gives a very all rounded experiements on different aspects of meta learning. The 10 experiments are inspiring and well thought/designed. They allow people to have a deeper understanding to its mechanism.
+
+Weakness:
+
+
+Evaluation on Clarity and quality of writing: 5
+
+Evaluation on Technical Quality (1-5): 5
+
+Overall rating: 5
+
+Confidence on your assessment: 3

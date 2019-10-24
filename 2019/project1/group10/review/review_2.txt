@@ -1,0 +1,15 @@
+Report 10
+• Summary of the report.
+This report do feature extraction and classification on MNIST dataset. They also do feature extraction, visualization and classification on Raphael paintings. They show that after feature extraction, the difference of different digits on MNIST dataset becomes clear. However, they do not get a very good result on Raphael paintings.
+• Describe the strengths of the report.
+Good features. Clear statements.
+• Describe the weaknesses of the report.
+Lack of further analyzation.
+• Evaluation on Clarity and quality of writing (1-5): 
+3. They do present their results in a clear way. However, It seems that this report is not that completed. For example, It does not have an introduction in the beginning and does not have a conclusion in the end.
+• Evaluation on Technical Quality (1-5): 
+2. They indeed list their results and clearly describe their dataset. However, they only compare their classfication results of extracted features with raw data, and do not make further analyzations.
+• Overall rating:
+2
+• Confidence on your assessment (1-3) 
+2

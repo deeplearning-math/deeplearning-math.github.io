@@ -1,0 +1,24 @@
+• Summary of the report.
+This report experimented on MNIST dataset. 
+The authors used wavelet scattering transform as data augmentation to achieve data augmentation. 
+They used Scattering Net for feature extraction, and visualized the features using PCA and t-SNE. 
+For classification, they used various non-deep-learning methods including Logistic Regression, SVM, Random Forest, Decision Tree, AdaBoost and Gradient Boosting.
+They also tried deep learning models including AlexNet, VGG19 and ResNet18.
+Finally, they used 3-Fold Cross Validation to validate the above models.
+
+• Describe the strengths of the report.
+They tried various models and did evaluations on them.
+
+• Describe the weaknesses of the report.
+Maybe more details about the hyperparameters can be given for the models.
+
+• Evaluation on Clarity and quality of writing (1-5): 5
+
+I guess in the Feature Extraction part, "we implement the 2D scatting transform" should be "we implement the 2D scattering transform"
+
+
+• Evaluation on Technical Quality (1-5): 5
+
+• Overall rating: 4
+
+• Confidence on your assessment (1-3): 3

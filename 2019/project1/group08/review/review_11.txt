@@ -1,0 +1,17 @@
+Summary of the report:
+This project extract feature by Scattering Net and pretrained neural network VGG19. 
+It then implements classfication by PCA and SVM.
+
+Strengths:
+*Code is written clearly.
+
+Weeknesses:
+*There should be a report, instead of analysis after each part of code.
+
+Evaluation:
+Clarity and quality of writing: 2;
+Technical quality: 3;
+Overall rating: 2;
+Confidence on assessment: 2.
+
+

@@ -1,0 +1,15 @@
+Report 7
+• Summary of the report.
+This report uses different methods of feature extraction and visualization on the MNIST dataset and Raphael's paintings dataset. The results and experiments are clearly stated, and the features are presented well. However, it seems that this report is mostly methods introduction and progress representation. It lacks some kinds of analyzation. It seems that this reports uses many methods in visualization but only one in classification. I think they can use several methods and compare their results, so that they may discover something new.
+• Describe the strengths of the report.
+Clear expressions and statement of results.
+• Describe the weaknesses of the report.
+Lack of analyzation and more experiments to get plausible findings.
+• Evaluation on Clarity and quality of writing (1-5):
+4. The report is clearly written. However, It seems that the report lack some kind of connections between chapters.
+• Evaluation on Technical Quality (1-5): 
+2. They do conduct experiments based on the known methods. But they do not present any new thoughts for further discussion. 
+• Overall rating: 
+3
+• Confidence on your assessment (1-3) 
+2

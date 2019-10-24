@@ -1,0 +1,7 @@
+Summary: This group uses scattering net and VGG to extract features for MNIST and classify with logistic regression.
+Strengths: The writing is easy to understand and figure illustrations are good.
+Weaknesses: The conclusion and analysis raise doubts. The low performance of VGG is not explained well.
+Evaluation on Clarity and quality of writing: 4
+Evaluation on Technical Quality: 3
+Overall rating: 4
+Confidence on my assessment: 2

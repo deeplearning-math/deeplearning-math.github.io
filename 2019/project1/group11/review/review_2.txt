@@ -1,0 +1,15 @@
+Report 11
+• Summary of the report.
+ They uses several methods to do feature extraction on MNIST dataset and some traditional supervised learning methods on the extracted features. They compared performances of different methods. They found that logistic regression and random forest are less likely to be influenced by different feature extraction methods.
+• Describe the strengths of the report.
+Clearly stated experiments. Good comparison. 
+• Describe the weaknesses of the report.
+Lack of some further analyzations of why this phenomenon occurs.
+• Evaluation on Clarity and quality of writing (1-5):
+4. Very clear structure. Though they may state the connections between chapters more clearly.
+• Evaluation on Technical Quality (1-5): 
+3. The conclusions seem to be resonable. But they could try to give more theoretical analyzations.
+• Overall rating: 
+4
+• Confidence on your assessment (1-3) 
+2

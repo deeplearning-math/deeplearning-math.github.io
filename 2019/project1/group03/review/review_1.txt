@@ -1,0 +1,24 @@
+Peer review for group 3
+
+Summary:
+i. Feature Extraction
+Briefly discuss some 'steps' in the extraction process.
+ii. Feature Visualization
+Implement tsne to both ResNet and scattering net.
+iii. Image classification
+accuracy of various classifcation methods is listed.
+
+Strength:
+Detailed analysis between various classification methods. Concrete eplainations are given and it is inspiring.
+
+Weakness:
+Too little visualizattion method method. I look forward to see comparsion between various methods and whyu some methods are better than others.
+Maybe can list out the feature map of scattering network and VGG19 in feature extraction part.
+
+Evaluation on Clarity and quality of writing: 3
+
+Evaluation on Technical Quality (1-5): 2
+
+Overall rating: 2
+
+Confidence on your assessment: 3

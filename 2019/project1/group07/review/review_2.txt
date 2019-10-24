@@ -1,0 +1,27 @@
+Peer review for group 7
+
+Summary:
+i. Feature Extraction
+The group implement feature extraction on MNIST by scattering network and on Raphael's paintings by VGG19. Examples of feature map are presented on both dataset.
+ii. Feature Visualization
+The group implement six methods in total, ranging from PCA, MDS,LLE  e.t.c. Scattering plot are presented and above methods are carefully analysised and compared.
+iii. Image classification
+SVM model is implemeted on both MNIST and Raphael painting dataset.
+
+Strength:
+The report have a very wide coverage, covering 6 method in feature visalization and two datasets. Each datasets have been carefully taken care.
+I especially appreciate the feature map part as a few maps on both datasets have been shown.
+The scatter plot in feature visualization part is good too as the distribution of points are carefully discussed.
+
+
+Weakness:
+On the feature visualization part, the group only focus on describing how the points are scatted in the scatter plot on different methods. With the decription of each method introduced beforehand, I expect to see explainations why a certain method will make a better/worse result. (e.g. non-linear structure of data??)
+Maybe some more classification method if more time is allowed.
+
+Evaluation on Clarity and quality of writing: 3
+
+Evaluation on Technical Quality (1-5): 4
+
+Overall rating: 3
+
+Confidence on your assessment: 3

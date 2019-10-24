@@ -1,0 +1,7 @@
+Summary: The author uses scattering net and VGG net for raphael painting classification.
+Strengths: Clear demonstration of code.
+Weaknesses: Insufficient and sloppy description.
+Evaluation on Clarity and quality of writing: 2 What is "we see a fast and study decrease in both traing and validation accuracy, acheaving 100% in a few epoch"?
+Evaluation on Technical Quality: 3
+Overall rating: 2
+Confidence on my assessment: 2

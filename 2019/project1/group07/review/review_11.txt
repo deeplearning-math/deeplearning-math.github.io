@@ -1,0 +1,19 @@
+Summary of the report:
+This project uses both MNIST and Raphael's dataset by Scattering Net and VGG19.
+They also use different kinds of unsupervised and supervised methods to do the classification.
+
+Strengths of the report:
+*Clear statement and good organization.
+*There is a good use of figures.
+
+Weeknesses of the report:
+*They can talk more about the different address and results of the two datasets.
+*It would be better if they explain why some unsupervised methods show better results.
+
+Evaluation:
+Clarity and quality of writing: 4;
+Technical quality: 4;
+Overall rating: 4;
+Confidence on assessment: 2.
+
+

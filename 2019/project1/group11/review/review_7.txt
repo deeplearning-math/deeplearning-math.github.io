@@ -1,0 +1,7 @@
+Summary: This author uses different feature extractors and classifiers for MNIST dataset.
+Strengths: Clear and easy-to-understand presentation.
+Weaknesses: Almost none.
+Evaluation on Clarity and quality of writing: 4
+Evaluation on Technical Quality: 4
+Overall rating: 4
+Confidence on my assessment: 2

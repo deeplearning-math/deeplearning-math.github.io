@@ -1,0 +1,15 @@
+Report 8
+• Summary of the report.
+This report uses VGG19 and scattering net to do feature extraction on Rapheal paintings. Also it uses SVM to do classification. However, I have to say that since it is not in pdf form, I may missed a lot of information of the report.
+• Describe the strengths of the report.
+Good coding. Some analyzations.
+• Describe the weaknesses of the report.
+Please submit a pdf file next time.
+• Evaluation on Clarity and quality of writing (1-5):
+1. This report is not that organized and it seems that it does not meet the format requirements.
+• Evaluation on Technical Quality (1-5): 
+3. This report actually do some good job in coding. They also provide some reasonable analyzations. But it lacks plausible theoretical reasoning.
+• Overall rating: 
+2
+• Confidence on your assessment (1-3) 
+1

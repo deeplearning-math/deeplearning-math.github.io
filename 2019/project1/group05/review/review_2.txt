@@ -1,0 +1,17 @@
+• Summary
+
+• Strength
+The model is well reproduced, and the authers further investigated the meta-learning tasks by multiple strategies.
+
+• Weakness
+The writing could be improved.
+
+• Evaluation on Clarity and quality of writing: 4
+The paper is well-written, while it would be better if the idea is explained in a clearer way in Sec 2., and the datasets are introduced in Sec 3.
+
+• Evaluation on Technical Quality: 5
+The paper investigated is of great significance while it indeed requires labor to understand and reproduce: the authors did a good job!
+
+• Overall rating: 5
+
+• Confidence: 3

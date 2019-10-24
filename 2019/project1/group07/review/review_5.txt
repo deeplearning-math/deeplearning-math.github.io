@@ -1,0 +1,7 @@
+Summary: The authors use scattering net to extract features for MNIST and use VGG16 for Raphel's paintings. Classification is done using SVM.
+Strengths: The visualization of features is done using different techniques.
+Weaknesses: What is the cross-validation accuracy for the paintings?
+Evaluation on Clarity and quality of writing: 4
+Evaluation on Technical Quality: 3
+Overall rating: 4
+Confidence on my assessment: 2

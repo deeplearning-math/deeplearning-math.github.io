@@ -1,0 +1,17 @@
+• Summary of the report.
+The authors did experiment on MNIST dataset:
+feature extraction using scattering net -> visualization using PCA and t-SNE -> classify data using various models
+
+• Describe the strengths of the report.
+Explored various models including traditional machine learning ones and deep learning ones.
+
+• Describe the weaknesses of the report.
+Some details are not shown in VGG19 section (did not show how many epochs are trained).
+
+• Evaluation on Clarity and quality of writing (1-5): 5
+
+• Evaluation on Technical Quality (1-5): 4
+
+• Overall rating: 4
+
+• Confidence on your assessment (1-3): 3

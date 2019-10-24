@@ -1,0 +1,17 @@
+• Summary of the report. 
+The author did experiment on MNIST:
+feature extraction -> scattering vavelet transform to extract deformation invariant features -> classification -> result comparison and explanation
+
+• Describe the strengths of the report.
+Explanations on the results are given.
+
+• Describe the weaknesses of the report.
+Maybe it can be more compact to give summarization of the results instead of listing the raw results.
+
+• Evaluation on Clarity and quality of writing (1-5): 5
+
+• Evaluation on Technical Quality (1-5): 5
+
+• Overall rating: 4
+
+• Confidence on your assessment (1-3): 2

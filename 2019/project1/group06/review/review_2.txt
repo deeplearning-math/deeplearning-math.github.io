@@ -1,0 +1,19 @@
+• Summary
+MNIST classification based on ScatNet and VGG16 as feature extractor.
+
+• Strength
+The report is self-contained and clearly written. The work is satisfiable.
+
+• Weakness
+Some minor issues could be found in the paper.
+
+• Evaluation on Clarity and quality of writing: 5
+The report is well-written, with points of concerns provided clearly.
+The number of samples in 1 seems to be a typo.
+
+• Evaluation on Technical Quality: 4
+The results are well-supported, while it would be better if more models are evaluated and the results are further analyzed. Also it should be noticed that "impossible to use a linear classiﬁer" in 5 is not exact as tSNE is only a manner of projection towards the 2D plane.
+
+• Overall rating: 4
+
+• Confidence: 3

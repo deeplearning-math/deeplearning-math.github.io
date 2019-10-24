@@ -1,0 +1,18 @@
+Summary of the report:
+This project tends to use signatures of rough paths to predict bitcoin prices, while features are extracted by GAN. 
+They aim to provide reliable predictions of expected returns to explain most of the forecasted variance among assets of the universe by using variational autoencoder combined with Long Short memory network as the baseline.
+Moreover, they also use Dilated CNNs to predict Bitcoin prices.
+
+Strengths of the report:
+* Detained introduction about each method used in the project.
+* They clearly assess both the strengths and weakness of their approaches.
+
+Weaknesses of the report:
+* It may be better to state the connection of each part more clearly.
+* Accuracy is not that good.
+
+Evaluation:
+Clarity and quality of writing: 4;
+Technical quality: 4;
+Overall rating: 4;
+Confidence on assessment: 2.

@@ -1,0 +1,18 @@
+• Summary of the report.
+The authors did experiment on Raphael paintings dataset by Prof. Yang Wang from HKUST.
+They performed data augmentation by cropping squares with different sizes from original images.
+Then they used Scattering Net and ResNet to extract features and predicted using traditional machine learning and deep learning methods.
+
+• Describe the strengths of the report.
+The original dataset is small, they did data augmentation to enhance the data.
+
+• Describe the weaknesses of the report.
+Might do some validation on the models.
+
+• Evaluation on Clarity and quality of writing (1-5): 5
+
+• Evaluation on Technical Quality (1-5): 4
+
+• Overall rating: 4
+
+• Confidence on your assessment (1-3): 3
