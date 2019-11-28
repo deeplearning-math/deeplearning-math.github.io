@@ -209,7 +209,7 @@ Can you reproduce it and extend your study with Cifar10 dataset?
 \end{centering}
 \end{figure}
 
-4. Many works on generalization bounds learned in class (e.g. Peter Bartlett, Sasha Rakhlin, etc.) try to explain the mystery of good generalization performance of overparameterized models based on
+4. Many works on generalization bounds learned in class (e.g. Peter Bartlett, Sasha Rakhlin, and our recent work \url{https://arxiv.org/abs/1810.03389} etc.) try to explain the mystery of good generalization performance of overparameterized models using Rademacher complexity based bounds,
 \[ \text{test error} \leq \text{training error} + \frac{\text{complexity}}{\sqrt{n}} \]
 where $n$ is the sample size and ``$\text{complexity}$" does not depend on the number of parameters of a network. Recently, Nagarajan and Kolter argued (\url{https://arxiv.org/abs/1902.04742}) that all these bounds are insufficient to explain the phenomenon. Can you give your own analysis or perspective?
 
