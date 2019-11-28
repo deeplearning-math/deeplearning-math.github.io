@@ -85,7 +85,7 @@ This project as a warm-up aims to explore feature extractions using existing net
 \begin{enumerate}
 \item Pick up ONE (or more if you like) favourite dataset below to work. If you would like to work on a different problem outside the candidates we proposed, please email course instructor about your proposal.  
 \item Team work: we encourage you to form small team, up to FOUR persons per group, to work on the same problem. Each team must submit:
-\subitem ONE report, \emph{with a clear remark on each person's contribution}. The report can be in the format of either a \emph{technical report within 8 pages}, e.g. NIPS conference style (preferred format) 
+\subitem(a) ONE report, \emph{with a clear remark on each person's contribution}. The report can be in the format of either a \emph{technical report within 8 pages}, e.g. NIPS conference style (preferred format) 
 \begin{center}
 \url{https://nips.cc/Conferences/2019/PaperInformation/StyleFiles} 
 \end{center}
@@ -212,6 +212,7 @@ Can you reproduce it and extend your study with Cifar10 dataset?
 4. Many works on generalization bounds learned in class (e.g. Peter Bartlett, Sasha Rakhlin, and our recent work \url{https://arxiv.org/abs/1810.03389} etc.) try to explain the mystery of good generalization performance of overparameterized models using Rademacher complexity based bounds,
 \[ \text{test error} \leq \text{training error} + \frac{\text{complexity}}{\sqrt{n}} \]
 where $n$ is the sample size and ``$\text{complexity}$" does not depend on the number of parameters of a network. Recently, Nagarajan and Kolter argued (\url{https://arxiv.org/abs/1902.04742}) that all these bounds are insufficient to explain the phenomenon. Can you give your own analysis or perspective?
+
 
 \section{Challenge from Project 1}
 The basic challenge is 
@@ -646,6 +647,25 @@ The following paper by Haixia Liu, Raymond Chan, and me studies Van Gogh's paint
 %A kernel-induced $l_2$-distances between 162 virus sequences are given in 
 %
 %\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_l2dist.txt}
+
+\section{Self Proposals}
+\subsection{Teacher-Student Network Project Proposal}
+This proposal is made by Donghao Li, Jiamin Wu, Wenqi Zeng, Yang Cao.
+
+\subsubsection{Background} %Enter instruction text here
+Although neural networks have made strong empirical progress in a diverse set of domains (e.g.,computer vision, speech recognition, natural language processing, and games), a number of fundamental questions still remain unsolved. For example, How can Stochastic Gradient Descent (SGD) find good solutions to a complicated non-convex optimization problem? Why do neural networks generalize? Why are flat minima related to good generalization? Why does over-parameterization lead to better generalization? Recently, some work focus on teacher student network setting and gives some insight about  the questions above. In this project, we would explore this topic, starting with reproduce some key results and then try to give some further analysis.
+
+
+\subsubsection{Problem setting}
+In teacher student framework, teacher is a fixed neural network and then we want to train a student network to fit the teacher network. Specifically, we sample $X$ from some distribution and then use the teacher network to produce label $Y$. We use $(X,Y)$ pair as data to train the student network.
+
+\subsubsection{Tasks}
+\begin{itemize} 
+\item Reproduce the experiments in \url{https://arxiv.org/pdf/1410.1141.pdf}, which first use teacher student setting to analysis over-parameterization benefits optimization problem.
+\item Analysis in \url{https://arxiv.org/abs/1909.13458v4} and \url{https://arxiv.org/pdf/1905.13405.pdf} is inspired by "lottery tickets hypothesis", which states that "A randomly-initialized, dense neural network contains a subnetwork that is initialized such that—when trained in isolation—it can match the test accuracy of the original network after training for at most the same number of iterations." Can you reproduce the results to find the winning ticket? Further, can you extend the experiments and give some analysis?
+\item After read and reproduce these papers, have you got some further insight inspired by this teacher student framework? It is still an open question, so any comments on this topic are welcomed.
+\end{itemize}
+
 
 %\newpage
 %
