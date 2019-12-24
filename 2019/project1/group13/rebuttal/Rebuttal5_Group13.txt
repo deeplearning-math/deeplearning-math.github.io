@@ -1,0 +1,4 @@
+- Rebuttal to "Weakness"
+
+It is computationally impossible to apply leave-one-out (or, k-fold validation) for the augmented samples of 23k crops. The train-dev split in our work is instead the standard practice on large datasets. Also, under the methodology of exploring the appropriate scale to best capture the feature of fraud, by training the classifiers separately from samples of different scales, each sample in our augmented dataset could be view in an indepedent way, and performing leave-one-out validation on the original images is not so reasonable. Therefore, leave-one-out validation is unsuitable for our settings.
+We apologize that we miss the exact setting: the train-dev split on the augmented 23k dataset is by 8:2.

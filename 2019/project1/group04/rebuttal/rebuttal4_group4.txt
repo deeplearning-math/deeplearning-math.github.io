@@ -1,0 +1,10 @@
+"Lack of vizualization"
+We built our models from scratch and didn't prioritize visualizations
+"Seems just use dataset rather then apply deep learning methods"
+Not true, we extracted features using VAE and GAN both of which are deep learning methods. Signatures of rough path is a more classical approach. 
+"The result is resonable but not useful, the feature extraction did not improve the precise of the result"
+Feature extraction using VAE and signatures actually gave improvements in prediction accuracy, just the GAN features failed to work. Furthermore running a Dilated CNN on the raw data did not find any structure in the data either. Unlike for images where there's a clear structure to be captured financial data is notoriously difficult to predict. Obtining accuracies of 60% can generate profits after fees.  
+"The python file lack visualization part and contains only feature extraction. It may be hard for others to replicate"
+The full code and data is avaliable under the link in section 8 of the report.
+"The result is not strong enough to support the work"
+Unlike for images where theres is a clear structure to be captured, financial data is notoriously difficult to predict. Obtaining accuracies of 60% can generate profits after fees.

@@ -1,0 +1,7 @@
+- Rebuttal to "Weakness"
+1. Please have a look at paragraph in the "Prediction" section. It is clearly stated that "Predicted probabilities of whether the corresponding sample is Raphael are shown in the Table", so the numbers in table are the confidences given by the classifier that each of the 7 disputed samples is genuine. Also it is clearly stated that the results are given by ensembled logistic regressors from ResNet features.
+2. It is mentioned that the line chart shows the results of the ensembled logistic regressors from ResNet features, and the table says that the numbers are MSE.
+3. We apologize that we miss the exact setting: the train-dev split on the augmented 23k dataset is by 8:2.
+
+- Rebuttal to "Writing"
+It is not a typo: the grey-lined crops are not discarded, i.e. they are not filtered out but left for the next-stage filtering.

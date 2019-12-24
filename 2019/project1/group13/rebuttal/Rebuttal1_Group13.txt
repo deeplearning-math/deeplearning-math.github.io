@@ -1,0 +1,1 @@
+It is clearly emphasized that on ResNet experiments extensive data augmentation is performed and ~23000 samples are produced, so the weakness and clarity issue show some misunderstanding.

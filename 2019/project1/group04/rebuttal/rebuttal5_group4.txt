@@ -1,0 +1,2 @@
+"Accuracy is not good"
+Unlike for images where theres is a clear structure to be captured, financial data is notoriously difficult to predict. Obtaining accuracies of 60% can generate profits after fees.    

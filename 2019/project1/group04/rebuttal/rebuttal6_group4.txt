@@ -1,0 +1,2 @@
+"I do not understand why the author use VAE to do the classification task"
+Actually VAE is used for feature extraction. LSTM is used to do prediction on the learned features.
