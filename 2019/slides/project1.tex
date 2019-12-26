@@ -1,0 +1,562 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathbb N}}
+\def\NN{{\mathcal N}}
+\def\R{{\mathbb R}}
+\def\E{{\mathbb E}}
+\def\rank{{\mathrm{rank}}}
+\def\tr{{\mathrm{trace}}}
+\def\P{{\mathrm{Prob}}}
+\def\sign{{\mathrm{sign}}}
+\def\diag{{\mathrm{diag}}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Deep Learning: Towards Deeper Understanding \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Mini-Project 1. Feature Extraction and Transfer Learning}{Yuan Yao}{Due: 23:59 Sunday 6 Oct, 2018}{12 Sep, 2018}
+
+%The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
+%
+%\begin{enumerate}
+%
+%\item {\em Manifold Learning}: The following codes by Todd Wittman contain major manifold learning algorithms talked on class.
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/mani.m}
+%
+%Precisely, eight algorithms are implemented in the codes: MDS, PCA, ISOMAP, LLE, Hessian Eigenmap, Laplacian Eigenmap, Diffusion Map, and LTSA. 
+%The following nine examples are given to compare these methods,
+%\begin{enumerate}
+%\item Swiss roll;
+%\item Swiss hole;
+%\item Corner Planes;
+%\item Punctured Sphere;
+%\item Twin Peaks;
+%\item 3D Clusters;
+%\item Toroidal Helix;
+%\item Gaussian;
+%\item Occluded Disks.
+%\end{enumerate}
+%Run the codes for each of the nine examples, and analyze the phenomena you observed. 
+%
+%\end{enumerate}
+
+%\newpage
+
+
+\section{Mini-Project Requirement and Datasets}
+
+This project as a warm-up aims to explore feature extractions using existing networks, such as pre-trained deep neural networks and scattering nets, in image classifications with traditional machine learning methods.
+\begin{enumerate}
+\item Pick up ONE (or more if you like) favourite dataset below to work. If you would like to work on a different problem outside the candidates we proposed, please email course instructor about your proposal.  
+\item Team work: we encourage you to form small team, up to FOUR persons per group, to work on the same problem. Each team just submit ONE report, \emph{with a clear remark on each person's contribution}. The report can be in the format of either a \emph{technical report within 8 pages}, e.g. NIPS conference style (preferred format) 
+\begin{center}
+\url{https://nips.cc/Conferences/2019/PaperInformation/StyleFiles} 
+\end{center}
+Python (Jupyter) Notebooks with a detailed documentation, or a \emph{poster}, e.g. 
+\begin{center}%\url{http://math.stanford.edu/~yuany/publications/poster_CleaveBioCPH2017_ForReview.pptx}
+\url{https://github.com/yuany-pku/2017_math6380/blob/master/project1/DongLoXia_poster.pptx}
+\end{center}
+\item In the report, show your proposed scientific questions to explore and main results with a careful analysis supporting the results toward answering your problems. Remember: scientific analysis and reasoning are more important than merely the performance tables. Separate source codes may be submitted through email as a zip file, GitHub link, or as an appendix if it is not large.    
+\item Submit your report by email or paper version no later than the deadline, to the following address (\href{mailto:deeplearning.math@gmail.com}{deeplearning.math@gmail.com}) with Title: \underline{Math 6380O: Project 1}. % (\href{mailto:datascience\_hw@126.com}{datascience\_hw@126.com}). 
+\end{enumerate}
+
+\section{Challenge}
+The basic challenge is 
+\begin{itemize}
+\item Feature extraction by scattering net with known invariants; 
+\item Feature extraction by pre-trained deep neural networks, e.g. VGG19, and resnet18, etc.;
+\item Visualize these features using classical unsupervised learning methods, e.g. PCA/MDS, Manifold Learning, t-SNE, etc.; 
+\item Image classifications using traditional supervised learning methods based on the features extracted, e.g. LDA, logistic regression, SVM, random forests, etc.;
+\item *Train the last layer or fine-tune the deep neural networks in your choice; 
+\item Compare the results you obtained and give your own analysis on explaining the phenomena.
+\end{itemize}
+
+Below are two candidate datasets. Challenge marked by * above is only optional. 
+
+\subsection{MNIST dataset -- a Warmup}
+
+Yann LeCun's website contains original MNIST dataset of 60,000 training images and 10,000 test images. 
+
+\url{http://yann.lecun.com/exdb/mnist/}
+
+There are various ways to download and parse MNIST files. For example, Python users may refer to the following website:
+
+\url{https://github.com/datapythonista/mnist}
+
+or MXNET tutorial on mnist
+
+\url{https://mxnet.incubator.apache.org/tutorials/python/mnist.html}
+
+\subsection{Identification of Raphael's paintings from the forgeries}
+
+The following data, provided by Prof. Yang WANG from HKUST,
+
+\url{https://drive.google.com/folderview?id=0B-yDtwSjhaSCZ2FqN3AxQ3NJNTA&usp=sharing}
+
+\noindent contains a 28 digital paintings of Raphael or forgeries. Note that there are both jpeg and tiff files, so be careful with the bit depth in digitization. The following file
+
+\url{https://docs.google.com/document/d/1tMaaSIrYwNFZZ2cEJdx1DfFscIfERd5Dp2U7K1ekjTI/edit}
+
+\noindent contains the labels of such paintings, which are 
+\begin{enumerate}
+\item[1] Maybe Raphael - Disputed
+\item[2] Raphael
+\item[3] Raphael
+\item[4] Raphael
+\item[5] Raphael
+\item[6] Raphael
+\item[7] Maybe Raphael - Disputed
+\item[8] Raphael
+\item[9] Raphael
+\item[10] Maybe Raphael - Disputed
+\item[11] Not Raphael
+\item[12] Not Raphael
+\item[13] Not Raphael
+\item[14] Not Raphael
+\item[15] Not Raphael
+\item[16] Not Raphael
+\item[17] Not Raphael
+\item[18] Not Raphael
+\item[19] Not Raphael
+\item[20] My Drawing (Raphael?)
+\item[21] Raphael
+\item[22] Raphael
+\item[23] Maybe Raphael - Disputed
+\item[24] Raphael
+\item[25] Maybe Raphael - Disputed
+\item[26] Maybe Raphael - Disputed
+\item[27] Raphael
+\item[28] Raphael
+\end{enumerate}
+There are some pictures whose names are ended with alphabet like A's, which are irrelevant for the project. 
+
+The challenge of Raphael dataset is: can you exploit the known Raphael vs. Not Raphael data to predict the identity of those 6 disputed paintings (maybe Raphael)? Textures in these drawings may disclose the behaviour movements of artist in his work. One preliminary study in this project can be: \emph{take all the known Raphael and Non-Raphael drawings and use leave-one-out test to predict the identity of the left out image; you may break the images into many small patches and use the known identity as its class.}      
+
+The following student poster report seems a good exploration
+
+\url{https://github.com/yuany-pku/2017_CSIC5011/blob/master/project3/05.GuHuangSun_poster.pdf}
+%\url{http://math.stanford.edu/~yuany/course/2015.fall/poster/Raphael_LI\%2CYue_1300010601.pdf}
+
+The following paper by Haixia Liu, Raymond Chan, and me studies Van Gogh's paintings which might be a reference for you:
+
+\url{http://dx.doi.org/10.1016/j.acha.2015.11.005}
+
+
+%\newpage
+%\section{Permutation Invariant and Equivariant Representations}
+%$$
+%\begin{array}{l}{\text { Definition 2.1. Let } G \text { be a group and } X \text { and } Y \text { two sets. We assume that } G \text { acts on } X \text { (resp. } Y) \text { by }} \\ {g \cdot x \text { (resp. } g * y) \text { for } g \in G \text { and } x \in X \text { (resp. } y \in Y) . \text { We say that a map } f : X \rightarrow Y \text { is }} \\ {\qquad \begin{array}{l}{\bullet G \text { -invariant if } f(g \cdot x)=f(x) \text { for any } g \in G \text { and any } x \in X} \\ {\bullet G \text { -equivariant if } f(g \cdot x)=g * f(x) \text { for any } g \in G \text { and any } x \in X}\end{array}}\end{array}
+%$$
+%
+%Replace the translation convolution
+%$$
+%{\left[f * \psi^{i}\right](x)=\sum_{y \in \mathbb{Z}^{2}} \sum_{k=1}^{K^{l}} f_{k}(y) \psi_{k}^{i}(x-y)} $$
+%by group-convolution [Cohen and Welling, https://arxiv.org/abs/1602.07576]
+%$$
+%{[f \star \psi](g)=\sum_{h \in G} \sum_{k} f_{k}(h) \psi_{k}\left(g^{-1} h\right)}
+%$$
+%
+%When $G=S_{n}$ and the actions are induced by permutation, we call $G$-invariant (resp. G-equivariant) functions as permutation invariant (resp. permutation equivariant) functions. 
+%
+%{\bf Theorem 3.1}[Sannai, Takai, Cordonnier, https://arxiv.org/abs/1903.01939v2] (Kolmogorov-Arnold's representation theorem for permutation actions). Let $K \subset {\mathbb{R}^{n}}$ be a compact set. Then, any continuous $S_{n}$-invariant function $f : K \longmapsto \mathbb{R}$ can be represented as  
+%$$ f\left(x_{1}, \ldots, x_{n}\right)=\rho\left(\sum_{i=1}^{n} \phi\left(x_{i}\right)\right), $$ 
+%for some continuous function $\rho : \mathbb{R}^{n+1} \rightarrow \mathbb{R} $. Here, $\phi : \mathbb{R} \rightarrow \mathbb{R}^{n+1} ; x \mapsto\left(1, x, x^{2}, \ldots, x^{n}\right)^{\top}$. 
+%
+%$$
+%\begin{array}{l}{\text { Proposition 4.1. A map } F : \mathbb{R}^{n} \rightarrow \mathbb{R}^{n} \text { is } S_{n} \text { is } S_{n} \text { and variant if and only if there is a Stab(1)-invariant }} \\ {\text { function } f : \mathbb{R}^{n} \rightarrow \mathbb{R} \text { satisfying } F=(f, f \circ(12), \ldots, f \circ(1 n))^{\top} \text { . Here, }(1 i) \in S_{n} \text { is the }} \\ {\text { transposition between 1 and i. }}\end{array}
+%$$
+%
+%$$
+%\begin{array}{l}{\text { Corollary } 4.1 \text { (Representation of Stab( } 1) \text { -invariant function). Let } K \subset \mathbb{R}^{n} \text { be } a \text { compact set, let }} \\ {f : K \longrightarrow \mathbb{R} \text { be a continuous and Stab }(1) \text { -invariant function. Then, } f(\boldsymbol{x}) \text { can be represented as }} \\ {\qquad f(\boldsymbol{x})=f\left(x_{1}, \ldots, x_{n}\right)=\rho\left(x_{1}, \sum_{i=2}^{n} \phi\left(x_{i}\right)\right)} \\ {\text { for some continuous function } \rho : \mathbb{R}^{n+1} \longrightarrow \mathbb{R} . \text { Here, } \phi : \mathbb{R} \rightarrow \mathbb{R}^{n} \text { is similar as in Theorem } 3.1}\end{array}
+%$$
+
+%\section{Air Quality Weibo Data} (courtesy of Prof. Xiaojin Zhu from University of Wisconsin at Madison) 
+%You can login my server:
+%
+%\texttt{ssh einstein@162.105.205.92}
+%
+%\noindent using the password I provided on class. 
+%
+%On the read-only folder \texttt{/data/AQweibo/}, the \texttt{AQICityData/} directory contains the Weibo posts, the AQI for 108 cities with (AQI) information during the study period
+%from 2013-11-18 to 2013-12-18 (both inclusive); Information for the spatiotempral bin (city,date) is in the directory \texttt{city\_date/}. See \texttt{README.txt} for more information.
+%
+%
+
+
+%\section{Raph}
+%The following data contains 1258-by-452 matrix with closed prices of 452 stocks in SNP'500 for workdays in 4 years.
+%
+%\url{http://math.stanford.edu/~yuany/course/data/snp452-data.mat} 
+%
+%\noindent or in R: 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/snp500.Rda}
+%
+%%You may use PCA to explore the `invisible hands' of markets.
+%
+%\section{Animal Sleeping Data} The following data contains animal sleeping hours together with other features: 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/sleep1.csv}
+%
+%
+%\section{US Crime Data} The following data contains crime rates in 59 US cities during 1970-1992:
+%
+%\url{http://math.stanford.edu/~yuany/course/data/crime.zip}
+%
+%\noindent Some students in previous classes study crime prediction in comparison with MLE and James-Stein, for example, see
+%
+%\url{https://github.com/yuany-pku/2017_math6380/blob/master/project1/DongLoXia_slides.pptx}
+%
+%
+%\section{NIPS paper datasets}
+%NIPS is one of the major machine learning conferences. The following datasets collect NIPS papers:
+%
+%\subsection{NIPS papers (1987-2016)} The following website: 
+%
+%\url{https://www.kaggle.com/benhamner/nips-papers}
+%
+%\noindent collects titles, authors, abstracts, and extracted text for all NIPS papers during 1987-2016. In particular the file {\texttt{paper\_authors.csv}} contains a sparse matrix of paper coauthors. 
+%
+%\subsection{NIPS words (1987-2015)} The following website:
+%
+%\url{https://archive.ics.uci.edu/ml/datasets/NIPS+Conference+Papers+1987-2015}
+%
+%\noindent collects the distribution of words in the full text of the NIPS conference papers published from 1987 to 2015. The dataset is in the form of a 11463 x 5812 matrix of word counts, containing 11463 words and 5811 NIPS conference papers (the first column contains the list of words). Each column contains the number of times each word appears in the corresponding document. The names of the columns give information about each document and its timestamp in the following format: {\texttt{Xyear\_paperID}}. 
+%
+%
+%\section{Jiashun Jin's data on Coauthorship and Citation Networks for Statisticians}
+%Thanks to Prof. Jiashun Jin at CMU, who provides his collection of citation and coauthor data for statisticians. The data set covers all papers between 2003 and the first quarter of 2012 from the Annals of Statistics, Journal of the American Statistical Association, Biometrika and Journal of the Royal Statistical Society Series B. The paper corrections and errata are not included. There are 3607 authors and 3248 papers in total. The zipped data file (14M) can be found at 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/jiashun/Jiashun.zip}
+%
+%\noindent with an explanation file
+%
+%\url{http://math.stanford.edu/~yuany/course/data/jiashun/ReadMe.txt}
+%
+%With the aid of Mr. LI, Xiao, a subset consisting 35 COPSS award winners (\url{https://en.wikipedia.org/wiki/COPSS_Presidents\%27_Award}) up to 2015, is contained in the following file
+%
+%\url{http://math.stanford.edu/~yuany/course/data/copss.txt} 
+%
+%\noindent An example was given in the following article, A Tutorial of Libra: R Package of Linearized Bregman Algorithms in High Dimensional Statistics, downloaded at
+%
+%\url{http://math.stanford.edu/~yuany/course/reference/Libra_Tutorial_springer.pdf}
+%
+%The citation of this dataset is: \emph{P. Ji and J. Jin. Coauthorship and citation networks for statisticians. Ann. Appl. Stat. Volume 10, Number 4 (2016), 1779-1812}, (\url{http://projecteuclid.org/current/euclid.aoas})
+%
+%
+%
+%
+%\section{Co-appearance data in novels: Dream of Red Mansion and Journey to the West}
+%
+%A 374-by-475 binary matrix of character-event can be found at the course website, in .XLS, .CSV, .RData, and .MAT formats. For example the RData format is found at
+%
+%\url{http://math.stanford.edu/~yuany/course/data/dream.RData} 
+%
+%\noindent with a readme file:
+%
+%\url{http://math.stanford.edu/~yuany/course/data/dream.Rd}
+%
+%\noindent as well as the .txt file which is readable by R command {\tt read.table()},
+%
+%\url{http://math.stanford.edu/~yuany/course/data/HongLouMeng374.txt}
+%
+%\url{http://math.stanford.edu/~yuany/course/data/readme.m}
+%
+%Thanks to Ms. WAN, Mengting, who helps clean the data and kindly shares her BS thesis for your reference
+% 
+%\url{http://math.stanford.edu/~yuany/report/WANMengTing2013_HLM.pdf}
+%
+%%Among various choices of analysis, with this data matrix $X$, you may form a weighted graph $W=X * X'$, pursue PCA of $X$, and sparse SVD of $X$ etc. As an example, here is a project presentation by LI, Liying which gives an analysis of A Journey to the West (by Chen-En Wu) based on PCA, for the class Mathematical Introduction to Data Science in Fall 2012 where you may find more interesting approaches.
+%%
+%%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LiyingLI_Xiyouji2012_slides.pdf}
+%
+%Moreover you may find a similar matrix of 302-by-408 for the Journey to the West (by Chen-En Wu) at:
+%
+%\url{http://math.stanford.edu/~yuany/course/data/west.RData}
+%
+%\noindent whose matlab format is saved at
+%
+%\url{http://math.stanford.edu/~yuany/course/data/xiyouji.mat}
+
+%%%%%%
+
+
+%\section{Drug Efficacy Data}
+%
+%Thanks to Prof. Xianting Ding at Shanghai Jiao Tong University and Prof. Chih-Ming Ho from University of California at Los Angeles, we have the following datasets on combinatorial drug efficacy.
+%
+%The first dataset consists of two experiments, all with the same 4 drugs in cell lines for attacking leukemia, with 256 experiments of combinatorial drug dosage at 4 levels. The response is the therapeutic window measuring the efficacy with a trade-off by toxicity. 
+% 
+% \url{http://math.stanford.edu/~yuany/course/data/Ding_4drugs.xlsx}
+%
+%\noindent whose drugs are explained in 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/Ding_4drugs_readme.pdf}
+%
+%Can you find a good prediction of drug response efficacy using those combinatorial dosage levels? It was suggested that quadratic polynomials at logarithmic dosage levels are good models in personalized medicine, e.g. the following cover paper in Science \emph{Translation Medicine}:
+%
+%\url{http://stm.sciencemag.org/content/8/333/333ra49}
+%
+%\noindent with a sample 14 drug efficacy at level 2 experiment data in liver transplant: 
+%
+%\url{http://math.stanford.edu/yuany/course/data/TB-FSC-03A-data.xlsx}
+
+%\section{Drug Sensitivity Data by Cleave}
+%The following dataset is kindly provided by Cleave Co. Ltd. USA, for the exploration on class. {\textbf{Please keep its use only in this class and any publication will be subject to the approval of Cleave.}}
+%
+%The dataset is contained in the following zip file (73M).
+%
+%\url{http://math.stanford.edu/~yuany/course/data/cleave.zip}
+%
+%\noindent where you may find
+%\begin{enumerate}
+%\item \texttt{data explanation.pptx}: description of data in pptx
+%\item \texttt{data for Yuan Yao.xlsx}: data file
+%\item \texttt{Gene set collection 1 for Yuan Yao.txt}: gene set collection
+%\item \texttt{Gene set collection 2 for Yuan Yao.txt}: gene set collection
+%\item \texttt{reference}: a folder contains a survey paper on 40+ machine learning algorithms as well as some source codes -- \emph{Nature Biotechnology 32, 1202--1212 (2014)} (\url{http://www.nature.com/nbt/journal/v32/n12/full/nbt.2877.html})
+%\end{enumerate}
+%
+%The basic problem is to predict the drug response \texttt{IC50 within 72 hours}, using all the information collected so far, introduced by Ms. Lijing Wang with slides
+%
+%\url{http://math.stanford.edu/~yuany/course/2016.spring/cleave_lijing.pdf}
+%
+%\noindent as well as our CPH'2017 poster
+%
+%\url{http://math.stanford.edu/~yuany/publications/poster_CleaveBioCPH2017_ForReview.pdf}
+%
+%\noindent where the crucial discovery is that recursive variable selection by LASSO is more effective than one-stage LASSO. 
+
+%\subsection{The Characters in A Dream of Red Mansion} 
+%
+%A 376-by-475 matrix of character-event can be found at the course website, in .XLS, .CSV, and .MAT formats. For example the Matlab format is found at
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/hongloumeng376.mat} 
+%
+%\noindent with a readme file:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/readme.m}
+%
+%Thanks to Ms. WAN, Mengting (now at UIUC), an update of data matrix consisting 374 characters (two of 376 are repeated) which is readable by R read.table() can be found at 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/HongLouMeng374.txt}
+%
+%\noindent She also kindly shares her BS thesis for your reference
+% 
+% \url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WANMengTing2013_HLM.pdf}
+%
+%% Among various choices of analysis, with this data matrix $X$, you may form a weighted graph $W=X * X'$, pursue PCA of $X$. 
+%
+%\subsection{A Journal to the West} On course website, you may also find the link to this dataset with a 302-by-408 matrix, whose matlab format is saved at
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/xiyouji/xiyouji.mat}
+%
+%For your reference, here is a project presentation by Mr. LI, Liying (at PKU) which gives an analysis based on PCA
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LiyingLI_Xiyouji2012_slides.pdf}
+%
+
+%\section{Heart PCI Operation Effect Prediction}
+%
+%The following data, provided by Dr. Jinwen Wang at Anzhen Hospital, 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/heartData_20140401.xlsx}
+%
+%\noindent contains 2581 patients with 73 measurements (inputs) as well as a response variable indicating if after the heart operation there is a null-reflux state. This is a classification problem, with a challenge from the large amount of missing values. Sheet 3 and 4 in the file contains some explanation of the data and variables. 
+%
+%The problems are listed here:
+%\begin{enumerate}
+%\item The inputs (covariates) are of three kinds, measurements upon check-in, measurements before PCI operation, and measurements in PCI operations. For doctors, it is desired to find a prediction model based on measurements before the operation (including check-in). Sheet 2 in the file contains only such measurements.
+%\subitem The following two reports by LV, Yuan and LI, Xiao, respectively, might be interesting to you:
+%
+%\url{http://math.stanford.edu/~yuany/course/reference/MSThesis.LvYuan.pdf} 
+%
+%\url{http://arxiv.org/abs/1511.04656} 
+%
+%\item It is also an interesting problem how to predict the effect based on all measurements, with lots of missing values. Sheet 1 contains the full measurements. There are some good work by previous students, which are listed here for your reference: 
+%%\subitem The following two reports by LU, Yu and WANG, Qing, are probably inspiring to you.
+%%
+%%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LuYu_201303_BigHeart.pdf} 
+%%
+%%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WangQing_201303_BigHeart.pdf} 
+%
+%\subitem The following report by MIAO, Wang and LI, Yanfang, pioneers in missing value treatment. 
+%
+%\url{http://math.stanford.edu/~yuany/course/reference/MiaoLi2013S_project01.pdf}
+%
+%\end{enumerate} 
+
+%\emph{In the final project, it is desired to take only those measurements upon check-in to predict the probability of non-reflux (non-reflow) after PCI operations. An interpretable model adds a big value! You may compare with your first warm-up project to show your improvements.} 
+%
+%
+%\section{SNPs Data}
+% This dataset contains a data matrix $X\in \R^{p\times n}$ of about $n=650,000$ columns of SNPs (Single Nucleid Polymorphisms) and $p=1064$ rows of peoples around the world. Each element is of three choices, $0$ (for `AA'), $1$ (for `AC'), $2$ (for `CC'), and some missing values marked by $9$. 
+%
+%\url{http://math.stanford.edu/~yuany/course/ceph_hgdp_minor_code_XNA.txt.zip}
+%
+%\noindent which is big (151MB in zip and 2GB original txt). Moreover, the following file contains the region where each people comes from, as well as two variables {\texttt{ind1}} and{\texttt{ind2}} such that $X({\texttt{ind1}},{\texttt{ind2}})$ removes all missing values. 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/HGDP_region.mat}
+%
+%\noindent More detailed information about these persons in the dataset can be also found at
+%
+%\url{http://math.stanford.edu/~yuany/course/data/HGDPid_populations_ALL.xls}
+%
+%Some results by PCA can be found in the following paper, Supplementary Information. 
+%
+%\url{http://www.sciencemag.org/content/319/5866/1100.abstract}
+%
+%\section{Protein Folding} 
+%Consider the 3D structure reconstruction based on incomplete MDS with uncertainty. Data file: 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/protein3D.zip}
+%
+%\begin{figure}[htbp]
+%\begin{center}
+%\includegraphics[width=0.5\textwidth]{../2013_Spring_PKU/Yes_Human.png}  
+%\caption{3D graphs of file PF00018\_2HDA.pdf (YES\_HUMAN/97-144, PDB 2HDA)}
+%\label{yes_human}
+%\end{center}
+%\end{figure}
+%
+%\noindent In the file, you will find 3D coordinates for the following three protein families: 
+%\subitem PF00013 (PCBP1\_HUMAN/281-343, PDB 1WVN), \\
+%\subitem PF00018 (YES\_HUMAN/97-144, PDB 2HDA), and \\
+%\subitem PF00254 (O45418\_CAEEL/24-118, PDB 1R9H). \\
+%
+%For example, the file {\tt PF00018\_2HDA.pdb} contains the 3D coordinates of alpha-carbons for a particular amino acid sequence in the family, YES\_HUMAN/97-144, read as
+%
+%{\tt{VALYDYEARTTEDLSFKKGERFQIINNTEGDWWEARSIATGKNGYIPS}}
+%
+%\noindent where the first line in the file is 
+%
+%97	V	0.967	18.470	4.342
+%
+%\noindent Here
+%\begin{itemize}
+%\item `97': start position 97 in the sequence
+%\item `V': first character in the sequence
+%\item $[x,y,z]$: 3D coordinates in unit $\AA$.
+%\end{itemize}
+%
+%\noindent Figure \ref{yes_human} gives a 3D representation of its structure. 
+%
+%
+%Given the 3D coordinates of the amino acids in the sequence, one can computer pairwise distance between amino acids, $[d_{ij}]^{l\times l}$ where $l$ is the sequence length. A \emph{contact map} is defined to be a graph $G_\theta=(V,E)$ consisting $l$ vertices for amino acids such that and edge $(i,j)\in E$ if $d_{ij} \leq \theta$, where the threshold is typically $\theta=5\AA$ or $8\AA$ here. 
+%
+%Can you recover the 3D structure of such proteins, up to an Euclidean transformation (rotation and translation), given noisy pairwise distances restricted on the contact map graph $G_\theta$, i.e. given noisy pairwise distances between vertex pairs whose true distances are no more than $\theta$? Design a noise model (e.g. Gaussian or uniformly bounded) for your experiments. 
+%
+%When $\theta=\infty$ without noise, classical MDS will work; but for a finite $\theta$ with noisy measurements, SDP approach can be useful. You may try the matlab package SNLSDP by Kim-Chuan Toh, Pratik Biswas, and Yinyu Ye, downladable at \url{http://www.math.nus.edu.sg/~mattohkc/SNLSDP.html}. 
+%
+
+
+%Attention: this last dataset is relatively big with about 2GB size. 
+%
+%You can login my server:
+%
+%\texttt{ssh einstein@162.105.205.92}
+%
+%\noindent using the password I provided on class. On the read only folder \texttt{/data/snp/}, you will find all the data in both .txt and .mat (\texttt{data.mat, HGDP\_region.mat, readme.m}).
+
+
+
+%\subsection{Bird Flu Dataset} (courtesy of Steve Smale and Cissy) This dataset 162 H5N1 (bird flu) virus sequences discovered around the world:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_seq162.txt} 
+%
+%Locations of such virus discovered are reported with latitude and longitude coordinates on the globe:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_latgrat.txt} 
+%
+%Pairwise geodesic distances between these 162 sites are constructed as  
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_geodist.txt}
+%
+%A kernel-induced $l_2$-distances between 162 virus sequences are given in 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_l2dist.txt}
+
+\newpage
+
+\section*{Peer Review}
+
+In this exercise of open peer review, please write down your comments of the \emph{reports rather than of your own team} in the following format. Be considerate and careful with a precise description, avoiding offensive language. 
+
+Deadline is \emph{11:59pm Oct. 19, 2019}. Your review assignment can be found at
+
+{\centering{\url{https://deeplearning-math.github.io/2019/project1/project1review_assignment.pdf} }}
+
+\noindent where each student (SID) is randomly assigned with 5 group reports (excluding your own reports). You should submit reviews at least for these assignments, but more reviews are welcome with additional bonus credit. 
+
+You should put each review in a plain text separately with a title  comprising the corresponding group number (\textbf{not your own group}) and your name (e.g., \emph{\underline{rev1\_group03\_Ian\_Goodfellow.pdf}}). Submit all your reviews in a single zip file \textbf{using canvas}. Rebuttal is open afterwards.
+
+\begin{itemize}
+\item Summary of the report.
+\item Describe the strengths of the report. 
+\item Describe the weaknesses of the report.
+\item Evaluation on Clarity and quality of writing (1-5): Is the report clearly written? Is there a good use of examples and figures? Is it well organized? Are there problems with style and grammar? Are there issues with typos, formatting, references, etc.? Please make suggestions to improve the clarity of the paper, and provide details of typos.
+\item Evaluation on Technical Quality (1-5): Are the results technically sound? Are there obvious flaws in the reasoning? Are claims well-supported by theoretical analysis or experimental results? Are the experiments well thought out and convincing? Will it be possible for other researchers to replicate these results? Is the evaluation appropriate? Did the authors clearly assess both the strengths and weaknesses of their approach? Are relevant papers cited, discussed, and compared to the presented work?
+\item Overall rating: (5- My vote as the best-report. 4- A good report. 3- An average one. 2- below average. 1- a poorly written one). 
+\item Confidence on your assessment (1-3)
+(3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong)
+\end{itemize}
+
+%Then please vote your top THREE favourite reports on Doodle: 
+%\url{xxx}
+
+\newpage
+
+\section*{Rebuttal}
+The rebuttal period starts from now, till \emph{11:59pm Oct 27, 2019}. Restrict the number of characters of your rebuttal within {\bf{5,000}}. Submit your rebuttal in PLAIN TEXT or PDF format to \textbf{canvas} with filename comprising the corresponding group number: e.g. \underline{rebuttal1\_group02.pdf}. %(\href{mailto:datascience.hw@gmail.com}{datascience.hw@gmail.com}) with Title: \underline{CSIC 5011: Project 1 Rebuttal}.
+
+The following tips of rebuttal might be helpful for you to follow:
+
+1. The main aim of the rebuttal is to answer any specific questions that the reviewers might have raised, or to clarify any misunderstanding of the technical content of the paper.
+
+2. Keep your rebuttal short, to-the-point, and specific. In our experience, such rebuttals have the maximum impact.
+
+3. Always be polite and professional. Refrain from name calling or rude comments, especially in response to negative reviews.
+
+4. Highlight the changes in your manuscripts had you made a simple revision.
+
+%
+
+\end{document}
+
+
