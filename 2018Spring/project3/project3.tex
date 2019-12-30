@@ -1,0 +1,736 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+
+\def\N{{\mathbb N}}
+\def\NN{{\mathcal N}}
+\def\R{{\mathbb R}}
+\def\E{{\mathbb E}}
+\def\rank{{\mathrm{rank}}}
+\def\tr{{\mathrm{trace}}}
+\def\P{{\mathrm{Prob}}}
+\def\sign{{\mathrm{sign}}}
+\def\diag{{\mathrm{diag}}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Deep Learning: Towards Deeper Understanding \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Project 3: Final}{Yuan Yao}{Due: 22 May, 23:59, 2018}{8 May, 2018}
+
+%The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
+%
+%\begin{enumerate}
+%
+%\item {\em Manifold Learning}: The following codes by Todd Wittman contain major manifold learning algorithms talked on class.
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/mani.m}
+%
+%Precisely, eight algorithms are implemented in the codes: MDS, PCA, ISOMAP, LLE, Hessian Eigenmap, Laplacian Eigenmap, Diffusion Map, and LTSA. 
+%The following nine examples are given to compare these methods,
+%\begin{enumerate}
+%\item Swiss roll;
+%\item Swiss hole;
+%\item Corner Planes;
+%\item Punctured Sphere;
+%\item Twin Peaks;
+%\item 3D Clusters;
+%\item Toroidal Helix;
+%\item Gaussian;
+%\item Occluded Disks.
+%\end{enumerate}
+%Run the codes for each of the nine examples, and analyze the phenomena you observed. 
+%
+%\end{enumerate}
+
+%\newpage
+
+
+\section*{Requirement and Datasets}
+
+This project as a warm-up aims to explore feature extractions using existing networks, such as pre-trained deep neural networks and scattering nets, in image classifications with traditional machine learning methods.
+\begin{enumerate}
+\item Pick up ONE (or more if you like) favourite dataset below to work. If you would like to work on a different problem outside the candidates we proposed, please email course instructor about your proposal.  Some challenges marked by $*$ is optional with bonus credits. 
+\item Team work: we encourage you to form small team, up to FOUR persons per group, to work on the same problem. Each team just submit ONE report, \emph{with a clear remark on each person's contribution}. The report can be in the format of either Python (Jupyter) Notebooks with a detailed documentation (preferred format), a \emph{technical report within 8 pages}, e.g. NIPS conference style 
+\begin{center}
+\url{https://nips.cc/Conferences/2016/PaperInformation/StyleFiles} 
+\end{center}
+or of a \emph{poster}, e.g. 
+\begin{center}%\url{http://math.stanford.edu/~yuany/publications/poster_CleaveBioCPH2017_ForReview.pptx}
+\url{https://github.com/yuany-pku/2017_math6380/blob/master/project1/DongLoXia_poster.pptx}
+\end{center}
+\item In the report, show your proposed scientific questions to explore and main results with a careful analysis supporting the results toward answering your problems. Remember: scientific analysis and reasoning are more important than merely the performance tables. Separate source codes may be submitted through email as a zip file, GitHub link, or as an appendix if it is not large.    
+\item Submit your report by email or paper version no later than the deadline, to the following address (\href{mailto:deeplearning.math@gmail.com}{deeplearning.math@gmail.com}) with Title: \underline{Math 6380O: Project 3}. % (\href{mailto:datascience\_hw@126.com}{datascience\_hw@126.com}). 
+\end{enumerate}
+
+\section{Reinforcement Learning for Image Classification with Recurrent Attention Models} 
+
+This task basically required you to reproduce some key result of Recurrent Attention Models, proposed by Mnih et al. (2014). (See \url{https://arxiv.org/abs/1406.6247})
+
+\subsection{Cluttered MINIST}
+
+As you've known, the original MNIST dataset is a canonical dataset used for illustration of deep learning, where a simple multi-layer perceptron could get a very high accuracy. Therefore the original MNIST is augmented with additional noise and distortion in order to make the problem more challenging and closer towards real-world problems. 
+
+\begin{figure}[h]
+\center
+\includegraphics[width=0.7\textwidth]{clutter_mnist.png}  
+\caption{Cluttered MNIST data sample.} 
+\label{fig:cmnist}
+\end{figure}
+
+The dataset can be downloaded from \url{https://github.com/deepmind/mnist-cluttered}.
+
+\subsection{Raphael Drawings}
+For those who are interested in exploring authentication of Raphael drawings, you are encouraged to use the Raphael dataset:
+
+\url{https://drive.google.com/folderview?id=0B-yDtwSjhaSCZ2FqN3AxQ3NJNTA&usp=sharing}
+
+\noindent that will be discussed in more detail later. 
+
+\subsection{Recurrent Attention Models (RAMs)}
+
+The efficiency of human eyes when looking at images lies in attentions -- human do not process all the input information but instead use attention to select partial and important information for perception. This is particularly important for computer vision when the input images are too big to get fully fed into a convolutional neural networks. To overcome this hurdle, the general idea of RAM is to model human attention using recurrent neural networks by dynamically restricting on interesting parts of the image where one can get most of information, followed by reinforcement learning with rewards toward minimizing misclassification errors. 
+
+You're suggested to implement the following networks and train the networks on the above Cluttered MINIST dataset.
+
+\begin{figure}[h]
+\center
+\includegraphics[width=0.7\textwidth]{network_RAM.png}  
+\caption{Diagram of RAM.} 
+\label{fig:ram}
+\end{figure}
+
+\begin{itemize}
+	\item Glimpse Sensor: Glimpse Sensor takes a full-sized image and a location, outputs the \emph{retina-like} representation $\rho(x_t,l_{t-1})$ of the image $x_t$ around the given location $l_{t-1}$, which contains multiple resolution patches.
+	\item Glimpse Network: takes as the inputs the retina representation $\rho(x_t,l_{t-1})$ and glimpse location $l_{t-1}$, and maps them into a hidden space using independent linear layers parameterized by $\theta_g^0$ and $\theta_g^1$ respectively using rectified units followed by another linear layer $\theta^2_g$ to combine the information from both components. Finally it outputs a glimpse representation $g_t$.
+	\item Recurrent Neural Network (RNN): Overall, the model is an RNN. The core network takes as the input the glimpse representation $g_t$ at each step and history internal state $h_{t-1}$, then outputs a transition to a new state $h_{t}$, which is then mapped to action $a_t$ by an action network $f_a(\theta_a)$ and a new location $l_t$ by a location network $f_l(\theta_t)$. The location is to give an attention at next step, while the action, for image classification, gives a prediction based on current informations.  The prediction result, then, is used to generate the reward point, which is used to train these networks using Reinforcement Learning. 
+	\item Loss Function: The reward could be based on classification accuracy (e.g. in Minh (2018) $r_t=1$ for correct classification and $r_t=0$ otherwise). In reinforcement learning, the loss can be finite-sum reward (in Minh (2018)) or discounted infinite reward. Cross-entropy loss for prediction at each time step is an alternative choice (which is not emphasized in the origin paper but added in the implementation given by Kevin below). It's also interested to figure out the difference function between these two loss and whether it's a good idea to use their combination. \end{itemize}
+
+To evaluate your results, it is expected to see improved misclassification error compared against feedforward CNN without RAMs. Besides, you're encouraged to visualize the glimpse to see how the attention works for classification.
+
+\subsection{More Reference}
+\begin{itemize}
+\item A PyTorch implementation of RAM by Kevin can be found here: 
+
+\url{https://github.com/kevinzakka/recurrent-visual-attention}.
+\item For reinforcement Learning, David Silver's course web could be found here 
+
+\url{http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html}
+
+\noindent and Ruslan Satakhutdinov's course web at CMU is 
+
+\url{http://www.cs.cmu.edu/~rsalakhu/10703/}
+\end{itemize}
+
+
+\section{Generating Images via Generative Models}
+
+In this project, you are required to train a generative model with given dataset to generate new images.
+
+\begin{itemize}
+	\item The generative models include, but not limited to, the models mentioned in \ref{model}.
+	\item It is suggested to use datasets in \ref{dataset}.
+	\item It is recommended to have some analyses and discussion on new images with the trained generative model. You may use some evaluation in \ref{evaluation}.
+	\item * For those who made serious efforts to explore or reproduce the results in Rie Johnson and Tong Zhang (2018), \url{https://arxiv.org/abs/1801.06309}, additional credits will be given.  You could compare with the state-of-art result WGAN-GP(2017), \url{https://arxiv.org/abs/1704.00028} and original GAN with/without log-d trick. Moreover, you may try the same strategy in other fancy GANs, e.g. ACGAN (\url{https://arxiv.org/abs/1610.09585}), CycleGAN (\url{https://arxiv.org/abs/1703.10593}), etc.
+\end{itemize}
+
+\subsection{Variational Auto-encoder (VAE) and Generative Adversarial Network (GAN)}\label{model}
+
+Two popular generative models were introduced in class. You could choose one of them, or both to make a comparison. You could also train the model without or with labels.
+
+\subsection{Datasets}\label{dataset}
+
+\subsubsection{MNIST}
+
+Yann LeCun's website contains original MNIST dataset of 60,000 training images and 10,000 test images. \url{http://yann.lecun.com/exdb/mnist/}
+
+There are various ways to download and parse MNIST files. For example, Python users may refer to the following website: \url{https://github.com/datapythonista/mnist} or MXNET tutorial on mnist \url{https://mxnet.incubator.apache.org/tutorials/python/mnist.html}
+
+\subsubsection{Fashion-MNIST}
+
+Zalando's Fashion-MNIST dataset of 60,000 training images and 10,000 test images, of size 28-by-28 in grayscale. \url{https://github.com/zalandoresearch/fashion-mnist}
+
+As a reference, here is Jason Wu, Peng Xu, and Nayeon Lee's exploration on the dataset in project 1: \url{https://deeplearning-math.github.io/slides/Project1_WuXuLee.pdf}
+
+\subsubsection{CIFAR-10}
+
+The Cifar10 dataset consists of 60,000 color images of size 32x32x3 in 10 classes, with 6000 images per class. It can be found at  \url{https://www.cs.toronto.edu/~kriz/cifar.html}
+
+\subsection{Evaluation}\label{evaluation}
+
+On one hand, you could demonstrate some images generated by the trained model, then discuss both the pros (good images) and cons (flawed images) and analyse possible reasons behind what you have seen.
+
+On the other hand, you may compare different methods using some quantitative measurements, e.g. \emph{Inception Score} and \emph{Diversity Score} mentioned in class. 
+\begin{itemize}
+\item The \emph{Inception Score} was proposed by Salimans et al. (\url{http://arxiv.org/abs/1606.03498}) and has been widely
+adopted since. The inception score uses a pre-trained neural network classifier to capture to two
+desirable properties of generated samples: highly classifiable and diverse with respect to class labelis. It is defined as
+\[ \exp \left \{ \E_x KL(P(y|x)||P(y)) \right\} \]
+which measures the quality of generated images, i.e. high-quality images should lead to high confidence in classification whence high inception score. For instance, see the following reference:  and \url{http://arxiv.org/abs/1801.01973}.
+\item The inception score fails to capture mode collapse inside a class: the inception score of a model that generates the same image for a class and the
+inception score of a model that is able to capture diversity inside a class are the same. The \emph{Diversity Score} suggested by Tong ZHANG is defined as
+\[ \exp \left \{ \E_x KL(P(y)||P_*(y)) \right\}  \]
+which measures the diversity of generated images such that the score becomes large (approaching to 1) when generated class distribution mimics real class distribution. Another popular measure of diversity is the multiscale structural similarity (MS-SSIM) suggested by Wang et al. (\url{http://www.cns.nyu.edu/~zwang/files/papers/msssim.pdf}) and introduced to GAN by Odena et al. (\url{https://arxiv.org/abs/1610.09585}). You may choose these measures to inspect the diversity of generated images quantitatively. 
+\end{itemize}
+
+\section{Nexperia Predictive Maintenance}
+
+Refer to the introduction by Mr. Gijs Bruining:
+
+\url{https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/slides/NexperiaContest.pdf}
+
+Kaggle in-class contests are launched at the following website:
+
+\url{https://www.kaggle.com/c/nexperia-predictive-maintenance}
+
+\noindent where three contests are available, depending the data to use for predictions. The number of days before the predictive dates is called the \emph{observation window} (OW) and the number of predictive dates is called the \emph{predictive window}. As a warm-up, the mini-contest is to exploit 2 days observation window (OW=2) with prediction window (PW=1). Two additional full-contests exploits different combinations of OW (=1,2,4,8,16, all in as features) and PW (1 or 2 for two full-contests, respectively). 
+
+For further questions concerning the Nexperia challenges, please feel free to contact us or Mr. Gijs Bruining (\href{gijs.bruining@nexperia.com}{gijs.bruining@nexperia.com}). 
+
+\section{From Project 2: Reproducible Training and Generalizations of CNNs} 
+
+The following best award paper in ICLR 2017, 
+
+\emph{Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals, Understanding deep learning requires rethinking generalization.} \url{https://arxiv.org/abs/1611.03530}
+
+\noindent received lots of attention recently. Reproducibility is indispensable for good research. Can you reproduce some of their key experiments by yourself? The following are for examples. 
+
+1. Achieve ZERO training error in standard and randomized experiments. As shown in Figure~\ref{fig:Recht1}, you need to train some CNNs (e.g. ResNet, over-parametric) with Cifar10 dataset, where the labels are true or randomly permuted, and the pixels are original or random (shuffled, noise, etc.), toward zero training error (misclassification error) as epochs grow. During the training, you might turn on and off various regularization methods to see the effects. If you use loss functions such as cross-entropy or hinge, you may also plots the training loss with respect to the epochs. 
+\begin{figure}
+\center
+\includegraphics[width=0.5\textwidth]{Recht1.png}  
+\caption{Overparametric models achieve zero \emph{training error} (or near zero \emph{training loss}) as SGD epochs grow, in standard and randomized experiments.}
+\label{fig:Recht1}
+\end{figure}
+
+2. Non-overfitting of test error and overfitting of test loss when model complexity grows. Train several CNNs (ResNet) of different number of parameters, stop your SGD at certain large enough epochs (e.g. 1000) or zero \emph{training error (misclassification)} is reached. Then compare the \emph{test (validation) error} or \emph{test loss} as model complexity grows to see if you observe similar phenomenon in Figure~\ref{fig:Poggio1}: when \emph{training error} becomes zero, \emph{test error} (misclassification) does not overfit but \emph{test loss} (e.g. cross-entropy, exponential) shows overfitting as model complexity grows. This is for reproducing experiments in the following paper: 
+
+\emph{Tomaso Poggio, K. Kawaguchi, Q. Liao, B. Miranda, L. Rosasco, X. Biox, J. Hidary, and H. Mhaskar. Theory of Deep Learning III: the non-overfitting puzzle}. Jan 30, 2018. \url{http://cbmm.mit.edu/publications/theory-deep-learning-iii-explaining-non-overfitting-puzzle} 
+
+3. Can you give an analysis on what might be the reasons for the phenomena you observed? 
+
+\begin{figure}
+\center
+\includegraphics[width=0.9\textwidth]{Poggio1.png}  
+\caption{When \emph{training error} becomes zero, \emph{test error} (misclassification) does not increase (resistance to overfitting) but \emph{test loss} (cross-entropy/hinge) increases showing overfitting as model complexity grows.}
+\label{fig:Poggio1}
+\end{figure}
+
+The Cifar10 dataset consists of 60,000 color images of size 32x32x3 in 10 classes, with 6000 images per class. It can be found at 
+
+\url{https://www.cs.toronto.edu/~kriz/cifar.html}
+
+\noindent Attention: training CNNs with such a dataset is time-consuming, so GPU is usually adopted. If you would like an easier dataset without GPUs, perhaps use MNIST or Fashion-MNIST (introduced below).
+
+\subsection{Fashion-MNIST dataset}
+
+Zalando's Fashion-MNIST dataset of 60,000 training images and 10,000 test images, of size 28-by-28 in grayscale. 
+
+\url{https://github.com/zalandoresearch/fashion-mnist}
+
+As a reference, here is Jason Wu, Peng Xu, and Nayeon Lee's exploration on the dataset in project 1:
+
+\url{https://deeplearning-math.github.io/slides/Project1_WuXuLee.pdf}
+
+
+%\section{Kaggle contest in-class: Predictive Maintenance}
+%
+%\subsection{Background}
+%
+%Predictive maintenance techniques are designed to help anticipate equipment failures to allow for advance scheduling of corrective maintenance, thereby preventing unexpected equipment downtime, improving service quality for customers, and also reducing the additional cost caused by over-maintenance in preventative maintenance policies. Many types of equipment -- e.g., automated teller machines (ATMs), information technology equipment, medical devices, etc. -- track run-time status by generating system messages, error events, and log files, which can be used to predict impending failures.
+%
+%Thanks to Nexperia company for providing the dataset, we launched the Kaggle competition in-class at the following website
+%
+%\begin{center}
+%{\url{https://www.kaggle.com/c/predictive-maintenance1} }
+%\end{center}
+%
+%\noindent To participate the contest, you need the following Invitation Link:
+%
+%\begin{center}
+%{\url{https://www.kaggle.com/t/212723063992429cbb66ded8c43f923f}}
+%\end{center}
+%
+%\subsection{Data}
+%The data consists of log message and failure record of 984 days from one machine. 
+%\begin{itemize}
+%	\item log message: five basic daily statics below of some `minor' errors of 26 types occurred during machine running. Each `minor' error has an ID. These errors are not fatal but may be good predictor of machine failure in next day. So there are $p=5\times 26=130$ features per day. 
+%	\begin{itemize}
+%		\item count: how many times the error occurs in that day. 
+%		\item min: tick of the first time the error occurs in that day (seconds).
+%		\item max: tick of the last time the error occurs in that day. 
+%		\item mean: mean of tick the error occurs. 
+%		\item std: standard deviation of tick. 
+%	\end{itemize}
+%	\item failure record: binary variable. 
+%	\begin{itemize}
+%		\item 0 : machine is OK in that day. 
+%		\item 1 : machine break down in that day. 
+%	\end{itemize}
+%\end{itemize}
+%
+%The test data is constructed from last $n_{test}=300$ days of log messages by withholding the labels. The training set is the remaining records of $n_{train}=684$ days. 
+%
+%\subsection{Goal}
+%\begin{flushleft}
+%This project aims to predict machine failure in advance. There are several tasks for you to try:
+%
+%\begin{itemize}
+%\item 1-day in-advance prediction: you may use daily log message as inputs (features), to predict \emph{next day}'s machine failure (1 for break-down and 0 for OK);  
+%\item multiple-days in-advance prediction: explore the prediction of a day's failure using historic record in previous days. % (log message and failure record \textcolor{red}{-- withdrawn in test dataset, how can you do that?}). 
+%\end{itemize}
+%For more detail, you may refer to the Kaggle website pages. Make sure \textbf{DO NOT} use any information on the same day or after the day been predicted. 
+%\end{flushleft}
+%
+
+\section{From Project 2: Image Captioning by Combined CNN/RNN/LSTM}
+In this project, you're required to implement a RNN to do image captioning. Your work may include the following parts, but not limited to, 
+
+\begin{itemize}
+\item Implement a CNN structure to do feature selection. You may do this by transfer learning, like using Inception, ResNet, etc.
+\item Implement a (e.g. single hidden layer) fully connected network to do word embedding.
+\item Implement a RNN structure to do image caption. You may use select one of network structure, like LSTM, BiLSTM, LSTM with Attention, etc.
+\item Train your network and tune the parameters. Select the best model on validation set.
+\item Show the caption ability of your model visually. Evaluate your model by BLEU (bilingual evaluation understudy) score on test set.
+\end{itemize}
+
+\subsection{Dataset: Flickr8K}
+You could download Filckr8K dataset, which includes 8,000 images and 5 captions for each, via the following links.
+\url{https://forms.illinois.edu/sec/1713398}
+
+The Flickr8K dataset is provided by flicker, an image- and video-hosting website. It's a relatively small dataset in image captioning community. Perhaps it's still too big for CPU computations. If you don't have access to GPU resources,  try using dimension reduction on image features and using pre-trained word embedding to help you work this project on your own CPU.
+
+\section{Continued Challenges from Project 1}
+In project 1, the basic challenges are
+\begin{itemize}
+\item Feature extraction by scattering net with known invariants; 
+\item Feature extraction by pre-trained deep neural networks, e.g. VGG19, and resnet18, etc.;
+\item Visualize these features using classical unsupervised learning methods, e.g. PCA/MDS, Manifold Learning, t-SNE, etc.; 
+\item Image classifications using traditional supervised learning methods based on the features extracted, e.g. LDA, logistic regression, SVM, random forests, etc.;
+\item Train the last layer or fine-tune the deep neural networks in your choice; 
+\item Compare the results you obtained and give your own analysis on explaining the phenomena.
+\end{itemize}
+
+You may continue to improve your previous work. Below are some candidate datasets. 
+
+\subsection{MNIST dataset -- a Warmup}
+
+Yann LeCun's website contains original MNIST dataset of 60,000 training images and 10,000 test images. 
+
+\url{http://yann.lecun.com/exdb/mnist/}
+
+There are various ways to download and parse MNIST files. For example, Python users may refer to the following website:
+
+\url{https://github.com/datapythonista/mnist}
+
+or MXNET tutorial on mnist
+
+\url{https://mxnet.incubator.apache.org/tutorials/python/mnist.html}
+
+
+\subsection{Identification of Raphael's paintings from the forgeries}
+
+The following data, provided by Prof. Yang WANG from HKUST,
+
+\url{https://drive.google.com/folderview?id=0B-yDtwSjhaSCZ2FqN3AxQ3NJNTA&usp=sharing}
+
+\noindent contains a 28 digital paintings of Raphael or forgeries. Note that there are both jpeg and tiff files, so be careful with the bit depth in digitization. The following file
+
+\url{https://docs.google.com/document/d/1tMaaSIrYwNFZZ2cEJdx1DfFscIfERd5Dp2U7K1ekjTI/edit}
+
+\noindent contains the labels of such paintings, which are 
+\begin{enumerate}
+\item[1] Maybe Raphael - Disputed
+\item[2] Raphael
+\item[3] Raphael
+\item[4] Raphael
+\item[5] Raphael
+\item[6] Raphael
+\item[7] Maybe Raphael - Disputed
+\item[8] Raphael
+\item[9] Raphael
+\item[10] Maybe Raphael - Disputed
+\item[11] Not Raphael
+\item[12] Not Raphael
+\item[13] Not Raphael
+\item[14] Not Raphael
+\item[15] Not Raphael
+\item[16] Not Raphael
+\item[17] Not Raphael
+\item[18] Not Raphael
+\item[19] Not Raphael
+\item[20] My Drawing (Raphael?)
+\item[21] Raphael
+\item[22] Raphael
+\item[23] Maybe Raphael - Disputed
+\item[24] Raphael
+\item[25] Maybe Raphael - Disputed
+\item[26] Maybe Raphael - Disputed
+\item[27] Raphael
+\item[28] Raphael
+\end{enumerate}
+There are some pictures whose names are ended with alphabet like A's, which are irrelevant for the project. 
+
+The challenge of Raphael dataset is: can you exploit the known Raphael vs. Not Raphael data to predict the identity of those 6 disputed paintings (maybe Raphael)? Textures in these drawings may disclose the behaviour movements of artist in his work. One preliminary study in this project can be: \emph{take all the known Raphael and Non-Raphael drawings and use leave-one-out test to predict the identity of the left out image; you may break the images into many small patches and use the known identity as its class.}      
+
+The following student poster report seems a good exploration
+
+\url{https://github.com/yuany-pku/2017_CSIC5011/blob/master/project3/05.GuHuangSun_poster.pdf}
+%\url{http://math.stanford.edu/~yuany/course/2015.fall/poster/Raphael_LI\%2CYue_1300010601.pdf}
+
+The following paper by Haixia Liu, Raymond Chan, and me studies Van Gogh's paintings which might be a reference for you:
+
+\url{http://dx.doi.org/10.1016/j.acha.2015.11.005}
+
+In project 1, some explorations can be found here for your reference: 
+
+1) Jianhui ZHANG, Hongming ZHANG, Weizhi ZHU, and Min FAN: \url{https://deeplearning-math.github.io/slides/Project1_ZhangZhangZhuFan.pdf},
+
+2) Wei HU, Yuqi ZHAO, Rougang YE, and Ruijian HAN: \url{https://deeplearning-math.github.io/slides/Project1_HuZhaoYeHan.pdf}.
+
+Moreover, the following report by Shun ZHANG from Fudan University presents a comparison with Neural Style features:
+
+3) \url{https://www.dropbox.com/s/ccver43xxvo14is/ZHANG.Shun_essay.pdf?dl=0}.
+
+%\section{Air Quality Weibo Data} (courtesy of Prof. Xiaojin Zhu from University of Wisconsin at Madison) 
+%You can login my server:
+%
+%\texttt{ssh einstein@162.105.205.92}
+%
+%\noindent using the password I provided on class. 
+%
+%On the read-only folder \texttt{/data/AQweibo/}, the \texttt{AQICityData/} directory contains the Weibo posts, the AQI for 108 cities with (AQI) information during the study period
+%from 2013-11-18 to 2013-12-18 (both inclusive); Information for the spatiotempral bin (city,date) is in the directory \texttt{city\_date/}. See \texttt{README.txt} for more information.
+%
+%
+
+
+%\section{Raph}
+%The following data contains 1258-by-452 matrix with closed prices of 452 stocks in SNP'500 for workdays in 4 years.
+%
+%\url{http://math.stanford.edu/~yuany/course/data/snp452-data.mat} 
+%
+%\noindent or in R: 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/snp500.Rda}
+%
+%%You may use PCA to explore the `invisible hands' of markets.
+%
+%\section{Animal Sleeping Data} The following data contains animal sleeping hours together with other features: 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/sleep1.csv}
+%
+%
+%\section{US Crime Data} The following data contains crime rates in 59 US cities during 1970-1992:
+%
+%\url{http://math.stanford.edu/~yuany/course/data/crime.zip}
+%
+%\noindent Some students in previous classes study crime prediction in comparison with MLE and James-Stein, for example, see
+%
+%\url{https://github.com/yuany-pku/2017_math6380/blob/master/project1/DongLoXia_slides.pptx}
+%
+%
+%\section{NIPS paper datasets}
+%NIPS is one of the major machine learning conferences. The following datasets collect NIPS papers:
+%
+%\subsection{NIPS papers (1987-2016)} The following website: 
+%
+%\url{https://www.kaggle.com/benhamner/nips-papers}
+%
+%\noindent collects titles, authors, abstracts, and extracted text for all NIPS papers during 1987-2016. In particular the file {\texttt{paper\_authors.csv}} contains a sparse matrix of paper coauthors. 
+%
+%\subsection{NIPS words (1987-2015)} The following website:
+%
+%\url{https://archive.ics.uci.edu/ml/datasets/NIPS+Conference+Papers+1987-2015}
+%
+%\noindent collects the distribution of words in the full text of the NIPS conference papers published from 1987 to 2015. The dataset is in the form of a 11463 x 5812 matrix of word counts, containing 11463 words and 5811 NIPS conference papers (the first column contains the list of words). Each column contains the number of times each word appears in the corresponding document. The names of the columns give information about each document and its timestamp in the following format: {\texttt{Xyear\_paperID}}. 
+%
+%
+%\section{Jiashun Jin's data on Coauthorship and Citation Networks for Statisticians}
+%Thanks to Prof. Jiashun Jin at CMU, who provides his collection of citation and coauthor data for statisticians. The data set covers all papers between 2003 and the first quarter of 2012 from the Annals of Statistics, Journal of the American Statistical Association, Biometrika and Journal of the Royal Statistical Society Series B. The paper corrections and errata are not included. There are 3607 authors and 3248 papers in total. The zipped data file (14M) can be found at 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/jiashun/Jiashun.zip}
+%
+%\noindent with an explanation file
+%
+%\url{http://math.stanford.edu/~yuany/course/data/jiashun/ReadMe.txt}
+%
+%With the aid of Mr. LI, Xiao, a subset consisting 35 COPSS award winners (\url{https://en.wikipedia.org/wiki/COPSS_Presidents\%27_Award}) up to 2015, is contained in the following file
+%
+%\url{http://math.stanford.edu/~yuany/course/data/copss.txt} 
+%
+%\noindent An example was given in the following article, A Tutorial of Libra: R Package of Linearized Bregman Algorithms in High Dimensional Statistics, downloaded at
+%
+%\url{http://math.stanford.edu/~yuany/course/reference/Libra_Tutorial_springer.pdf}
+%
+%The citation of this dataset is: \emph{P. Ji and J. Jin. Coauthorship and citation networks for statisticians. Ann. Appl. Stat. Volume 10, Number 4 (2016), 1779-1812}, (\url{http://projecteuclid.org/current/euclid.aoas})
+%
+%
+%
+%
+%\section{Co-appearance data in novels: Dream of Red Mansion and Journey to the West}
+%
+%A 374-by-475 binary matrix of character-event can be found at the course website, in .XLS, .CSV, .RData, and .MAT formats. For example the RData format is found at
+%
+%\url{http://math.stanford.edu/~yuany/course/data/dream.RData} 
+%
+%\noindent with a readme file:
+%
+%\url{http://math.stanford.edu/~yuany/course/data/dream.Rd}
+%
+%\noindent as well as the .txt file which is readable by R command {\tt read.table()},
+%
+%\url{http://math.stanford.edu/~yuany/course/data/HongLouMeng374.txt}
+%
+%\url{http://math.stanford.edu/~yuany/course/data/readme.m}
+%
+%Thanks to Ms. WAN, Mengting, who helps clean the data and kindly shares her BS thesis for your reference
+% 
+%\url{http://math.stanford.edu/~yuany/report/WANMengTing2013_HLM.pdf}
+%
+%%Among various choices of analysis, with this data matrix $X$, you may form a weighted graph $W=X * X'$, pursue PCA of $X$, and sparse SVD of $X$ etc. As an example, here is a project presentation by LI, Liying which gives an analysis of A Journey to the West (by Chen-En Wu) based on PCA, for the class Mathematical Introduction to Data Science in Fall 2012 where you may find more interesting approaches.
+%%
+%%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LiyingLI_Xiyouji2012_slides.pdf}
+%
+%Moreover you may find a similar matrix of 302-by-408 for the Journey to the West (by Chen-En Wu) at:
+%
+%\url{http://math.stanford.edu/~yuany/course/data/west.RData}
+%
+%\noindent whose matlab format is saved at
+%
+%\url{http://math.stanford.edu/~yuany/course/data/xiyouji.mat}
+
+%%%%%%
+
+
+%\section{Drug Efficacy Data}
+%
+%Thanks to Prof. Xianting Ding at Shanghai Jiao Tong University and Prof. Chih-Ming Ho from University of California at Los Angeles, we have the following datasets on combinatorial drug efficacy.
+%
+%The first dataset consists of two experiments, all with the same 4 drugs in cell lines for attacking leukemia, with 256 experiments of combinatorial drug dosage at 4 levels. The response is the therapeutic window measuring the efficacy with a trade-off by toxicity. 
+% 
+% \url{http://math.stanford.edu/~yuany/course/data/Ding_4drugs.xlsx}
+%
+%\noindent whose drugs are explained in 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/Ding_4drugs_readme.pdf}
+%
+%Can you find a good prediction of drug response efficacy using those combinatorial dosage levels? It was suggested that quadratic polynomials at logarithmic dosage levels are good models in personalized medicine, e.g. the following cover paper in Science \emph{Translation Medicine}:
+%
+%\url{http://stm.sciencemag.org/content/8/333/333ra49}
+%
+%\noindent with a sample 14 drug efficacy at level 2 experiment data in liver transplant: 
+%
+%\url{http://math.stanford.edu/yuany/course/data/TB-FSC-03A-data.xlsx}
+
+%\section{Drug Sensitivity Data by Cleave}
+%The following dataset is kindly provided by Cleave Co. Ltd. USA, for the exploration on class. {\textbf{Please keep its use only in this class and any publication will be subject to the approval of Cleave.}}
+%
+%The dataset is contained in the following zip file (73M).
+%
+%\url{http://math.stanford.edu/~yuany/course/data/cleave.zip}
+%
+%\noindent where you may find
+%\begin{enumerate}
+%\item \texttt{data explanation.pptx}: description of data in pptx
+%\item \texttt{data for Yuan Yao.xlsx}: data file
+%\item \texttt{Gene set collection 1 for Yuan Yao.txt}: gene set collection
+%\item \texttt{Gene set collection 2 for Yuan Yao.txt}: gene set collection
+%\item \texttt{reference}: a folder contains a survey paper on 40+ machine learning algorithms as well as some source codes -- \emph{Nature Biotechnology 32, 1202--1212 (2014)} (\url{http://www.nature.com/nbt/journal/v32/n12/full/nbt.2877.html})
+%\end{enumerate}
+%
+%The basic problem is to predict the drug response \texttt{IC50 within 72 hours}, using all the information collected so far, introduced by Ms. Lijing Wang with slides
+%
+%\url{http://math.stanford.edu/~yuany/course/2016.spring/cleave_lijing.pdf}
+%
+%\noindent as well as our CPH'2017 poster
+%
+%\url{http://math.stanford.edu/~yuany/publications/poster_CleaveBioCPH2017_ForReview.pdf}
+%
+%\noindent where the crucial discovery is that recursive variable selection by LASSO is more effective than one-stage LASSO. 
+
+%\subsection{The Characters in A Dream of Red Mansion} 
+%
+%A 376-by-475 matrix of character-event can be found at the course website, in .XLS, .CSV, and .MAT formats. For example the Matlab format is found at
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/hongloumeng376.mat} 
+%
+%\noindent with a readme file:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/readme.m}
+%
+%Thanks to Ms. WAN, Mengting (now at UIUC), an update of data matrix consisting 374 characters (two of 376 are repeated) which is readable by R read.table() can be found at 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/hongloumeng/HongLouMeng374.txt}
+%
+%\noindent She also kindly shares her BS thesis for your reference
+% 
+% \url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WANMengTing2013_HLM.pdf}
+%
+%% Among various choices of analysis, with this data matrix $X$, you may form a weighted graph $W=X * X'$, pursue PCA of $X$. 
+%
+%\subsection{A Journal to the West} On course website, you may also find the link to this dataset with a 302-by-408 matrix, whose matlab format is saved at
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/Fall2011/xiyouji/xiyouji.mat}
+%
+%For your reference, here is a project presentation by Mr. LI, Liying (at PKU) which gives an analysis based on PCA
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LiyingLI_Xiyouji2012_slides.pdf}
+%
+
+%\section{Heart PCI Operation Effect Prediction}
+%
+%The following data, provided by Dr. Jinwen Wang at Anzhen Hospital, 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/heartData_20140401.xlsx}
+%
+%\noindent contains 2581 patients with 73 measurements (inputs) as well as a response variable indicating if after the heart operation there is a null-reflux state. This is a classification problem, with a challenge from the large amount of missing values. Sheet 3 and 4 in the file contains some explanation of the data and variables. 
+%
+%The problems are listed here:
+%\begin{enumerate}
+%\item The inputs (covariates) are of three kinds, measurements upon check-in, measurements before PCI operation, and measurements in PCI operations. For doctors, it is desired to find a prediction model based on measurements before the operation (including check-in). Sheet 2 in the file contains only such measurements.
+%\subitem The following two reports by LV, Yuan and LI, Xiao, respectively, might be interesting to you:
+%
+%\url{http://math.stanford.edu/~yuany/course/reference/MSThesis.LvYuan.pdf} 
+%
+%\url{http://arxiv.org/abs/1511.04656} 
+%
+%\item It is also an interesting problem how to predict the effect based on all measurements, with lots of missing values. Sheet 1 contains the full measurements. There are some good work by previous students, which are listed here for your reference: 
+%%\subitem The following two reports by LU, Yu and WANG, Qing, are probably inspiring to you.
+%%
+%%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/LuYu_201303_BigHeart.pdf} 
+%%
+%%\url{http://www.math.pku.edu.cn/teachers/yaoy/reference/WangQing_201303_BigHeart.pdf} 
+%
+%\subitem The following report by MIAO, Wang and LI, Yanfang, pioneers in missing value treatment. 
+%
+%\url{http://math.stanford.edu/~yuany/course/reference/MiaoLi2013S_project01.pdf}
+%
+%\end{enumerate} 
+
+%\emph{In the final project, it is desired to take only those measurements upon check-in to predict the probability of non-reflux (non-reflow) after PCI operations. An interpretable model adds a big value! You may compare with your first warm-up project to show your improvements.} 
+%
+%
+%\section{SNPs Data}
+% This dataset contains a data matrix $X\in \R^{p\times n}$ of about $n=650,000$ columns of SNPs (Single Nucleid Polymorphisms) and $p=1064$ rows of peoples around the world. Each element is of three choices, $0$ (for `AA'), $1$ (for `AC'), $2$ (for `CC'), and some missing values marked by $9$. 
+%
+%\url{http://math.stanford.edu/~yuany/course/ceph_hgdp_minor_code_XNA.txt.zip}
+%
+%\noindent which is big (151MB in zip and 2GB original txt). Moreover, the following file contains the region where each people comes from, as well as two variables {\texttt{ind1}} and{\texttt{ind2}} such that $X({\texttt{ind1}},{\texttt{ind2}})$ removes all missing values. 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/HGDP_region.mat}
+%
+%\noindent More detailed information about these persons in the dataset can be also found at
+%
+%\url{http://math.stanford.edu/~yuany/course/data/HGDPid_populations_ALL.xls}
+%
+%Some results by PCA can be found in the following paper, Supplementary Information. 
+%
+%\url{http://www.sciencemag.org/content/319/5866/1100.abstract}
+%
+%\section{Protein Folding} 
+%Consider the 3D structure reconstruction based on incomplete MDS with uncertainty. Data file: 
+%
+%\url{http://math.stanford.edu/~yuany/course/data/protein3D.zip}
+%
+%\begin{figure}[htbp]
+%\begin{center}
+%\includegraphics[width=0.5\textwidth]{../2013_Spring_PKU/Yes_Human.png}  
+%\caption{3D graphs of file PF00018\_2HDA.pdf (YES\_HUMAN/97-144, PDB 2HDA)}
+%\label{yes_human}
+%\end{center}
+%\end{figure}
+%
+%\noindent In the file, you will find 3D coordinates for the following three protein families: 
+%\subitem PF00013 (PCBP1\_HUMAN/281-343, PDB 1WVN), \\
+%\subitem PF00018 (YES\_HUMAN/97-144, PDB 2HDA), and \\
+%\subitem PF00254 (O45418\_CAEEL/24-118, PDB 1R9H). \\
+%
+%For example, the file {\tt PF00018\_2HDA.pdb} contains the 3D coordinates of alpha-carbons for a particular amino acid sequence in the family, YES\_HUMAN/97-144, read as
+%
+%{\tt{VALYDYEARTTEDLSFKKGERFQIINNTEGDWWEARSIATGKNGYIPS}}
+%
+%\noindent where the first line in the file is 
+%
+%97	V	0.967	18.470	4.342
+%
+%\noindent Here
+%\begin{itemize}
+%\item `97': start position 97 in the sequence
+%\item `V': first character in the sequence
+%\item $[x,y,z]$: 3D coordinates in unit $\AA$.
+%\end{itemize}
+%
+%\noindent Figure \ref{yes_human} gives a 3D representation of its structure. 
+%
+%
+%Given the 3D coordinates of the amino acids in the sequence, one can computer pairwise distance between amino acids, $[d_{ij}]^{l\times l}$ where $l$ is the sequence length. A \emph{contact map} is defined to be a graph $G_\theta=(V,E)$ consisting $l$ vertices for amino acids such that and edge $(i,j)\in E$ if $d_{ij} \leq \theta$, where the threshold is typically $\theta=5\AA$ or $8\AA$ here. 
+%
+%Can you recover the 3D structure of such proteins, up to an Euclidean transformation (rotation and translation), given noisy pairwise distances restricted on the contact map graph $G_\theta$, i.e. given noisy pairwise distances between vertex pairs whose true distances are no more than $\theta$? Design a noise model (e.g. Gaussian or uniformly bounded) for your experiments. 
+%
+%When $\theta=\infty$ without noise, classical MDS will work; but for a finite $\theta$ with noisy measurements, SDP approach can be useful. You may try the matlab package SNLSDP by Kim-Chuan Toh, Pratik Biswas, and Yinyu Ye, downladable at \url{http://www.math.nus.edu.sg/~mattohkc/SNLSDP.html}. 
+%
+
+
+%Attention: this last dataset is relatively big with about 2GB size. 
+%
+%You can login my server:
+%
+%\texttt{ssh einstein@162.105.205.92}
+%
+%\noindent using the password I provided on class. On the read only folder \texttt{/data/snp/}, you will find all the data in both .txt and .mat (\texttt{data.mat, HGDP\_region.mat, readme.m}).
+
+
+
+%\subsection{Bird Flu Dataset} (courtesy of Steve Smale and Cissy) This dataset 162 H5N1 (bird flu) virus sequences discovered around the world:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_seq162.txt} 
+%
+%Locations of such virus discovered are reported with latitude and longitude coordinates on the globe:
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_latgrat.txt} 
+%
+%Pairwise geodesic distances between these 162 sites are constructed as  
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_geodist.txt}
+%
+%A kernel-induced $l_2$-distances between 162 virus sequences are given in 
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/data/birdflu_l2dist.txt}
+\end{document}
+
+
