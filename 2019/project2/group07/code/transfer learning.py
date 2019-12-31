@@ -1,4 +1,4 @@
-import torch
+﻿import torch
 import torch.nn as nn
 from torchvision import transforms 
 import numpy as np
@@ -101,7 +101,7 @@ for epoch in range(epoch_n):
         # 统计预测正确的图片数
         running_corrects += torch.sum(predicted==labels.data)
             
-        # 共20000张测试图片，1250个batch，在使用500个及1000个batch对模型进行训练之后，输出训练结果
+        
         if (i+1)%10==0 :
             print("Batch {}, Train Loss:{:.4f}, Train ACC:{:.4F}%".format(i, running_loss/(i+1), 
                                                                               100*running_corrects/(batch_size *(i+1))))
