@@ -1,0 +1,1377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <META http-equiv=Content-Type content="text/html; charset=gb2312">
+   <title>Math6380o: Deep Learning </title>
+</head>
+<body background="../images/crysback.jpg">
+
+<!-- PAGE HEADER -->
+
+<div class="Section1">
+<table border="0" cellpadding="0" width="100%" style="width: 100%;">
+      <tbody>
+        <tr>
+
+       <td style="padding: 0.75pt;" width="80" align="center">
+
+      <p class="MsoNormal">&nbsp;<img width="64" height="64"
+ id="_x0000_i1025"
+ src="../images/hkust0_starry.jpg" alt="PKU">
+          </p>
+       </td>
+       <td style="padding: 0.75pt;">
+      <p>
+<span style="font-size: 18pt;">
+<b><big>MATH 6380o. Advanced Topics in Deep Learning <br>
+   Fall 2019</big></b>
+<br>
+</p>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="MsoNormal" align="center" style="text-align: center;">
+<hr size="2" width="100%" align="center">  </div>
+
+<ul type="disc">
+
+</ul>
+
+<!-- COURSE INFORMATION BANNER -->
+
+<table border="0" cellpadding="0" width="100%" bgcolor="#990000"
+ style="background: rgb(153,0,0) none repeat scroll 0% 50%; width: 100%;">
+      <tbody>
+
+        <tr>
+       <td style="padding: 2.25pt;">
+      <p class="MsoNormal"><b><span
+ style="font-size: 13.5pt; color: white;">Course Information</span></b></p>
+       </td>
+      </tr>
+
+  </tbody>
+</table>
+
+<!-- COURSE INFORMATION -->
+
+<h3>Synopsis</h3>
+<p style="margin-left: 0.5in;">
+<big> This course is a continuition of <a href="https://deeplearning-math.github.io/2018spring.html">Math 6380o, Spring 2018</a>, inspired by Stanford Stats 385, <a href="http://stats385.github.io">Theories of Deep Learning</a>, 
+	taught by Prof. Dave Donoho, Dr. Hatef Monajemi, and Dr. Vardan Papyan, as well as the Simons Institute program on
+	<a href="https://simons.berkeley.edu/programs/dl2019">Foundations of Deep Learning</a> in the summer of 2019 and IAS@HKUST workshop on
+	<a href="http://ias.ust.hk/events/201801mdl/">Mathematics of Deep Learning</a> during Jan 8-12, 2018. 
+The aim of this course is to provide graduate students who are interested in deep learning a variety of understandings 
+	on neural networks that are currently available to foster future research. 
+	</big>
+<br>
+	<big>
+Prerequisite: there is no prerequisite, though mathematical maturity on approximation theory, harmonic analysis, optimization, and statistics will be helpful. 
+		Do-it-yourself (DIY) and critical thinking (CT) are the most important things in this course. Enrolled students should have some programming experience with modern neural networks, such as PyTorch, Tensorflow, MXNet, Theano, and Keras, 
+		etc. Otherwise, it is recommended to take some courses on Statistical Learning (<a href="https://yuany-pku.github.io/2018_math4432/">Math 4432</a> or 5470), and Deep learning such as 
+		<a href="https://cs231n.github.io/">Stanford CS231n</a> with assignments, or a similar course COMP4901J by Prof. CK TANG at HKUST.
+	</big>
+</p>
+
+<h3>Reference</h3>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://stats385.github.io">Theories of Deep Learning</a>, Stanford STATS385 by Dave Donoho, Hatef Monajemi, and Vardan Papyan </em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://simons.berkeley.edu/programs/dl2019">Foundations of Deep Learning</a>, by Simons Institute for the Theory of Computing, UC Berkeley </em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://www.deepmath.org">On the Mathematical Theory of Deep Learning</a>, by <a href="http://www.math.tu-berlin.de/~kutyniok">Gitta Kutyniok</a> </em>
+</big>
+</p>
+
+
+<h3>Tutorials: preparation for beginners</h3>
+<p style="margin-left: 0.5in;">
+<big>
+	<em><a href="http://cs231n.github.io/python-numpy-tutorial/">Python-Numpy Tutorials</a> by Justin Johnson </em>
+</big>
+</p>
+
+<p style="margin-left: 0.5in;">
+<big>
+	<em><a href="http://scikit-learn.org/stable/tutorial/">scikit-learn Tutorials</a>: An Introduction of Machine Learning in Python</em>
+</big>
+</p>	
+
+<p style="margin-left: 0.5in;">
+<big>
+	<em><a href="http://cs231n.github.io/ipython-tutorial/">Jupyter Notebook Tutorials</a> </em>
+</big>
+</p>
+	
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://pytorch.org/tutorials/">PyTorch Tutorials</a> </em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://www.di.ens.fr/~lelarge/dldiy/">Deep Learning: Do-it-yourself with PyTorch</a>, </em> A course at ENS
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://www.tensorflow.org/tutorials/">Tensorflow Tutorials</a></em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://mxnet.incubator.apache.org/tutorials/index.html">MXNet Tutorials</a></em>
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://deeplearning.net/software/theano/tutorial/">Theano Tutorials</a></em>
+</big>
+</p>	
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="https://www.manning.com/books/deep-learning-with-python?a_aid=keras&a_bid=76564dff">Manning: Deep Learning with Python</a>, by Francois Chollet</em> [<a href="https://github.com/fchollet/deep-learning-with-python-notebooks">GitHub source in Python 3.6 and Keras 2.0.8</a>]
+</big>
+</p>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://www.deeplearningbook.org/">MIT: Deep Learning</a>, by Ian Goodfellow, Yoshua Bengio, and Aaron Courville
+</em>
+</big>
+</p>
+
+
+
+<h3>Instructors: </h3>
+<p style="margin-left: 0.5in;">
+<big>
+<em><a href="http://yao-lab.github.io/">Yuan Yao</a>  </em>
+</big>
+</p>
+
+<h3>Time and Place:</h3>
+<p style="margin-left: 0.5in;">
+<big><em>Th 03:00PM - 05:50PM, Rm 2405 (Lift 17-18), Academic Bldg, HKUST</em> <br>
+<!---	<em> Venue changed: Rm 4582 (Lift 27-28) from Sep 10, 2018.</em> <img src="./images/new.jpg" height="40"> ---->
+</big>
+</p>
+
+<h3>Homework and Projects:</h3>
+
+<p style="margin-left: 0.5in;">
+<big><em> No exams, but extensive discussions and projects will be expected. </em>
+</big></p>
+
+<h3>Teaching Assistant:</h3>
+
+<p style="margin-left: 0.5in;">
+<big> <br>
+Email: Mr. Mingxuan CAI <em> deeplearning.math (add "AT gmail DOT com" afterwards) </em>
+</big>
+</p>
+				
+<h3>Schedule</h3>
+
+<table border="1" cellspacing="0">
+<tbody>
+
+<tr>
+<td align="left"><strong>Date</strong></td>
+<td align="left"><strong>Topic</strong></td>
+<td align="left"><strong>Instructor</strong></td>
+<td align="left"><strong>Scriber</strong></td>
+</tr>
+
+<tr>
+<td>09/05/2019, Thursday</td>
+<td>Lecture 01: Overview I <a href="./2019/slides/Lecture01_overview.pdf">[ slides ]</a>
+	<br>
+	<ul>[Reference]:
+	<li> Robert Geirhos, Patricia Rubisch, Claudio Michaelis, Matthias Bethge, Felix Wichmann, Wieland Brendel, 
+		<a href="https://openreview.net/forum?id=Bygh9j09KX">ImageNet-trained CNNs are biased towards texture; increasing shape bias improves accuracy and robustness</a>, ICLR 2019
+		[<a href="https://videoken.com/embed/W2HvLBMhCJQ?tocitem=46"> video </a>]
+	</li>
+	<li> Aleksander Madry (MIT), 
+		<a href="https://simons.berkeley.edu/talks/tbd-57">A New Perspective on Adversarial Perturbation</a>, Simons Institute for Theory of Computing, 2019. 
+		[<a href="https://arxiv.org/abs/1905.02175">Adversarial Examples Are Not Bugs, They Are Features</a>]
+	</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+	<tr>
+<td>09/12/2019, Thursday</td>
+<td>Lecture 02: Symmetry and Network Architectures: Wavelet Scattering Net, Frame Scattering, DCFnet, and Permutation Invariant/Equivariant Nets <a href="./2019/slides/Lecture02_symmetry.pdf">[ slides ]</a> and <a href="./2019/project1/project1.pdf"> Project 1</a>. 
+	<br>
+	<ul>[Reference]:
+	<li> Stephane Mallat's short course on Mathematical Mysteries of Deep Neural Networks: <a href="https://www.youtube.com/watch?v=0wRItoujFTA">[ Part I video ]</a>, <a href="https://www.youtube.com/watch?v=kZkjb52zh5k">[ Part II video ]</a>, 
+		<a href="http://learning.mpi-sws.org/mlss2016/slides/CadixCours2016.pdf"> [ slides ] </a> 
+		</li>
+	<li> Stephane Mallat, <a href="https://www.di.ens.fr/~mallat/papiers/ScatCPAM.pdf">Group Invariant Scattering</a>, Communications on Pure and Applied Mathematics, Vol. LXV, 1331–1398 (2012) </li>
+	<li> Joan Bruna and Stephane Mallat, <a href="http://www.cmapx.polytechnique.fr/~bruna/Publications_files/pami.pdf">Invariant Scattering Convolution Networks</a>, IEEE Transactions on Pattern Analysis and Machine Intelligence, 2012 </li>
+	<li> Thomas Wiatowski and Helmut Bolcskei, <a href="https://www.nari.ee.ethz.ch/commth//pubs/files/deep-2016.pdf">A Mathematical Theory of Deep Convolutional Neural Networks for Feature Extraction</a>, 2016.
+	</li>		
+	<li> Qiang Qiu, Xiuyuan Cheng, Robert Calderbank, Guillermo Sapiro, <a href="https://arxiv.org/abs/1802.04145">DCFNet: Deep Neural Network with Decomposed Convolutional Filters</a>, ICML 2018. arXiv:1802.04145.
+	</li>
+	<li>Taco S. Cohen, Max Welling, <a href="https://arxiv.org/abs/1602.07576"> Group Equivariant Convolutional Networks</a>, ICML 2016. arXiv:1602.07576.
+		</li>
+	<li> Manzil Zaheer, Satwik Kottur, Siamak Ravanbakhsh, Barnabas Poczos, Ruslan Salakhutdinov, Alexander Smola. <a href="https://arxiv.org/abs/1703.06114"> Deep Sets </a>, NIPS, 2017. arXiv:1703.06114.
+		</li>
+	<li> Akiyoshi Sannai, Yuuki Takai, Matthieu Cordonnier. <a href="https://arxiv.org/abs/1903.01939"> Universal approximations of permutation invariant/equivariant functions by deep neural networks
+ </a>, NIPS, 2017. arXiv:1903.01939.
+		</li>
+	<li> Haggai Maron, Heli Ben-Hamu, Nadav Shamir, Yaron Lipman. <a href="https://openreview.net/pdf?id=Syx72jC9tm"> Invariant and Equivariant Graph Networks </a>. ICLR 2019. <a href="https://arxiv.org/abs/1812.09902">arXiv:1812.09902</a> 
+		</li>
+	</ul>
+	<ul> [Public codes]:
+		<li> <a href="http://www.di.ens.fr/data/software/"> Scattering Net Matlab codes </a> </li>
+		<li> <a href="https://github.com/edouardoyallon/pyscatwave"> pyscatwave: Scattering Transform in Python </a> </li>
+		<li> <a href="https://github.com/tdeboissiere/DeepLearningImplementations/tree/master/ScatteringTransform"> Deep Hybrid Transform in Python </a> </li>
+		<li> <a href="https://github.com/xycheng/DCFNet"> DCFNet </a> </li>
+	</ul>	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>09/18/2018, Wednesday</td>
+<td>Seminar: Asymptotic Behavior of Robust Wasserstein Profile Inference (RWPI) Function Analysis --- selecting \delta for DRO (Distributionally Robust Optimization) Problems. 
+	<a href="">[ slides ]</a>
+	<br>
+	<ul>[Speaker]: XIE, Jin, Stanford University.
+	</ul>
+	<ul>[Time]: 3:00-4:20pm </ul>
+	<ul>[Venue]: LTJ (Lift 33) </ul>
+	<ul>[Abstract]:
+		Recently, [1] showed that several machine learning algorithms, such as Lasso, Support Vector Machines, and 
+		regularized logistic regression, and many others can be represented exactly as distributionally robust 
+		optimization (DRO) problems. The uncertainty is then defined as a neighborhood centered at the empirical 
+		distribution. A key element of the study of uncertainty is the Robust Wasserstein Profile function. In [1], 
+		the authors study the asymptotic behavior of the RWP function in the case of L^p costs under the true 
+		parameter. We consider costs in more generalized forms, namely Bregman distance or in the more general 
+		symmetric format of d(x-y) and analyze the asymptotic behavior of the RWPI function in these cases. For 
+		the purpose of statistical applications, we then study the RWP function with plug-in estimators. 
+
+This is a joint work with Yue Hui, Jose Blanchet and Peter Glynn.
+
+<li> [1] Blanchet, J., Kang, Y., & Murthy, K. Robust Wasserstein Profile Inference and Applications to Machine Learning, <a href="https://arxiv.org/pdf/1610.05627.pdf">arXiv:1610.05627</a>, 2016.
+	[<a href="./2019/slides/Blanchet_Tutorial_APS_2017.pdf"> tutorial slides </a> ]</li>
+	</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+	
+<tr>
+<td>09/19/2018, Thursday</td>
+<td>Lecture 03:  Robust Statistics and Generative Adversarial Networks <a href="./2019/slides/Lecture03_robustGAN.pdf">[ slides ]</a>
+	<br>
+	<ul>[Reference]
+		<li> GAO, Chao, Jiyu LIU, Yuan YAO, and Weizhi ZHU.
+			Robust Estimation and Generative Adversarial Nets. 
+			[<a href="https://arxiv.org/abs/1810.02030"> arXiv:1810.02030 </a>] [<a href="https://github.com/zhuwzh/Robust-GAN-Center"> GitHub </a>] [<a href="https://simons.berkeley.edu/talks/robust-estimation-and-generative-adversarial-nets"> GAO, Chao's Simons Talk </a>]
+		</li>
+		<li> GAO, Chao, Yuan YAO, and Weizhi ZHU.
+			Generative Adversarial Nets for Robust Scatter Estimation: A Proper Scoring Rule Perspective. 
+			[<a href="https://arxiv.org/abs/1903.01944"> arXiv:1903.01944 </a>] [<a href="https://github.com/zhuwzh/Robust-GAN-Scatter" GitHub </a>]
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+	<tr>
+<td>09/26/2018, Thursday </td>
+<td>Lecture 04: Convolutional Neural Network on Graphs  <a href="./2019/slides/Lecture04.pdf">[ slides ]</a> 
+	<br>
+	<ul>[Seminar]: Multi-Scale and Multi-Representation Learning on Graphs and Manifolds  <a href="./2019/slides/ZHAO_Zhizhen_Slides.pdf">[ slides ]</a> </ul>
+	<ul>[Speaker]: Prof. ZHAO, Zhizhen, Department of ECE, UIUC </ul>
+	<ul>[Time]: 4:30-5:50pm </ul>
+	<ul>[Abstract]:
+		<li> The analysis of geometric (graph- and manifold-structured) data have recently gained prominence in the machine learning community. For the first part of the talk, I will introduce Lanczos network (LanczosNet), which uses the Lanczos algorithm to construct low rank approximations of the graph Laplacian for graph convolution. Relying on the tridiagonal decomposition of the Lanczos algorithm, we efficiently exploit multi-scale information via fast approximated computation of matrix power, and design learnable spectral filters. Being fully differentiable, LanczosNet facilitates both graph kernel learning as well as learning node embeddings. I will show the application of LanczosNet to citation networks and QM8 quantum chemistry dataset.
+		<br> For the second part of the talk, I will introduce a novel multi-representation learning paradigm for manifolds naturally equipped with a group action. Utilizing a representation theoretic mechanism, multiple associated vector bundles can be constructed over the orbit space, providing multiple views for learning the geometry of the underlying manifold. The consistency across these associated vector bundles form a common base for unsupervised manifold learning, through the redundancy inherent to the algebraic relations across irreducible representations of the transformation group. I will demonstrate the efficacy of the proposed algorithmic paradigm through dramatically improved robust nearest neighbor search in cryo-electron microscopy image analysis.</li>
+	</ul>
+	<ul>[Reference]:
+		<li> Xavier Bresson, Convolutional Neural Networks on Graphs, IPAM, UCLA, 2017. [<a href="https://www.youtube.com/watch?v=v3jZRkvIOIM">video</a>][<a href="http://helper.ipam.ucla.edu/publications/dlt2018/dlt2018_14506.pdf">slides</a>]
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+	<tr>
+<td>10/10/2019, Thursday</td>
+<td>Lecture 05: An Introduction to Optimization and Regularization Methods in Deep Learning <a href="./2019/slides/Lecture05_optimization.pdf">[ slides ]</a>
+	<br>
+	<ul>[Reference]:
+		<li> <a href="https://cs231n.github.io/">Stanford CS231n</a> </li>
+	</ul>
+	<ul>[ Gallery of Project 1 ]:
+		<li> Description of <a href="./2019/project1/project1.pdf"> Project 1</a></li>
+		<li> Peer Review requirement: <a href="./2019/project1/project1_review.pdf"> Peer Review </a> and <a href="./2019/project1/project1review_assignment.pdf"> Report Assignment </a></li>
+		<li> Rebuttal Guideline: <a href="./2019/project1/project1_rebuttal.pdf"> Rebuttal </a> </li>
+		<li> Doodle Vote for Top 3 Reports: <a href="https://doodle.com/poll/56s69neeyme7ry23"> vote link </a> </li>
+		<li> Group 1: XIAO Jiashun, LIU Yiyuan, WANG Ya, and YU Tingyu. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group01/project"> report </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group01/review"> review </a>]</li>
+		<li> Group 2: Abhinav PANDEY. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group02/project"> report </a>][<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group02/review"> review </a>]  </li>
+		<li> Group 3: LEI Chenyang, Yazhou XING, Yue WU, and XIE Jiaxin. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group03/project"> report </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group03/review"> review </a>] </li>
+		<li> Group 4: Oscar Bergqvist, Martin Studer, Cyril de Lavergne. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group04/project"> report </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group04/review"> review </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group04/rebuttal"> rebuttal </a>]</li>
+		<li> Group 5: Lanqing XUE, Feng HAN, Jianyue WANG, Zhiliang TIAN. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group05/project"> report </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group05/review"> review </a>]  [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group05/rebuttal"> rebuttal </a>]</li>
+		<li> Group 6: CHEN Zhixian, QIAN Yueqi, and ZHANG Shunkang. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group06/project"> report </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group06/review"> review </a>]</li>
+		<li> Group 7: Zhenghui CHEN and Lei KANG. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group07/project"> report </a>][<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group07/review"> review </a>]  [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group07/rebuttal"> rebuttal </a>]</li>
+		<li> Group 8: Boyu JIANG. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group08/project"> report </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group08/review"> review </a>] </li>
+		<li> Group 9: LI Donghao, WU Jiamin, ZENG Wenqi and CAO Yang. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group09/project"> report </a>][<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group09/review"> review </a>]  [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group09/rebuttal"> rebuttal </a>]</li>
+		<li> Group 10: Shichao LI, Ziyu WANG and Zhenzhen HUANG. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group10/project"> report </a>][<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group10/review"> review </a>]  [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group10/rebuttal"> rebuttal </a>]</li>
+		<li> Group 11: NG Yui Hong. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group11/project"> report </a>][<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group11/review"> review </a>]  </li>
+		<li> Group 12: Luyu Cen, Jingyang Li, Zhongyuan Lyu and Shifan Zhao. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group12/project"> report </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group12/review"> review </a>]</li>
+		<li> Group 13: Mutian He, Qing Yang, Yuxin Tong, Ruoyang Hou. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group13/project"> report </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group13/review"> review </a>]  [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group13/rebuttal"> rebuttal </a>]</li>
+		<li> Group 14: WANG, Qicheng. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group14/project"> report </a>] [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project1/group14/review"> review </a>]</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+	<tr>
+<td>10/17/2019, Thursday</td>
+<td>Lecture 06: The Landscape of Empirical Risk of Neural Networks <a href="./2019/slides/Lecture06_OptimizationGeneralization.pdf">[ slides ]</a>  
+	<br>
+	<ul>[Reference]:
+	<li> Freeman, Bruna. Topology and Geometry of Half-Rectified Network Optimization, ICLR 2017. 
+		<a href="https://arxiv.org/abs/1611.01540">[ arXiv:1611.01540 ]</a> 
+		[<a href="https://www.youtube.com/watch?v=rBxoRQODJdM&feature=em-upload_owner"> Stanford talk video </a>][<a href="https://stats385.github.io/stats385_2017.github.io/assets/lectures/stanford_nov15.pdf"> slides </a>]	
+		</li> 
+	<li> Luca Venturi, Afonso Bandeira, and Joan Bruna. Neural Networks with Finite Intrinsic Dimension Have no Spurious Valleys. <a href="https://arxiv.org/abs/1802.06384">[ arXiv:1802.06384 ]</a>
+		</li>
+	<li> Rohith Kuditipudi, Xiang Wang, Holden Lee, Yi Zhang, Zhiyuan Li, Wei Hu, Sanjeev Arora and Rong Ge. Explaining Landscape Connectivity of Low-cost Solutions for Multilayer Nets. 
+		[<a href="https://arxiv.org/abs/1906.06247"> arXiv:1906.06247 </a>][<a href="https://simons.berkeley.edu/talks/tbd-61"> Simons talk video </a>][<a href="https://www.bilibili.com/video/av69027489?p=7"> Bilibili video </a>][<a href="https://simons.berkeley.edu/sites/default/files/docs/14168/connectivity.pptx"> slides </a>]
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+	
+	<tr>
+<td>10/24/2019, Thursday</td>
+<td>Lecture 07: Overparameterization and Optimization <a href="./2019/slides/Lee_simons_tutorial_Overparam_opt_DL.pdf">[ slides ]</a>  
+	<br>
+	<ul>[Speaker]: Prof. <a href="https://jasondlee88.github.io/">Jason Lee</a>, Princeton University </ul>
+	<ul>[Abstract]: We survey recent developments in the optimization and learning of deep neural networks. The three focus topics are on: 
+		<li>1) geometric results for the optimization of neural networks, </li> 
+		<li>2) Overparametrized neural networks in the kernel regime (Neural Tangent Kernel) and its implications and limitations, </li> 
+		<li>3) potential strategies to prove SGD improves on kernel predictors.</li>
+	</ul>
+	<ul>[Video] <a href="https://simons.berkeley.edu/workshops/schedule/10624">Deep Learning Bootcamp</a>, Simons Institute for the Theory of Computing at UC Berkeley, 2019. [<a href="https://weibo.com/7337268754/Ign0S6ePZ?from=page_1005057337268754_profile&wvr=6&mod=weibotime&type=comment"> Weibo collection </a>]
+		<li>[<a href="https://simons.berkeley.edu/talks/optimizations-i"> Part I </a>] [<a href="https://www.bilibili.com/video/av75713946/"> Bilibili link</a>]</li>
+		<li>[<a href="https://simons.berkeley.edu/talks/optimization-ii"> Part II </a>] [<a href="https://www.bilibili.com/video/av75713946?p=2"> Bilibili link</a>]</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+	<tr>
+<td>10/31/2019, Thursday</td>
+<td>Lecture 08: Generalization in Deep Learning <a href="./2019/slides/BartlettRakhlin_Generalization.pdf">[ slides ]</a>  
+	<br>
+	<ul>[Speaker]: <a href="http://www.mit.edu/~rakhlin/"> Sasha Rakhlin </a> (Massachusetts Institute of Technology) and <a href="https://simons.berkeley.edu/people/peter-bartlett">Peter Bartlett</a> (UC Berkeley) </ul>
+	<ul>[Abstract]: We review tools useful for the analysis of the generalization performance of deep neural networks on classification and regression problems.  We review uniform convergence properties, which show how this performance depends on notions of complexity, such as Rademacher averages, covering numbers, and combinatorial dimensions, and how these quantities can be bounded for neural networks.  We also review the analysis of the performance of nonparametric estimation methods such as nearest-neighbor rules and kernel smoothing.  Deep networks raise some novel challenges, since they have been observed to perform well even with a perfect fit to the training data.  We review some recent efforts to understand the performance of interpolating prediction rules, and highlight the questions raised for deep learning.
+	</ul>
+	<ul>[Video] <a href="https://simons.berkeley.edu/workshops/schedule/10624">Deep Learning Bootcamp</a>, Simons Institute for the Theory of Computing at UC Berkeley, 2019 [<a href="https://weibo.com/7337268754/Ign1TBCQR?from=page_1005057337268754_profile&type=comment"> Weibo collection </a>]
+		<li>[<a href="https://simons.berkeley.edu/talks/generalization-i"> Part I </a>] [<a href="https://www.bilibili.com/video/av75713571/"> Bilibili link </a>] </li>
+		<li>[<a href="https://simons.berkeley.edu/talks/generalization-ii"> Part II </a>] [<a href="https://www.bilibili.com/video/av75713571?p=2"> Bilibili link </a>] </li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+	<tr>
+<td>11/07/2019, Thursday</td>
+<td>Lecture 09: Generalization in Deep Learning (continued) <a href="./2019/slides/BartlettRakhlin_Generalization.pdf">[ slides ]</a>  
+	<br>
+	<ul>[Speaker]: <a href="http://www.mit.edu/~rakhlin/"> Sasha Rakhlin </a> (Massachusetts Institute of Technology) and <a href="https://simons.berkeley.edu/people/peter-bartlett">Peter Bartlett</a> (UC Berkeley) </ul>
+	<ul>[Abstract]: We review tools useful for the analysis of the generalization performance of deep neural networks on classification and regression problems.  We review uniform convergence properties, which show how this performance depends on notions of complexity, such as Rademacher averages, covering numbers, and combinatorial dimensions, and how these quantities can be bounded for neural networks.  We also review the analysis of the performance of nonparametric estimation methods such as nearest-neighbor rules and kernel smoothing.  Deep networks raise some novel challenges, since they have been observed to perform well even with a perfect fit to the training data.  We review some recent efforts to understand the performance of interpolating prediction rules, and highlight the questions raised for deep learning.
+	</ul>
+	<ul>[Video] <a href="https://simons.berkeley.edu/workshops/schedule/10624">Deep Learning Bootcamp</a>, Simons Institute for the Theory of Computing at UC Berkeley, 2019
+		<li>[<a href="https://simons.berkeley.edu/talks/generalization-iii"> Part III </a>] [<a href="https://www.bilibili.com/video/av75713571?p=3"> Bilibili link </a>] </li>
+		<li>[<a href="https://simons.berkeley.edu/talks/generalization-iv"> Part IV </a>] [<a href="https://www.bilibili.com/video/av75713571?p=4"> Bilibili link </a>]</li>
+	</ul>
+	<ul>[Reference]
+		<li> Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, Oriol Vinyals,
+		<a href="https://arxiv.org/abs/1611.03530">Understanding deep learning requires rethinking generalization.
+			</a> ICLR 2017.
+		<a href="https://github.com/pluskid/fitting-random-labels">[Chiyuan Zhang's codes]</a> 
+	</li>
+	<li> Peter L. Bartlett, Dylan J. Foster, Matus Telgarsky. Spectrally-normalized margin bounds for neural networks. 
+ <a href="https://arxiv.org/abs/1706.08498">[ arXiv:1706.08498 ]</a>. NIPS 2017. </li>
+	<li> Neyshabur, B., Bhojanapalli, S., McAllester, D., and Srebro, N. A pac-bayesian approach to spectrally-normalized
+		margin bounds for neural networks. [<a href="https://arxiv.org/abs/1707.09564"> arXiv:1707.09564 </a>].<I> International Conference on Learning Representations (ICLR)</I>, 2018.
+		</li>
+	<li> Noah Golowich, Alexander (Sasha) Rakhlin, Ohad Shamir. Size-Independent Sample Complexity of Neural Networks.
+		[<a href="https://arxiv.org/abs/1712.06541"> arXiv:1712.06541 </a>]. COLT 2018. </li> 
+	<li> Weizhi Zhu, Yifei Huang, Yuan Yao. On Breiman's Dilemma in Neural Networks: Phase Transitions of Margin Dynamics. 
+		[<a href="https://arxiv.org/abs/1810.03389"> arXiv: 1810.03389 </a>]. 
+		(This paper shows that when Rademacher complexity based generalization bounds can be informative to find early stopping, 
+		as well as when such bounds fail with extremely over-parameterized models)
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+
+		<tr>
+<td>11/21/2019, Thursday</td>
+<td>Lecture 10: Implicit Regularization  
+	<br>
+	<ul>[Speaker]: <a href="https://ttic.uchicago.edu/~nati/"> Nati Srebro </a> (TTI at University of Chicago) </ul>
+	<ul>[Abstract]: We review the implicit regularization of gradient descent type algorithms in machine learning.
+	</ul>
+	<ul>[Video] <a href="https://simons.berkeley.edu/workshops/schedule/10624">Deep Learning Bootcamp</a>, Simons Institute for the Theory of Computing at UC Berkeley, 2019. 
+		[<a href="https://www.weibo.com/7337268754/Igaho8Jp7?type=comment"> Weibo link </a>]
+		<li>[<a href="https://simons.berkeley.edu/talks/implicit-regularization-i"> Part I </a>] [<a href="https://www.bilibili.com/video/av75621719/"> Bilibili link </a>] </li>
+		<li>[<a href="ttps://simons.berkeley.edu/talks/implicit-regularization-ii"> Part II </a>] [<a href="https://www.bilibili.com/video/av75621719?p=2"> Bilibili link </a>]</li>
+	</ul>
+	<ul>[Reference]
+	<li> Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, Nathan Srebro. The Implicit Bias of Gradient Descent on Separable Data. <a href="https://arxiv.org/abs/1710.10345">[ arXiv:1710.10345 ]</a>. ICLR 2018. </li>
+	<li> Matus Telgarsky. Margins, Shrinkage, and Boosting. <a href="https://arxiv.org/abs/1303.4172">[ arXiv:1303.4172 ]</a>. ICML 2013. </li>
+	<li> Vaishnavh Nagarajan, J. Zico Kolter. Uniform convergence may be unable to explain generalization in deep learning. <a href="https://arxiv.org/abs/1902.04742">[ arXiv:1902.04742 ]</a>. NIPS 2019. <a href="https://locuslab.github.io/2019-07-09-uniform-convergence/">[ Github ]</a>.
+		(It argues that all the generalization bounds above might fail to explain generalization in deep learning)
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+
+		<tr>
+<td>11/28/2019, Thursday</td>
+<td>Lecture 11: Seminars  
+	<br>
+	<ul>[Title]: From Classical Statistics to Modern Machine Learning 
+		[<a href="https://simons.berkeley.edu/sites/default/files/docs/14172/slides1.pdf"> slide </a>]
+
+	<ul>[Speaker]: <a href="http://www.cse.ohio-state.edu/~mbelkin/"> Misha Belkin </a> (OSU) 
+	</ul>
+	<ul>[Abstract]: 
+		A model with zero training error is overfit to the training data and will typically generalize poorly" goes statistical textbook wisdom. Yet, in modern practice, over-parametrized deep networks with near perfect fit on training data still show excellent test performance. As I will discuss in the talk, this apparent contradiction is key to understanding the practice of modern machine learning. 
+
+While classical methods rely on a trade-off balancing the complexity of predictors with training error, modern models are best described by interpolation, where a predictor is chosen among functions that fit the training data exactly, according to a certain (implicit or explicit) inductive bias. Furthermore, classical and modern models can be unified within a single "double descent" risk curve, which extends the classical U-shaped bias-variance curve beyond the point of interpolation. This understanding of model performance delineates the limits of the usual ''what you see is what you get" generalization bounds in machine learning and points to new analyses required to understand computational, statistical, and mathematical properties of modern models. 
+
+I will proceed to discuss some important implications of interpolation for optimization, both in terms of "easy" optimization (due to the scarcity of non-global minima), and to fast convergence of small mini-batch SGD with fixed step size.
+
+	</ul>
+	<ul>[Video] 		
+		<li>[<a href="https://simons.berkeley.edu/talks/tbd-65"> Simons link </a>]</li> 
+		<li>[<a href="https://www.bilibili.com/video/av69027489?p=13"> Bilibili link </a>] </li>
+	</ul>
+	<ul>[Reference]
+		<li>Mikhail Belkin, Daniel Hsu, Siyuan Ma, Soumik Mandal. Reconciling modern machine learning practice and the bias-variance trade-off. 
+			<a href="https://www.pnas.org/content/116/32/15849.short"> PNAS </a>, 2019, 116 (32). [<a href="https://arxiv.org/abs/1812.11118"> arXiv:1812.11118 </a>]
+		</li>
+	</ul>
+	</ul>
+		
+	<br>
+	<ul>[Title]: 
+		Benign Overfitting in Linear Prediction 	
+	
+	<ul>[Speaker]: <a href="https://simons.berkeley.edu/people/peter-bartlett">Peter Bartlett</a> (UC Berkeley) </ul>
+	<ul>[Abstract]: 
+		Classical theory that guides the design of nonparametric prediction methods like deep neural networks involves a tradeoff between the fit to the training data and the complexity of the prediction rule. Deep learning seems to operate outside the regime where these results are informative, since deep networks can perform well even with a perfect fit to noisytraining data. We investigate this phenomenon of 'benign overfitting' in the simplest setting, that of linear prediction. We give a characterization of linear regression problems for which the minimum norm interpolating prediction rule has near-optimal prediction accuracy. The characterization is in terms of two notions of effective rank of the data covariance. It shows that overparameterization is essential: the number of directions in parameter space that are unimportant for prediction must significantly exceed the sample size.  We discuss implications for deep networks and for robustness to adversarial examples.
+
+Joint work with Phil Long, Gábor Lugosi, and Alex Tsigler.
+
+	</ul>
+	<ul>[Video] 		
+		<li>[<a href="https://simons.berkeley.edu/talks/tbd-51"> Simons link </a>]</li> 
+		<li>[<a href="https://www.bilibili.com/video/av69027489?p=14"> Bilibili link </a>] </li>
+	</ul>
+	<ul>[Reference]
+		<li> Peter L. Bartlett, Philip M. Long, Gábor Lugosi, Alexander Tsigler. Benign Overfitting in Linear Regression. <a href="https://arxiv.org/abs/1906.11300"> arXiv:1906.11300 </a> </li>
+	</ul>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+
+<td>10/28/2019, Thursday </td>
+<td>Lecture 12: Final Project <a href="./2019/slides/project2.pdf">[ PDF ]</a>
+	<br>
+	<ul>[ Gallery of Final Project ]:
+		<li> Description of <a href="./2019/slides/project2.pdf"> Final Project </a></li>
+		<li> Group 1: XIAO Jiashun, LIU Yiyuan, WANG Ya, and YU Tingyu. Reproducible Study of Training and Generalization Performance. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/2019/project2/group01"> report </a>] [<a href="https://drive.google.com/open?id=1wuvf4Y15Ix4-Z_aH8NYULr-seaxAxA1i"> video </a>]</li>
+		<li> Group 2: Abhinav PANDEY. Anomaly Detection in Semiconductors. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group02"> report </a>] [<a href="https://youtu.be/b_KNY6kAREs"> video </a>] </li>
+		<li> Group 3: LEI Chenyang, Yazhou XING, Yue WU, and XIE Jiaxin. Colorizing Black-White Movies Fastly and Automatically. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group03"> report </a>] [<a href="https://www.youtube.com/watch?v=8Nk-ITnLSXU"> video </a>] </li>
+		<li> Group 4: Oscar Bergqvist, Martin Studer, Cyril de Lavergne. China Equity Index Prediction Contest. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group04"> report </a>] [<a href="https://www.youtube.com/watch?v=jnQRnOZR-Zo"> video </a>]</li>
+		<li> Group 5: HAN, Feng, Lanqing XUE, Zhiliang Tian, and Jianyue WANG. Contextual Information Based Market Prediction using Dynamic Graph Neural Networks. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group05"> report </a>]  [<a href="https://www.youtube.com/watch?v=3zyCXJoPqyk"> video </a>] [<a href="https://www.kaggle.com/BidecInnovations/stock-price-and-news-realted-to-it/version/1"> Kaggle link</a>]</li>
+		<li> Group 6: CHEN Zhixian, QIAN Yueqi, and ZHANG Shunkang. Semi-conductor Image Classification. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group06"> report </a>] [<a href="https://youtu.be/ZD5273frXNg"> video </a>]</li>
+		<li> Group 7: Zhenghui CHEN and Lei KANG. On Raphael Painting Authentication. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group07"> report </a>][<a href="https://youtu.be/5OBT0a8iWHQ"> video </a>]</li>
+		<li> Group 8: Boyu JIANG. Final project report on Nexperia Image Classification. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group08"> report </a>] </li>
+		<li> Group 9: LI Donghao, WU Jiamin, ZENG Wenqi and CAO Yang. On teacher-student network learning. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group09"> report </a>][<a href="https://www.bilibili.com/video/av79506206/"> video </a>]</li>
+		<li> Group 10: LI Shichao, Ziyu WANG and Zhenzhen HUANG. Semiconductor Classification by Making Decisions with Deep Features. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group10"> report </a>][<a href="https://www.youtube.com/watch?v=2TS-jCxCG9U"> video </a>] </li>
+		<li> Group 11: NG Yui Hong. Reproducible Study of Training and Generalization Performance. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group11"> report </a>][<a href="https://www.youtube.com/watch?v=JqHrC3vd73k"> video </a>]  </li>
+		<li> Group 12: Luyu Cen, Jingyang Li, Zhongyuan Lyu and Shifan Zhao. Nexperia Kaggle in-class contest. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group12"> report </a>] [<a href="https://youtu.be/ZYOLqpAMIH0"> video </a>]</li>
+		<li> Group 13: Mutian He, Qing Yang, Yuxin Tong, Ruoyang Hou. Defects Recognition on Nexperia's Semi-Conductors. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group13"> report </a>] [<a href="https://youtu.be/JHnHYw51BlE"> video </a>]</li>
+		<li> Group 14: WANG, Qicheng. Great Challenges of Reproducible Training of CNNs. [<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/2019/project2/group14"> report </a>] </li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+	<!---
+	<tr>
+<td>11/07/2019, Thursday</td>
+<td>Lecture 09: Generalization in Deep Learning <a href="./2019/slides/BartlettRakhlin_Generalization.pdf">[ slides ]</a>  
+	<br>
+	<ul>[Speaker]: <a href="http://www.mit.edu/~rakhlin/"> Sasha Rakhlin </a> (Massachusetts Institute of Technology) and <a href="https://simons.berkeley.edu/people/peter-bartlett">Peter Bartlett</a> (UC Berkeley) </ul>
+	<ul>[Abstract]: We review tools useful for the analysis of the generalization performance of deep neural networks on classification and regression problems.  We review uniform convergence properties, which show how this performance depends on notions of complexity, such as Rademacher averages, covering numbers, and combinatorial dimensions, and how these quantities can be bounded for neural networks.  We also review the analysis of the performance of nonparametric estimation methods such as nearest-neighbor rules and kernel smoothing.  Deep networks raise some novel challenges, since they have been observed to perform well even with a perfect fit to the training data.  We review some recent efforts to understand the performance of interpolating prediction rules, and highlight the questions raised for deep learning.
+	</ul>
+	<ul>[Video] <a href="https://simons.berkeley.edu/workshops/schedule/10624">Deep Learning Bootcamp</a>, Simons Institute for the Theory of Computing at UC Berkeley, 2019
+		<li>[<a href="https://simons.berkeley.edu/talks/generalization-iii"> Part III </a>] </li>
+		<li>[<a href="https://simons.berkeley.edu/talks/generalization-iv"> Part IV </a>]</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>09/05/2018, Wed</td>
+<td>Lecture 02: Overview II <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture02_overview_ii.pdf">[ slides ]</a>
+	<br>
+	<ul>[Reference]:
+	<li> Stephane Mallat, <a href="https://arxiv.org/abs/1601.04920">Understanding Deep Convolutional Networks</a>, Philosophical Transactions A, 2016. </li>
+	<li> Stephane Mallat, <a href="https://www.di.ens.fr/~mallat/papiers/ScatCPAM.pdf">Group Invariant Scattering</a>, Communications on Pure and Applied Mathematics, Vol. LXV, 1331–1398 (2012) </li>
+	<li> Stephane Mallat's short course on Mathematical Mysteries of Deep Neural Networks: <a href="https://www.youtube.com/watch?v=0wRItoujFTA">[ Part I video ]</a>, <a href="https://www.youtube.com/watch?v=kZkjb52zh5k">[ Part II video ]</a>, <a href="http://learning.mpi-sws.org/mlss2016/slides/CadixCours2016.pdf"> [ slides ] </a> 
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+		
+<tr>
+<td>09/10/2018, Mon</td>
+<td>Lecture 03: Overview III <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture03_overview_iii.pdf">[ slides ]</a>
+	<br>
+	<ul>[Reference]:
+	<li> Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, Oriol Vinyals,
+		<a href="https://arxiv.org/abs/1611.03530">Understanding deep learning requires rethinking generalization.
+		</a> ICLR 2017. 
+		<a href="https://github.com/pluskid/fitting-random-labels">[Chiyuan Zhang's codes]</a> 
+	</li>
+	<li> Peter L. Bartlett, Dylan J. Foster, Matus Telgarsky. Spectrally-normalized margin bounds for neural networks. 
+ <a href="https://arxiv.org/abs/1706.08498">[ arXiv:1706.08498 ]</a>. NIPS 2017. </li>
+	<li> Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, Nathan Srebro. The Implicit Bias of Gradient Descent on Separable Data. <a href="https://arxiv.org/abs/1710.10345">[ arXiv:1710.10345 ]</a>. ICLR 2018. </li>
+	<li> Matus Telgarsky. Margins, Shrinkage, and Boosting. <a href="https://arxiv.org/abs/1303.4172">[ arXiv:1303.4172 ]</a>. ICML 2013. </li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+	<tr>
+<td>09/12/2018, Wed</td>
+<td>Lecture 04: Overview IV <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture04_overview_iv.pdf">[ slides ]</a> and Project 1 <a href="https://github.com/deeplearning-math/slides/blob/master/project1.pdf">[ project1.pdf ]</a> 
+	<br>
+	<ul>[Reference]:
+	<li> Freeman, Bruna. Topology and Geometry of Half-Rectified Network Optimization, ICLR 2017. <a href="https://arxiv.org/abs/1611.01540">[ arXiv:1611.01540 ]</a> 
+		</li>	
+	<li> Luca Venturi, Afonso Bandeira, and Joan Bruna. Neural Networks with Finite Intrinsic Dimension Have no Spurious Valleys. <a href="https://arxiv.org/abs/1802.06384">[ arXiv:1802.06384 ]</a>
+	</li>
+	<li> Stephane Mallat, <a href="https://www.di.ens.fr/~mallat/papiers/ScatCPAM.pdf">Group Invariant Scattering</a>, Communications on Pure and Applied Mathematics, Vol. LXV, 1331–1398 (2012) </li>
+	<li> Joan Bruna and Stephane Mallat, <a href="http://www.cmapx.polytechnique.fr/~bruna/Publications_files/pami.pdf">Invariant Scattering Convolution Networks</a>, IEEE Transactions on Pattern Analysis and Machine Intelligence, 2012 </li>
+	<li> Haixia Liu, Raymond Chan, and Yuan Yao, <a href="http://www.sciencedirect.com/science/article/pii/S1063520315001566">Geometric Tight Frame based Stylometry for Art Authentication of van Gogh Paintings</a>, Applied and Computational Harmonic Analysis, 41(2): 590-602, 2016. </li>
+	<li> Roberto Leonarduzzi, Haixia Liu, and Yang Wang, <a href="https://www.sciencedirect.com/science/article/pii/S0165168418301105">Scattering transform and sparse linear classifiers for art authentication</a>. Signal Processing 150: 11-19, 2018. </li>
+	</ul>
+	<ul> [Matlab codes]:
+		<li> <a href="http://www.di.ens.fr/data/software/"> Scattering Net codes </a> </li>
+		<li> <a href="https://github.com/deeplearning-math/slides/blob/master/tutorial_scatnet_gu.m"> A tutorial on ScatNet Matlab package </a> </li>
+	</ul>	
+</td>
+<td>GU, Hanlin<br> Y.Y.</td>
+<td></td>
+</tr>
+	<tr>
+<td>09/19/2018, Wed</td>
+<td>Lecture 05: Harmonic Analysis of Convolutional Networks: Wavelet Scattering Net <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture05_scattering.pdf">[ slides ]</a> 
+	<br>
+	<ul>[Reference]:
+	<li> Stephane Mallat, <a href="https://www.di.ens.fr/~mallat/papiers/ScatCPAM.pdf">Group Invariant Scattering</a>, Communications on Pure and Applied Mathematics, Vol. LXV, 1331–1398 (2012) </li>
+	<li> Joan Bruna and Stephane Mallat, <a href="http://www.cmapx.polytechnique.fr/~bruna/Publications_files/pami.pdf">Invariant Scattering Convolution Networks</a>, IEEE Transactions on Pattern Analysis and Machine Intelligence, 2012 </li>
+	</ul>
+	<ul> [Public codes]:
+		<li> <a href="http://www.di.ens.fr/data/software/"> Scattering Net Matlab codes </a> </li>
+		<li> <a href="https://github.com/edouardoyallon/pyscatwave"> pyscatwave: Scattering Transform in Python </a> </li>
+		<li> <a href="https://github.com/tdeboissiere/DeepLearningImplementations/tree/master/ScatteringTransform"> Deep Hybrid Transform in Python </a> </li>
+	</ul>	
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	<tr>
+<td>09/24/2018, Mon</td>
+<td>Lecture 06: Harmonic Analysis of Convolutional Networks: Extension of Scattering Nets <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture06_extension.pdf">[ slides ]</a> 
+	<br>
+	<ul>[Reference]:
+		<li> Thomas Wiatowski and Helmut Bolcskei, <a href="https://www.nari.ee.ethz.ch/commth//pubs/files/deep-2016.pdf">A Mathematical Theory of Deep Convolutional Neural Networks for Feature Extraction</a>, 2016.
+		</li>		
+		<li> Qiang Qiu, Xiuyuan Cheng, Robert Calderbank, Guillermo Sapiro, <a href="https://arxiv.org/abs/1802.04145">DCFNet: Deep Neural Network with Decomposed Convolutional Filters</a>, ICML 2018. arXiv:1802.04145.
+		</li>	
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	<tr>
+<td>09/26/2018, Wed</td>
+<td>Lecture 07: Convolutional Neural Network with Structured Filters  <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture07_Xiuyuan.pdf">[ slides ]</a> 
+	<br>
+	<ul>[Abstract]:
+		<li> In this lecture I'll introduce a recent work by <a href="https://services.math.duke.edu/~xiuyuanc/">Prof. Xiuyuan CHENG</a> et al. in Duke University. </li>
+		<li> Filters in a Convolutional Neural Network (CNN) contain model parameters learned from enormous amounts of data. 
+			The properties of convolutional filters in a trained network directly affect the quality of the data representation 
+			being produced. In this talk, we introduce a framework for decomposing convolutional filters over a truncated expansion 
+			under pre-fixed bases, where the expansion coefficients are learned from data. Such a structure not only reduces the number 
+			of trainable parameters and computation load but also explicitly imposes filter regularity by bases truncation. Apart from 
+			maintaining prediction accuracy across image classification datasets, the decomposed-filter CNN also produces a stable 
+			representation with respect to input variations, which is proved under generic assumptions on the bases expansion. 
+			Joint work with Qiang Qiu, Robert Calderbank, and Guillermo Sapiro.</li>
+	</ul>
+	<ul>[Reference]:
+		<li> Qiang Qiu, Xiuyuan Cheng, Robert Calderbank, Guillermo Sapiro, <a href="https://arxiv.org/abs/1802.04145">DCFNet: Deep Neural Network with Decomposed Convolutional Filters</a>, ICML 2018. arXiv:1802.04145.
+		</li>
+		<li> Xiuyuan Cheng, Qiang Qiu, Robert Calderbank, Guillermo Sapiro. <a href="https://arxiv.org/abs/1805.06846">RotDCF: Decomposition of Convolutional Filters for Rotation-Equivariant Deep Networks</a>, 2018. arXiv:1805.06846.
+	</ul>
+	<ul>[Project 1]:
+		<li> <a href="https://github.com/deeplearning-math/slides/blob/master/project1.pdf">Assignment</a> </li>
+		<li> <a href="https://github.com/silkylove/deeplearning-math.github.io-6380P-fall-2018-/tree/master/Project1">Reports at GitHub</a> </li>
+		<li> <a href="https://doodle.com/poll/q4mpv7u3mi8wtrqq">Doodle Votes</a>: please vote your favorite 5 or less reports, NOT including your own.</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>10/03/2018, Wed</td>
+<td>Lecture 8: Student Seminars on Project 1 
+	<br>
+<ul>[Team]: DENG Yizhe, HUANG Yifei, SUN Jiaze, TAN Haiyi
+	<li> Title: Real or fake? A Comparison Between Scattering Network & Resnet-18 <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture08a_Project1_SUN,Jiaze.pptx">[ slides ]</a>. 
+</ul>
+<ul>[Team]: YIN, Kejing (Jake) and QIAN, Dong
+	<li> Title: Feature Extraction and Transfer Learning <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture08b_Project1_YinQian.pdf">[ slides ]</a>.
+	</li>
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+	
+<tr>
+<td>10/08/2018, Mon</td>
+<td>Lecture 9: Student Seminars on Project 1 
+	<br>
+<ul>[Team]: Bhutta, Zheng, Lan (Group 6)
+	<li> Title: Raphael painting analysis: Random cropping leading to high variance <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture09a_Project1_group6.pptx">[ slides ]</a>. 
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+	
+<tr>
+<td>10/10/2018, Wed</td>
+<td>Lecture 10: Sparsity in Convolutional Neural Networks  <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture10_sparsity.pdf">[ slides ]</a> 
+	<br>
+	<ul>[Reference]:
+		<li> Jeremias Sulam, Vardan Papyan, Yaniv Romano, and Michael Elad. Multi-Layer Convolutional Sparse Modeling:
+Pursuit and Dictionary Learning, IEEE Transactions on Signal Processing, vol. 66, no. 15, pp. 4090-4104, 2018. <a href="https://arxiv.org/abs/1708.08705.pdf">arXiv:1708.08705</a>.
+		</li>
+		<li> Vardan Papyan, Yaniv Romano, and Michael Elad. Working Locally Thinking Globally: Theoretical Guarantees for Convolutional Sparse Coding, IEEE Transactions on Signal Processing, vol. 65, no. 21, pp. 5687-5701, 2018. <a href="https://arxiv.org/abs/1707.06066">arXiv:1707.06066</a>.
+		</li>
+		<li> Vardan Papyan, Yaniv Romano, and Michael Elad. Convolutional Neural Networks Analyzed via Convolutional Sparse Coding, Journal of Machine Learning Research, 18:1-52, 2017. <a href="https://arxiv.org/abs/1607.08194">arXiv:1607.08194</a>.
+		</li>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>10/15/2018, Mon</td>
+<td>Lecture 11: Seminar: Exponentially Weighted Imitation Learning for Batched Historical Data. 
+	<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture11a_WangNIPS18.pdf">[ slides ]</a>
+	<br>
+	<ul>[Speaker]: WANG, Qing, Tecent AI Lab.
+	</ul>
+	<ul>[Abstract]:
+		<li> We consider deep policy learning with only batched historical trajectories. 
+			The main challenge of this problem is that the learner no longer has a simulator or “environment 
+			oracle” as in most reinforcement learning settings. To solve this problem, we propose a monotonic 
+			advantage reweighted imitation learning strategy that is applicable to problems with complex 
+			nonlinear function approximation and works well with hybrid (discrete and continuous) action space. 
+			The method does not rely on the knowledge of the behavior policy, thus can be used to learn from 
+			data generated by an unknown policy. Under mild conditions, our algorithm, though surprisingly 
+			simple, has a policy improvement bound and outperforms most competing methods empirically. Thorough 
+			numerical results are also provided to demonstrate the efficacy of the proposed methodology.
+			
+			This is a joint work with Jiechao Xiong, Lei Han, Peng Sun, Han Liu, and Tong Zhang.
+		</li>
+	</ul>
+	<ul>[Team]: Huangshi Tian, Beijing Fang, Yunfei Yang (Group 3)
+		<li> Title: An In-Depth Look at Feature Transformation Ability of CNN 
+			<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture11b_Project1_Group3.pdf">[ slides ]</a>. 
+		</li>
+	</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+	
+	<tr>
+<td>10/22/2018, Mon</td>
+<td>Lecture 12: Implicit Regularization in Gradient Descent <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture12.pdf">[ slides ]</a>
+	<br>
+	<ul>[Reference]:
+		<li> Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, Oriol Vinyals,
+			Understanding deep learning requires rethinking generalization. ICLR 2017. <a href="https://arxiv.org/abs/1611.03530">[ arXiv:1611.03530 ]</a>
+			<a href="https://github.com/pluskid/fitting-random-labels">[Chiyuan Zhang's codes]</a> 
+		</li>
+		<li> Peter L. Bartlett, Dylan J. Foster, Matus Telgarsky. Spectrally-normalized margin bounds for neural networks. 
+		 	<a href="https://arxiv.org/abs/1706.08498">[ arXiv:1706.08498 ]</a>. 
+		</li>
+		<li> Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, Nathan Srebro. The Implicit Bias of Gradient Descent on Separable Data. 
+			<a href="https://arxiv.org/abs/1710.10345">[ arXiv:1710.10345 ]</a> 
+		</li>
+		<li> Poggio, T, Liao, Q, Miranda, B, Rosasco, L, Boix, X, Hidary, J, Mhaskar, H. Theory of Deep Learning III: explaining the non-overfitting puzzle. 
+			<a href="http://cbmm.mit.edu/sites/default/files/publications/CBMM-Memo-073v3.pdf">[ MIT CBMM Memo-73, 1/30/2018 ]</a>. 
+		</li>
+		<li> Liao, Q., Miranda, B., Hidary, J., and Poggio, T. Classical generalization bounds are surprisingly tight for Deep Networks. MIT CBMM Memo-91. 
+			<a href="https://arxiv.org/abs/1807.09659">[arXiv:1807.09659]</a>
+		</li>
+		<li> Zhu, Weizhi, Yifei Huang, and Yuan YAO. On Breiman's Dilemma in Neural Networks: Phase Transitions of Margin Dynamics. 
+			<a href="https://arxiv.org/abs/1810.03389">[arXiv:1810.03389]</a>
+		</li>
+		<li> Yuan Yao, Lorenzo Rosasco and Andrea Caponnetto, 
+		<a href="https://link.springer.com/article/10.1007/s00365-006-0663-2">On Early Stopping in Gradient Descent Learning</a>, Constructive Approximation, 2007, 26 (2): 289-315. 
+		</li>
+		<li> Tong Zhang and Bin Yu. Boosting with Early Stopping: Convergence and Consistency. Annals of Statistics, 2005, 33(4): 1538-1579. 
+ 			<a href="https://arxiv.org/pdf/math/0508276.pdf">[ arXiv:0508276 ]</a>. 
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>10/24/2018, Wed </td>
+<td>Lecture 13: Seminar 
+	<br>
+	<ul>[Speaker]: Baoyuan WU, Tencent AI Lab
+	</ul>
+	<ul>[Abstract]: In this talk, I will introduce three topics if time permitted.
+		<li> <b> Topic 1: Tencent ML-Images: large-scale visual representation learning.</b> [<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture13a-BaoyuanWu_Tencent_ML_Images.pptx"> slides (.pptx) </a>] 
+			The success of deep learning strongly depends on large-scale high-quality training data. Tencent ML-Images is an important open-source project, and it publishes a large-scale multi-label image database (including 18M images and 11K categories), the checkpoints with excellent capability of visual representation (80.73% top-1 accuracy on the validation set of ImageNet), as well as the complete codes. In this talk, I will introduce the construction of ML-Images and its main characteristics, the training of deep neural networks using large-scale image database, the transfer learning to single-label image classification on ImageNet, the feature extraction and image classification using the trained checkpoint. This project tries to give you a clear picture of the complete process of visual presentation learning based on deep neural networks. 
+Project address: <a href="https://github.com/Tencent/tencent-ml-images">https://github.com/Tencent/tencent-ml-images</a> 
+		</li>
+		<li> <b> Topic 2: Lp-Box ADMM: a versatile framework for integer programming. </b> [<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture13b-BaoyuanWu_Lp_box_ADMM_slides_global_convergence-brief.pptx"> slides (.pptx) </a>]
+			In this talk, we revisit the integer programming (IP) problem, which plays a fundamental role in many computer vision and machine learning applications. We propose a novel and versatile framework called Lp-box ADMM, which is based on two main ideas. (1) The discrete constraint is equivalently replaced by the intersection of a box and the Lp-ball. (2) We infuse this equivalence into the ADMM (Alternating Direction Method of Multipliers) framework to handle these continuous constraints separately and to harness its attractive properties. The proposed algorithm is theoretically guaranteed to converge to the epsilon-stationary point. We demonstrate the applicability of Lp-box ADMM on four important applications: MRF energy minimization, graph matching, clustering and model compression of convolutional neural networks. Results show that it outperforms generic IP solvers both in runtime and objective. It also achieves very competitive performance when compared to state-of-the-art methods that are specifically designed for these applications.
+			<a href="https://ieeexplore.ieee.org/document/8378001/">[ preprint ]</a> 
+		</li>
+		<li> <b> Topic 3: Multimedia AI: A brief introduction of researches and applications of Tencent AI Lab. </b>
+			Tencent AI Lab was established in Shenzhen in 2016 as a company-level strategic initiative and focuses on advancing fundamental and applied AI research. The research fields include computer vision, speech recognition, natural language processing and machine learning. The technologies of AI Lab have been applied in more than 100 Tencent products, including WeChat, QQ and news app Tian Tian Kuai Bao. In this talk, I will give a brief introduction of the researches about multimedia AI, 
+			including AI + image, video, audio and text, ranging from modeling, analysis, understanding to generation, etc. 
+			<a href="https://ai.tencent.com/ailab/">https://ai.tencent.com/ailab/</a>
+		</li>
+	</ul>
+	<ul>[Bio]: Baoyuan Wu is currently a Senior Research Scientist in Tencent AI Lab. He was Postdoc in IVUL lab at KAUST, working with Prof. Bernard Ghanem, from August 2014 to November 2016.  He received the PhD degree from the National Laboratory of Pattern Recognition, Chinese Academy of Sciences (CASIA) in 2014, supervised by Prof. Baogang Hu. His research interests are machine learning and computer vision, including probabilistic graphical models, structured output learning, multi-label learning and integer programming. His work has been published in TPAMI, IJCV, CVPR, ICCV, ECCV and AAAI, etc.
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>10/29/2018, Mon</td>
+	<td>Lecture 14: Variational Inference and Deep Learning. [<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture14_YangC_VAE.pdf"> slides </a>]
+	<br>
+</td>
+<td>Prof. Can YANG</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>10/31/2018, Wed</td>
+<td> Lecture 15: Phase Transitions of Margin Dynamics [<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture15_ZhuWZ_Phase.pdf"> slides </a>] and Project 2 [<a href="https://github.com/deeplearning-math/slides/blob/master/project2.pdf"> Assignment </a>]
+	<br>
+	<ul>[Reference]:
+		<li> ZHU, Weizhi, Yifei HUANG, and Yuan YAO. 
+			On Breiman's Dilemma in Neural Networks: Phase Transitions of Margin Dynamics. <a href="https://arxiv.org/abs/1810.03389">[ arXiv:1810.03389 ]</a>
+		</li>
+	</ul>
+	<ul>[Project 2]:
+		<li> <a href="https://github.com/deeplearning-math/slides/blob/master/project2.pdf"> Assignment </a> </li>
+		<li> <a href="https://www.kaggle.com/c/semi-conductor-image-classification-1"> Kaggle inclass contest </a> </li>
+		<li> <a href="https://github.com/silkylove/deeplearning-math.github.io-6380P-fall-2018-/tree/master/Project2">Reports at GitHub</a> </li> 
+		<li> <a href="https://doodle.com/poll/xdaf95rihdmbnnbg">Doodle Votes</a>: please vote your favorite 5 or less reports, NOT including your own.</li>
+	</ul>
+</td>
+<td>ZHU, Weizhi</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>11/05/2018, Mon</td>
+	<td>Lecture 16: Generative Models and Variational Autoencoders. [<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture16_generative.pdf"> slides </a>]
+	<br>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>11/07/2018, Wed</td>
+<td>Lecture 17: Generative Adversarial Networks. <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture17_GAN.pdf">[ pdf ]</a>.
+	<br>
+	<ul>[Reference]
+		<li> Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio. Generative Adversarial Networks. 
+			<a href="https://arxiv.org/abs/1406.2661">[ arXiv:1406.2661 ]</a> 
+		</li>
+		<li> Martin Arjovsky, Soumith Chintala, Léon Bottou. Wasserstein GAN.
+			<a href="https://arxiv.org/abs/1701.07875">[ arXiv:1701.07875 ]</a>
+		</li>
+		<li> Rie Johnson, Tong Zhang, Composite Functional Gradient Learning of Generative Adversarial Models. <a href="https://arxiv.org/abs/1801.06309">[ arXiv:1801.06309 ]</a></li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	<tr>
+<td>11/12/2018, Mon</td>
+	<td>Lecture 18: A Walk Through Non-Convex Optimization Methods: <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture18_Junchi_PCA.pdf">[ A: Online PCA ]</a>
+		<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture18_Junchi_SPIDER.pdf">[ B: SPIDER ]</a>
+	<br>
+		<ul>[ Speaker ] Dr. Junchi Li, Tecent AI Lab and Princeton University
+		</ul>
+		<ul>[ Abstract ] In this talk, I will discuss briefly the theoretical advances of non-convex optimization methods stemmed from machine learning practice.
+I will begin with (perhaps the simplest) PCA model and show that scalable algorithms can achieve a rate that matches minimax information lower bound.
+Then, I will discuss scalable algorithms that escape from saddle points, the importance of noise therein, and how to achieve a $\cO(\varepsilon^{-3})$ convergence rate for finding an $(\varepsilon,\cO(\varepsilon^{0.5}))$-approximate second-order stationary point.
+If time permits, I will further introduce a very recent ``Lifted Neural Networks'' method that is non-gradient-based and serves as a powerful alternative for training feed-forward deep neural networks.
+		</ul>
+		<ul>[ Bio ] Dr. Junchi Li obtained his B.S. in Mathematics and Applied Mathematics at Peking University in 2009, and his Ph.D. in Mathematics at Duke University in 2014. He has since held several research positions, including the role of visiting postdoctoral research associate at Department of Operations Research and Financial Engineering, Princeton University. His research interests include statistical machine learning and optimization, scalable online algorithms for big data analytics, and stochastic dynamics on graphs and social networks. He has published original research articles in both top optimization journals and top machine learning conferences, including an oral presentation paper (1.23%) at NIPS 2017 and a spotlight paper (4.08%) at NIPS 2018.
+		</ul>
+		<ul>[ Reference ]
+			<li> Junchi Li, Mengdi Wang, Han Liu, and Tong Zhang.
+Near-Optimal Stochastic Approximation for Online Principal Component Estimation.
+				Mathematical Programming 2018. [<a href="https://arxiv.org/abs/1603.05305"> arXiv:1603.05305 </a>] </li>
+<li>
+Dan Garber, Elad Hazan, Chi Jin, Sham M. Kakade, Cameron Musco, and Praneeth Netrapalli. 
+Faster Eigenvector Computation via Shift-and-Invert Preconditioning.
+	ICML 2016 </li>
+<li>
+Rong Ge, Furong Huang, Chi Jin, and Yuan Yang.
+Escaping from Saddle Points.
+	COLT 2015 </li>
+<li> 
+Jason Lee, Max Simchowitz, Michael Jordan, and Ben Recht.
+Gradient Descent Only Converges to Minimizers.
+	COLT 2016 </li>
+<li>
+Zeyuan Allen-Zhu, and Yuanzhi Li.
+NEON2.
+	NIPS 2018 </li>
+<li>
+Cong Fang, Junchi Li, Zhouchen Lin, and Tong Zhang.
+SPIDER: Near-Optimal Non-Convex Optimization via Stochastic Path Integrated Differential Estimator.
+	NIPS 2018. [<a href="https://arxiv.org/abs/1807.01695"> arXiv:1807.01695 </a>] </li>
+<li>
+Jia Li, Cong Fang, and Zhouchen Lin.
+Lifted Proximal Operator Machines.
+	AAAI 2018 </li>
+<li>
+Armin Askari, Geoffrey Negiar, Rajiv Sambharya, Laurent El Ghaoui.
+Lifted Neural Networks.
+	<a href="https://arxiv.org/abs/1805.01532">arXiv:1805.01532</a> </li>
+<li>Fangda Gu, Armin Askari, Laurent El Ghaoui. 
+	Fenchel Lifted Networks: A Lagrange Relaxation of Neural Network Training.
+	<a href="https://arxiv.org/abs/1811.08039"> arXiv:1811.08039</a>
+			</li>
+		</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>11/14/2018, Wed</td>
+<td>Lecture 19: Robust Estimation and Generative Adversarial Networks. <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture19_robustGANa.pdf">[ part A ]</a> <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture19_robustGANb.pdf">[ part B ]</a>.
+	<br>
+	<ul>[Reference]
+		<li> GAO, Chao, Jiyu LIU, Yuan YAO, and Weizhi ZHU.
+			Robust Estimation and Generative Adversarial Nets. 
+			<a href="https://arxiv.org/abs/1810.02030">[ arXiv:1810.02030 ]</a> 
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>11/19/2018, Mon</td>
+	<td>Lecture 20: Seminars 
+	<br>
+	<ul>[ Group 8 ]: Andrea Madotto, Genta Indra Winata, Zhaojiang Lin, and Jamin Shin. <I> Nexperia Challenge</I>.
+		<li> <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture20a_Project2_CAiRE.pdf">[ slides in pdf ]</a>. 
+		<li> <a href="https://github.com/silkylove/deeplearning-math.github.io-6380P-fall-2018-/tree/master/Project2/8.ShinMadottoLinWinata">[ report ]</a></li>
+		</ul> 
+	<ul>[ Group 2 ]: Zhicong LIANG, Zhichao HUANG, and Ruixue WEN. <I> Experiments on DCFNet </I>.
+		<li> <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture20b_Project2_Liang.pptx">[ slides in pptx ]</a>. 
+		<li> <a href="https://github.com/silkylove/deeplearning-math.github.io-6380P-fall-2018-/blob/master/Project2/2.HuangWenLiang/project-2.pdf">[ report ]</a></li>
+		</ul> 
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>11/21/2018, Wed</td>
+<td>Lecture 21: Machine (Deep) Learning Problems in Cryo-EM. <a href="https://github.com/deeplearning-math/slides/blob/master/Lecture21_cryo-em.pdf">[ slides ]</a>.
+	<br>
+	<ul>[Reference]
+		<li> Yin Xian, Hanlin Gu, Wei Wang, Xuhui Huang, Yuan Yao, Yang Wang, Jian-Feng Cai. Data-Driven Tight Frame for Cryo-EM Image Denoising and Conformational Classification. 
+The 6th IEEE Global Conference on Signal and Information Processing, Anaheim, California, Nov 26-29, 2018. 
+			<a href="https://arxiv.org/abs/1810.08829">[ arXiv:1810.08829 ] </a>. 
+		</li>
+		<li> Min Su, Hantian Zhang, Kevin Schawinski, Ce Zhang, Michael A. Cianfrocco.
+			Generative adversarial networks as a tool to recover structural information from cryo-electron microscopy data. 
+			<a href="https://www.biorxiv.org/content/biorxiv/early/2018/02/12/256792.full.pdf">[ pdf ]</a> 
+		</li>
+	</ul>
+</td>
+<td>Hanlin GU</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>11/26/2018, Mon</td>
+	<td>Lecture 22: An Introduction to Adversarials in Deep Learning. [<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture22_HuangZC_Adversarial.pdf"> slides </a>]
+	<br>
+</td>
+<td>Zhichao HUANG</td>
+<td></td>
+</tr>
+<tr>
+<td>11/28/2018, Wed</td>
+<td>Lecture 23: Final Project. <a href="https://github.com/deeplearning-math/slides/blob/master/project3.pdf">[ project3.pdf ]</a>.
+	<br>
+	<ul>[Reference]
+		<li> Introduction to Reinforcement Learning.
+			<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture23a_reinforcement.pdf">[ slides ]</a> 
+		</li>
+		<li> Recurrent Attention Models.
+			<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture23b_RAM.pdf">[ slides ]</a>
+		</li>
+	</ul>
+	<ul>[Project 3]:
+		<li> <a href="https://github.com/deeplearning-math/slides/blob/master/project3.pdf">Assignment</a> </li>
+		<li> <a href="https://github.com/silkylove/deeplearning-math.github.io-6380P-fall-2018-/tree/master/Project3">Reports at GitHub</a> </li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<!--
+	<tr>
+<td>02/08/2018, Thu</td>
+<td>Lecture 03: Transfer Learning: <a href="https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/notebooks/transfer_learning_tutorial_v7.ipynb">a tutorial in python notebook</a>. 
+	<br>
+	<ul>[Mini-Project 1]
+		<li> Project description: <a href="./slides/project1.pdf"> Feature Extraction and Transfer Learning </a>. 
+		</li>
+	<li> Reports of Project 1: 
+		<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/project1">[ GitHub Repo ]</a>. 
+	</li>
+	<li> Doodle Voting on Project 1: 
+		<a href="https://doodle.com/poll/bsheecqqbxmnwyxp">[ Choose your top 5 favourite reports, excluding your own! ]</a>. 
+	</li>
+	<li> <a href="https://medium.com/deep-learning-turkey/google-colab-free-gpu-tutorial-e113627b9f5d">[ Google Colab Free GPU Tutorial ]</a> </li>
+	</ul>
+</td>
+<td>Yifei Huang<br>Y.Y.</td>
+<td></td>
+</tr>
+	<tr>
+<td>02/13/2018, Tue</td>
+<td>Lecture 04: Sparsity in Convolutional Neural Networks <a href="./slides/Lecture04_SunQY.pdf">[ Lecture04_SunQY.pdf ]</a>
+	<br>
+<ul>[Reference]:
+<li> Jeremias Sulam, Vardan Papyan, Yaniv Romano, and Michael Elad, Multi-Layer Convolutional Sparse Modeling: Pursuit and Dictionary Learning,<a href="https://arxiv.org/abs/1708.08705"> arXiv:1708.08705</a>. </li>
+	<li> Xiaoxia Sun, Nasser M. Nasrabadi, and Trac D. Tran, Supervised Deep Sparse Coding Networks, <a href="https://arxiv.org/abs/1701.08349">arXiv:1701.08349</a>, <a href="https://github.com/XiaoxiaSun/supervised-deep-sparse-coding-networks">GitHub source codes</a>. </li>
+	<li> Vardan Papyan, Jeremias Sulam, and Michael Elad, Working Locally Thinking Globally: Theoretical Guarantees for Convolutional Sparse Coding, <a href="https://arxiv.org/abs/1707.06066">arXiv:1707.06066</a>, IEEE Transactions on Signal Processing. </li>
+<li> Vardan Papyan, Jeremias Sulam, and Michael Elad, Working Locally Thinking Globally - Part II: Stability and Algorithms for Convolutional Sparse Coding, <a href="https://arxiv.org/abs/1607.02009">arXiv:1607.02009</a>. </li>
+	</ul>
+</td>
+<td>SUN, Qingyun<br> Stanford U.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>02/15/2018, Thu </td>
+	<td>Lecture will be rescheduled to another date, to be announced later<br></td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+	<tr>
+<td>02/20/2018, Tue</td>
+<td>Lecture 05: Overview II: Generalization Ability and Optimization <a href="./slides/Lecture01b.pdf">[ Lecture01b.pdf ]</a>
+	<br>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>02/22/2018, Thu</td>
+<td>Lecture 06: Poggio's Quest: When can Deep Networks avoid the Curse of Dimensionality and other theoretical puzzles? <a href="./slides/Lecture06.pdf">[ Lecture06.pdf ]</a>
+	<br>
+<ul>[Reference]:
+	<li> Tomaso Poggio, Hrushikesh Mhaskar, Lorenzo Rosasco, Brando Miranda, Qianli Liao, 
+		<a href="http://cbmm.mit.edu/sites/default/files/publications/CBMM-Memo-058v5.pdf">Why and When Can Deep-but Not Shallow-networks Avoid the Curse of Dimensionality: A Review</a>, 
+	</li>
+	<li> Hrushikesh Mhaskar, Qianli Liao, Tomaso Poggio, <a href="https://arxiv.org/abs/1603.00988">Learning Functions: When is Deep Better Than Shallow</a>, 2016. 
+	</li>
+	<li> Liao and Poggio. Theory of Deep Learning II: Landscape of the Empirical Risk in Deep Learning. <a href="https://arxiv.org/abs/1703.09833">[ arXiv:1703.09833 ]</a> </li>
+	<li> Chiyuan Zhang, Qianli Liao, Alexander Rakhlin, Brando Miranda, Noah Golowich, Tomaso Poggio. Theory of Deep Learning IIb: Optimization Properties of SGD. <a href="https://arxiv.org/abs/1801.02254">[ arXiv:1801.02254 ]</a> </li>		
+	<li> Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, Oriol Vinyals,
+		<a href="https://arxiv.org/abs/1611.03530">Understanding deep learning requires rethinking generalization.
+		</a> ICLR 2017. 
+		<a href="https://github.com/pluskid/fitting-random-labels">[Chiyuan Zhang's codes]</a> 
+	</li>
+	<li> Yuan Yao, Lorenzo Rosasco and Andrea Caponnetto, 
+		<a href="https://link.springer.com/article/10.1007/s00365-006-0663-2">On Early Stopping in Gradient Descent Learning</a>, Constructive Approximation, 2007, 26 (2): 289-315. 
+	</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>02/27/2018, Tue</td>
+<td>Lecture 07: Research Paradigmns in the AI Age <a href="./slides/Lecture07a_SunQY.pdf">[ Lecture07a_SunQY.pdf ]</a> <a href="./slides/Lecture07b_SunQY.pdf">[ Lecture07b_SunQY.pdf ]</a>
+	<br>
+</td>
+<td>SUN, Qingyun<br> Stanford U.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>03/01/2018, Thu</td>
+<td>Lecture 08: Harmonic Analysis of Deep Convolutional Networks A <a href="./slides/Lecture08a.pdf">[ Lecture08a.pdf ]</a>
+	<br>
+<ul>[Reference]:
+	<li> Stephane Mallat, <a href="https://arxiv.org/abs/1601.04920">Understanding Deep Convolutional Networks</a>, Philosophical Transactions A, 2016. 
+	</li>
+	<li> Thomas Wiatowski and Helmut Bolcskei, <a href="https://www.nari.ee.ethz.ch/commth//pubs/files/deep-2016.pdf">A Mathematical Theory of Deep Convolutional Neural Networks for Feature Extraction</a>, 2016.
+	</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>03/06/2018, Tue</td>
+<td>Lecture 09: Harmonic Analysis of Deep Convolutional Networks B <a href="./slides/Lecture08b.pdf">[ Lecture08b.pdf ]</a>
+	<br>
+<ul>[Reference]:
+	<li> Joan Bruna and Stephane Mallat, <a href="http://www.cmapx.polytechnique.fr/~bruna/Publications_files/pami.pdf">Invariant Scattering Convolution Networks</a>, IEEE Transactions on Pattern Analysis and Machine Intelligence, 2012. 
+	</li>
+	<li> Thomas Wiatowski and Helmut Bolcskei, <a href="https://www.nari.ee.ethz.ch/commth//pubs/files/deep-2016.pdf">A Mathematical Theory of Deep Convolutional Neural Networks for Feature Extraction</a>, 2016.
+	</li>
+	<li> Edouard Oyallon, Eugene Belilovsky, and Sergey Zagoruyko, <a href="https://arxiv.org/abs/1703.08961">Scaling the Scattering Transform: Deep Hybrid Networks</a>, International Conference on Computer Vision (ICCV), 2017. <a href="https://github.com/edouardoyallon/scalingscattering/">[ GitHub ]</a>
+	</li>
+</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>03/08/2018, Thu</td>
+<td>Lecture 10: An Introduction to Optimization Methods in Deep Learning. <a href="./slides/Lecture09.pdf">[ slides ]</a>
+	<br>
+<ul>[Presentation]:
+	<li> Jason WU, Peng XU, Nayeon LEE. Feature Extraction and Transfer Learning on Fashion-MNIST. <a href="./slides/Project1_WuXuLee.pdf">[ slides ]</a> <a href="https://docs.google.com/presentation/d/1YVaYyq8ZI1Gx09Nhwf5kW6EUffyPThWIm-oc6QXbzZc/edit?usp=sharing">[ GoogleDoc slides]</a> <a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/project1/07.LeeWuXu">[ Github Repo ]</a> 
+	</li>
+</ul>
+<ul>[Reference]
+	<li> Feifei Li et al. <a href="http://cs231n.github.io/optimization-1/">cs231n.github.io/optimization-1/</a>
+	</li>
+	<li> Ruder, Sebastian (2016). An overview of gradient descent optimization algorithms. <a href="https://arxiv.org/abs/1609.04747">arXiv:1609.04747</a>. 
+<a href="http://ruder.io/optimizing-gradient-descent/">[website]</a>
+	</li>
+</ul>
+	</td>
+<td>Y.Y.<br>Jason WU<br> Peng XU <br> Nayeon LEE </td>
+<td></td>
+</tr>
+	
+<tr>
+<td>03/13/2018, Tue</td>
+<td>Lecture 11: Transfer Learning and Content-Style Features <a href="https://www.dropbox.com/s/915ekexv4stn8pc/Lecture11.pptx?dl=0">[ slides ]</a>
+	<br>
+<ul>[Presentation]:
+	<li> ZhangFanZhuZhang team <a href="./slides/Project1_ZhangZhangZhuFan.pdf">[ slides ]</a>. 
+	</li>
+	<li> HanHuYeZhao team <a href="./slides/Project1_HuZhaoYeHan.pdf">[ slides ]</a>.
+	</li>
+</ul>
+<ul>[Reference]
+	<li> Leon A. Gatys, Alexander S. Ecker, and Matthias Bethge. A Neural Algorithm of Artistic Style, <a href="http://arxiv.org/abs/1508.06576
+">arXiv:1508.06576</a>
+	</li>
+	<li> J C Johnson’s Torch implementation: <a href="https://github.com/jcjohnson/neural-style">[ neural-style ]</a>
+	</li>
+	<li> A tensorflow implementation: <a href="https://github.com/ckmarkoh/neuralart_tensorflow">[ neuralart_tensorflow ]</a> 
+	</li>
+</ul>
+</td>
+<td>Y.Y.<br>Min FAN et al.<br> </td>
+<td></td>
+</tr>
+<tr>
+<td>03/15/2018, Thu</td>
+<td>Lecture 12: Student Seminar on Project 1 
+	<br>
+<ul>[Presentation]:
+	<li> BaiCaiChenGuo team <a href="https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/slides/Project1_Wenshuo%20GUO%20Yuan%20CHEN%20Haoye%20CAI%20Chunyan%20BAI.pdf">[ slides ]</a>. 
+	</li>
+	<li> LiuQiDuWu team <a href="https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/slides/Project1_WuDuQiLiu.pdf">[ slides ]</a>.
+	</li>
+</ul>
+</td>
+<td>Y.Y.<br>Yuan CHEN et al.</td>
+<td></td>
+</tr>
+<tr>
+<td>03/20/2018, Tue</td>
+<td>Lecture 13: Introduction to Optimization and Regularization methods in Deep Learning <a href="./slides/Lecture12.pdf">[ slides ]</a>
+	<br>
+	<ul>[Reference]
+	<li> Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun. Deep Residual Learning for Image Recognition, <a href="https://arxiv.org/abs/1512.03385">arXiv:1512.03385</a> <a href="https://github.com/KaimingHe/deep-residual-networks">[ Github ]</a>
+	</li>
+	<li> An Overview of ResNet and its Variants, by Vincent Fung, <a href="https://towardsdatascience.com/an-overview-of-resnet-and-its-variants-5281e2f56035">[ link ]</a>
+	</li>
+</ul>
+</td>
+	Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>03/22/2018, Thu</td>
+<td>Lecture 14: Introduction to Dynamic Neural Networks: RNN and LSTM <a href="./slides/Lecture13_RNN.pdf">[ slides ]</a>
+	<br>
+</td>
+	Y.Y.</td>
+<td></td>
+</tr>
+	
+<tr>
+<td>03/27/2018, Tue</td>
+<td>Lecture 15: Topology of Empirical Risk Landscapes for Overparametric Multilinear and 2-layer Rectified Networks <a href="./slides/Lecture14.pdf">[ slides ]</a>
+	<br>
+	<ul>[Reference]
+	<li> Kenji Kawaguchi, Deep Learning without Poor Local Minima, NIPS 2016. <a href="https://arxiv.org/abs/1605.07110">[ arXiv:1605.07110 ]</a>
+	</li>
+	<li> Liao and Poggio. Theory of Deep Learning II: Landscape of the Empirical Risk in Deep Learning. <a href="https://arxiv.org/abs/1703.09833">[ arXiv:1703.09833 ]</a> </li>
+	<li> Chiyuan Zhang, Qianli Liao, Alexander Rakhlin, Brando Miranda, Noah Golowich, Tomaso Poggio. Theory of Deep Learning IIb: Optimization Properties of SGD. <a href="https://arxiv.org/abs/1801.02254">[ arXiv:1801.02254 ]</a> </li>		
+		<li> Freeman, Bruna. Topology and Geometry of Half-Rectified Network Optimization, ICLR 2017. <a href="https://arxiv.org/abs/1611.01540">[ arXiv:1611.01540 ]</a> 
+		</li>	
+	<li> Luca Venturi, Afonso Bandeira, and Joan Bruna. Neural Networks with Finite Intrinsic Dimension Have no Spurious Valleys. <a href="https://arxiv.org/abs/1802.06384">[ arXiv:1802.06384 ]</a>
+	</li>
+	</ul>
+</td>
+	Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>03/29/2018, Thu</td>
+<td>Lecture 16: Project 2: Midterm. Due: April 12 11:59pm, 2018.  
+	<br>
+	<ul>[Mini-Project 2]
+		<li>Project description: <a href="./project2/project2.pdf">[ pdf ]</a>. </li>
+	<li> Reports of Project 2: 
+		<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/project2">[ GitHub Repo ]</a>. 
+	</li>
+	<li> Doodle Voting on Project 2: 
+		<a href="https://doodle.com/poll/zfcwbqwnkec3y42t">[ Choose your top 5 favourite reports, excluding your own! ]</a>. 
+	</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>04/10/2018, Tue</td>
+<td>Lecture 17: Implicit regularization in Gradient Descent method: Regression. <a href="https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/slides/Lecture15.pdf">[ pdf ]</a>.
+	<br>
+	<ul>[Reference]
+		<li> Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, Nathan Srebro. The Implicit Bias of Gradient Descent on Separable Data. <a href="https://arxiv.org/abs/1710.10345">[ arXiv:1710.10345 ]</a> </li>
+		<li> Poggio, T, Liao, Q, Miranda, B, Rosasco, L, Boix, X, Hidary, J, Mhaskar, H. Theory of Deep Learning III: explaining the non-overfitting puzzle. <a href="http://cbmm.mit.edu/sites/default/files/publications/CBMM-Memo-073v3.pdf">[ MIT CBMM Memo v3, 1/30/2018 ]</a>. </li>
+		<li> Yuan Yao, Lorenzo Rosasco and Andrea Caponnetto, 
+		<a href="https://link.springer.com/article/10.1007/s00365-006-0663-2">On Early Stopping in Gradient Descent Learning</a>, Constructive Approximation, 2007, 26 (2): 289-315. 
+		</li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>04/12/2018, Thu</td>
+<td>Lecture 18: Rethinking Deep Learning <a href="https://www.dropbox.com/s/lyslkme37li73lp/rethink_dl.pdf?dl=0">[ slides ]</a>
+	<br>
+</td>
+	<td>Prof. <a href="http://dahua.me/">Dahua LIN</a><br>CUHK</td>
+<td></td>
+</tr>
+<tr>
+<td>04/17/2018, Tue</td>
+<td>Lecture 19: Implicit regularization in Gradient Descent method: Classification and Max-Margin Classifiers. <a href="https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/slides/Lecture15.pdf">[ pdf ]</a>.
+	<br>
+	<ul>[Reference]
+		<li> Daniel Soudry, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, Nathan Srebro. The Implicit Bias of Gradient Descent on Separable Data. <a href="https://arxiv.org/abs/1710.10345">[ arXiv:1710.10345 ]</a> </li>
+		<li> Peter L. Bartlett, Dylan J. Foster, Matus Telgarsky. Spectrally-normalized margin bounds for neural networks. 
+ <a href="https://arxiv.org/abs/1706.08498">[ arXiv:1706.08498 ]</a>. </li>
+		<li> Behnam Neyshabur, Srinadh Bhojanapalli, Nathan Srebro. 
+A PAC-Bayesian Approach to Spectrally-Normalized Margin Bounds for Neural Networks. ICLR 2018. <a href="https://arxiv.org/abs/1707.09564">[ arXiv:1707.09564 ]</a> </li>
+		<li> Tong Zhang and Bin Yu. Boosting with Early Stopping: Convergence and Consistency. Annals of Statistics, 2005, 33(4): 1538-1579. 
+ <a href="https://arxiv.org/pdf/math/0508276.pdf">[ arXiv:0508276 ]</a>. </li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>04/19/2018, Tue</td>
+<td>Lecture 20: Generative Models and GANs. <a href="https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/slides/Lecture16.pdf">[ pdf ]</a>.
+	<br>
+	<ul>[Reference]
+		<li> Feifei Li, et al.  <a href="http://cs231n.github.io/">cs231n.github.io</a></li>
+		<li> Rie Johnson, Tong Zhang, Composite Functional Gradient Learning of Generative Adversarial Models. <a href="https://arxiv.org/abs/1801.06309">[ arXiv:1801.06309 ]</a></li>
+	</ul>
+</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>04/24/2018, Tue</td>
+<td>Lecture 21: From Image Super-Resolution to Face Hallucination. <a href="https://www.dropbox.com/s/dp6iw9i71iov2vn/super_resolution_hallucination.pdf?dl=0">[ slides (75M) ]</a>
+	<br>
+	<ul>[Seminar]
+		<li> Guest Speaker: Prof. Chen Change (Cavan) Loy, Department of Information Engineering, The Chinese University of Hong Kong </li>
+		<li> Abstract: Single image super-resolution is a classical problem in computer vision. It aims at recovering a high-resolution image from a single low-resolution image. This problem is an underdetermined inverse problem, of which solution is not unique. In this seminar, I will share our efforts in solving the problem by deep convolutional networks in a data-driven manner. I will then discuss our work on hallucinating faces of unconstrained poses and with very low resolution. In particular, I will show how face hallucination and dense correspondence field estimation can be optimized in a unified deep network. Finally, I will present a new method for recovering natural and realistic texture in low-resolution images by prior-driven deep feature modulation.
+ </li>
+		<li> Biography: Chen Change Loy received his PhD (2010) in Computer Science from the Queen Mary University of London (Vision Group). From Dec. 2010 – Mar. 2013, he was a postdoctoral researcher at Queen Mary University of London and Vision Semantics Limited. He is now a Research Assistant Professor in the Chinese University of Hong Kong. He is also a visiting scholar of Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences, China.
+His research interests include computer vision and pattern recognition, with focus on face analysis, deep learning, and visual surveillance. He has published more than 90 papers, including over 50 publications in main journals (SPM, TPAMI, IJCV) and top conferences (ICCV, CVPR, ECCV, NIPS). His journal paper on image super-resolution was selected as the `Most Popular Article' by IEEE Transactions on Pattern Analysis and Machine Intelligence from March 2016 to August 2016. It remains as one of the top 10 articles to date. He was selected as an outstanding reviewer of ACCV 2014, BMVC 2017, and CVPR 2017.
+He serves as an Associate Editor of IET Computer Vision Journal and a Guest Editor of the International Journal of Computer Vision and Computer Vision and Image Understanding. He will serve as an Area Chair of ECCV 2018 and BMVC 2018. He is a senior member of IEEE.
+ 
+		</li>
+	</ul>	
+</td>
+	<td>Prof. Chen Change (Cavan) Loy<br>CUHK</td>
+<td></td>
+</tr>
+<tr>
+<td>04/26/2018, Thu</td>
+<td>Lecture 22: Mathematical Analysis of Deep Convolutional Neural Networks.
+	<br>
+	<ul>[Seminar]
+		<li> Guest Speaker: Prof. Ding-Xuan Zhou, Department of Mathematics, The City University of Hong Kong </li>
+		<li> Abstract: Deep learning has been widely applied and brought breakthroughs in speech recognition, computer vision, and many other domains. 
+			The involved deep neural network architectures and computational issues have been well studied in machine learning. 
+			But there lacks a theoretical foundation for understanding the approximation or generalization ability of deep learning 
+			methods such as deep convolutional neural networks. This talk describes a mathematical theory of deep convolutional neural 
+			networks (CNNs). In particular, we discuss the universality of a deep CNN, meaning that it can be used to approximate any 
+			continuous function to an arbitrary accuracy when the depth of the neural network is large enough. Our quantitative estimate, 
+			given tightly in terms of the number of free parameters to be computed, verifies the efficiency of deep CNNs in dealing with 
+			large dimensional data. Some related distributed learning algorithms will also be discussed.
+		</li> </ul>
+	<ul>[Reference]
+		<li> Ding-Xuan ZHOU. Deep Distributed Convolutional Neural Networks: Universality. <a href="https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/slides/Dingxuan_DeepLearnv2.pdf">[ preprint ]</a> </li>
+	</ul>
+</td>
+	<td>Prof. <a href="http://www6.cityu.edu.hk/ma/people/profile/zhoudx.htm">Ding-Xuan ZHOU</a><br>CityUHK</td>
+<td></td>
+</tr>
+<tr>
+<td>05/03/2018, Thu </td>
+	<td>Lecture 23: An Introduction to Reinforcement Learning <a href="./slides/Lecture17.pdf">[ slides ]</a>
+	<br>
+	<ul>[Reference]
+		<li> Feifei Li, et al.  <a href="http://cs231n.github.io/">cs231n.github.io</a></li>
+		<li> Volodymyr Mnih, Nicolas Heess, Alex Graves, Koray Kavukcuoglu, Recurrent Models of Visual Attention, NIPS 2014. <a href="https://arxiv.org/abs/1406.6247">[ arXiv:1406.6247 ]</a> <a href="https://github.com/kevinzakka/recurrent-visual-attention
+">[ Kevin Zakka's Pytorch Implementation ] </a> </li>
+		<li> De Farias and Van Roy, The linear programming approach to approximate dynamic programming, Operations research 51 (6), 850-865, 2003. <a href="http://web.mit.edu/~pucci/www/discountedLP.pdf">[ pdf ]</a> </li>
+		<li> Mengdi Wang (2017), Randomized Linear Programming Solves the Discounted Markov Decision Problem In Nearly-Linear (Sometimes Sublinear) Running Time. <a href="http://www.optimization-online.org/DB_FILE/2017/04/5945.pdf"> [ link ] </a> </li>
+		<li> Mengdi Wang (2017), Primal-Dual $\pi$ Learning: Sample Complexity and Sublinear Run Time for Ergodic Markov Decision Problems. 2017. <a href="https://arxiv.org/abs/1710.06100">[ arXiv:1710.06100 ]</a> </li>
+		<li> Yuandong Tian et al.: <a href="https://github.com/pytorch/ELF"> ELF OpenGo </a>, an Extensive, Lightweight, and Flexible platform for game research, which has been used to build the Go playing bot, ELF OpenGo, and achieved a 14-0 record versus four global top-30 players in April 2018. </li>
+	</ul>
+	</td>
+<td>Y.Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>05/08/2018, Tue </td>
+	<td>Lecture 24: Final Project <a href="./slides/project3.pdf">[ project3.pdf ]</a><br>
+	<ul>[ Reference ]:
+		<li> <a href="./slides/NexperiaContest.pdf">[ Nexperia Predictive Maintenance Challenge ]</a>, by Gijs Bruining </li>
+		<li> <a href="https://www.kaggle.com/c/nexperia-predictive-maintenance">[ Kaggle in-class Contests on Nexperia Predictive Maintenance ]</a>: (a) Mini, (b) Full-I, and (c) Full-II </li>
+	<li> Reports of Project 3: 
+		<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/tree/master/project3">[ GitHub Repo ]</a>. 
+	</li>
+		<li> Doodle Vote for Project 3: Choose your top 5 favourite reports, excluding your own!
+			<a href="https://doodle.com/poll/awtbqmpv6m8khu7n">[ Vote ]</a> 
+		</li>
+	</ul>				
+	</td>
+<td>Gijs Bruining <br> Y.Y.</td>
+<td></td>
+</tr>
+-->
+	
+
+</tbody>
+</table>
+
+
+
+<hr>
+
+<address>
+by <a href="http://yao-lab.github.io/">YAO, Yuan</a>.
+</address>
+
+</body>
+</html>
