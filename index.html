@@ -288,7 +288,14 @@ I will proceed to discuss some important implications of interpolation for optim
 	<ul>[Speaker]: <a href="https://www.stat.berkeley.edu/~songmei/"> MEI, Song </a> (UC Berkeley) 
 	</ul>
 	<ul>[Abstract]: 
-		Deep learning methods operate in regimes that defy the traditional statistical mindset. Despite the non-convexity of empirical risks and the huge complexity of neural network architectures, stochastic gradient algorithms can often find the global minimizer of the training loss and achieve small generalization error on test data. As one possible explanation to the training efficiency of neural networks, tangent kernel theory shows that a multi-layers neural network — in a proper large width limit — can be well approximated by its linearization. As a consequence, the gradient flow of the empirical risk turns into a linear dynamics and converges to a global minimizer. Since last year, linearization has become a popular approach in analyzing training dynamics of neural networks. However, this naturally raises the question of whether the linearization perspective can also explain the observed generalization efficacy. In this talk, I will discuss the generalization error of linearized neural networks, which reveals two interesting phenomena: the staircase decay and the double-descent curve. Through the lens of these phenomena, I will also address the benefits and limitations of the linearization approach for neural networks.
+		Deep learning methods operate in regimes that defy the traditional statistical mindset. Despite the non-convexity of empirical risks and the huge complexity of neural network 
+		architectures, stochastic gradient algorithms can often find the global minimizer of the training loss and achieve small generalization error on test data. 
+		As one possible explanation to the training efficiency of neural networks, tangent kernel theory shows that a multi-layers neural network — in a proper large 
+		width limit — can be well approximated by its linearization. As a consequence, the gradient flow of the empirical risk turns into a linear dynamics and 
+		converges to a global minimizer. Since last year, linearization has become a popular approach in analyzing training dynamics of neural networks. However, 
+		this naturally raises the question of whether the linearization perspective can also explain the observed generalization efficacy. In this talk, I will 
+		discuss the generalization error of linearized neural networks, which reveals two interesting phenomena: the staircase decay and the double-descent curve. 
+		Through the lens of these phenomena, I will also address the benefits and limitations of the linearization approach for neural networks.
 	</ul>
 	<ul>[Video] 		
 		<li>[<a href="https://hkust.zoom.us/rec/share/_mySHasnwGTyR4eaTQ7q-pqmrzwha4djDoCPZQrdG0GP4_DP21SRrvzOUs8zZArB.h659yY4czbtVFt3d"> HKUST Zoom </a>]</li> 
@@ -297,7 +304,7 @@ I will proceed to discuss some important implications of interpolation for optim
 		<li>Song Mei and Andrea Montanari. The generalization error of random features regression: Precise asymptotics and double descent curve.
 			[<a href="https://arxiv.org/abs/1908.05355"> arXiv:1908.05355 </a>]
 		</li>
-		<li>Behrooz Ghorbani, Song Mei, Theodor Misiakiewicz, and Andrea Montanari. Linearized two-layers neural networks in high dimension.. 
+		<li>Behrooz Ghorbani, Song Mei, Theodor Misiakiewicz, and Andrea Montanari. Linearized two-layers neural networks in high dimension. 
 			[<a href="https://arxiv.org/abs/1904.12191"> arXiv:1904.12191 </a>]
 		</li>
 	</ul>
@@ -310,7 +317,7 @@ I will proceed to discuss some important implications of interpolation for optim
 
 	<tr>
 <td>09/30/2020, Wednesday</td>
-<td>Lecture 04: Generalization in Deep Learning: I and II<a href="./2019/slides/BartlettRakhlin_Generalization.pdf">[ slides ]</a>  
+<td>Lecture 04: Generalization in Deep Learning: I and II <a href="./2019/slides/BartlettRakhlin_Generalization.pdf">[ slides ]</a>  
 	<br>
 	<ul>[Speaker]: <a href="http://www.mit.edu/~rakhlin/"> Sasha Rakhlin </a> (Massachusetts Institute of Technology) and <a href="https://simons.berkeley.edu/people/peter-bartlett">Peter Bartlett</a> (UC Berkeley) </ul>
 	<ul>[Abstract]: We review tools useful for the analysis of the generalization performance of deep neural networks on classification and regression problems.  We review uniform convergence properties, which show how this performance depends on notions of complexity, such as Rademacher averages, covering numbers, and combinatorial dimensions, and how these quantities can be bounded for neural networks.  We also review the analysis of the performance of nonparametric estimation methods such as nearest-neighbor rules and kernel smoothing.  Deep networks raise some novel challenges, since they have been observed to perform well even with a perfect fit to the training data.  We review some recent efforts to understand the performance of interpolating prediction rules, and highlight the questions raised for deep learning.
