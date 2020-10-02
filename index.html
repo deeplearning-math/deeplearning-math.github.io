@@ -294,7 +294,7 @@ I will proceed to discuss some important implications of interpolation for optim
 		[<a href="https://deeplearning-math.github.io/slides/MEI_Song_Gen_LNN_HKUST.pdf"> slide </a>]
 
 	<ul>[Speaker]: <a href="https://www.stat.berkeley.edu/~songmei/"> MEI, Song </a> (UC Berkeley) 
-	</ul>
+		</ul>
 	<ul>[Abstract]: 
 		Deep learning methods operate in regimes that defy the traditional statistical mindset. Despite the non-convexity of empirical risks and the huge complexity of neural network 
 		architectures, stochastic gradient algorithms can often find the global minimizer of the training loss and achieve small generalization error on test data. 
@@ -349,23 +349,22 @@ I will proceed to discuss some important implications of interpolation for optim
 	<ul>[Video] <a href="https://simons.berkeley.edu/workshops/schedule/10624">Deep Learning Bootcamp</a>, Simons Institute for the Theory of Computing at UC Berkeley, 2019
 		<li>[<a href="https://simons.berkeley.edu/talks/generalization-iii"> Part III </a>] [<a href="https://www.bilibili.com/video/av75713571?p=3"> Bilibili link </a>] </li>
 	</ul>
+	
+	<ul>[ Title ]: Rethinking Breiman's Dilemma in Neural Networks: Phase Transitions of Margin Dynamics. 
+		[<a href="https://deeplearning-math.github.io/slides/?"> slide </a>]
+
+	<ul>[Speaker]: ZHU, Weizhi (HKUST) 
+	</ul>
+	<ul>[Abstract]:
+		Margin enlargement over training data has been an important strategy since perceptrons in machine learning for the purpose of boosting the confidence of training toward a good generalization ability. Yet Breiman shows a dilemma (Breiman, 1999) that a uniform improvement on mar- gin distribution does not necessarily reduces generalization errors. In this paper, we revisit Breiman’s dilemma in deep neural networks with re- cently proposed spectrally normalized margins, from a novel perspective based on phase transitions of normalized margin distributions in training dynamics. Normalized margin distribution of a classifier over the data, can be divided into two parts: low/small margins such as some negative margins for misclassified samples vs. high/large margins for high con- fident correctly classified samples, that often behave differently during the training process. Low margins for training and test datasets are of- ten effectively reduced in training, along with reductions of training and test errors; while high margins may exhibit different dynamics, reflect- ing the trade-off between expressive power of models and complexity of data. When data complexity is comparable to the model expressiveness, high margin distributions for both training and test data undergo similar decrease-increase phase transitions during training. In such cases, one can predict the trend of generalization or test error by margin-based gener- alization bounds with restricted Rademacher complexities, shown in two ways in this paper with early stopping time exploiting such phase transi- tions. On the other hand, over-expressive models may have both low and high training margins undergoing uniform improvements, with a distinct phase transition in test margin dynamics. This reconfirms the Breiman’s dilemma associated with overparameterized neural networks where mar- gins fail to predict overfitting. Experiments are conducted with some basic convolutional networks, AlexNet, VGG-16, and ResNet-18, on several datasets including Cifar10/100 and mini-ImageNet.
+	</ul>
 	<ul>[Reference]
-		<li> Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, Oriol Vinyals,
-		<a href="https://arxiv.org/abs/1611.03530">Understanding deep learning requires rethinking generalization.
-			</a> ICLR 2017.
-		<a href="https://github.com/pluskid/fitting-random-labels">[Chiyuan Zhang's codes]</a> 
-	</li>
-	<li> Peter L. Bartlett, Dylan J. Foster, Matus Telgarsky. Spectrally-normalized margin bounds for neural networks. 
- <a href="https://arxiv.org/abs/1706.08498">[ arXiv:1706.08498 ]</a>. NIPS 2017. </li>
-	<li> Neyshabur, B., Bhojanapalli, S., McAllester, D., and Srebro, N. A pac-bayesian approach to spectrally-normalized
-		margin bounds for neural networks. [<a href="https://arxiv.org/abs/1707.09564"> arXiv:1707.09564 </a>].<I> International Conference on Learning Representations (ICLR)</I>, 2018.
-		</li>
-	<li> Noah Golowich, Alexander (Sasha) Rakhlin, Ohad Shamir. Size-Independent Sample Complexity of Neural Networks.
-		[<a href="https://arxiv.org/abs/1712.06541"> arXiv:1712.06541 </a>]. COLT 2018. </li> 
 	<li> Weizhi Zhu, Yifei Huang, Yuan Yao. Rethinking Breiman's Dilemma in Neural Networks: Phase Transitions of Margin Dynamics. 
 		[<a href="https://arxiv.org/abs/1810.03389"> arXiv: 1810.03389 </a>]. Frontiers in Applied Mathematics and Statistics, to appear.
-		</li>
+	</li>
 	</ul>
+	</ul>
+
 </td>
 <td>Y.Y.</td>
 <td></td>
