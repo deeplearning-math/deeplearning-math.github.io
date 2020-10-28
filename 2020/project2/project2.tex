@@ -1,0 +1,449 @@
+\documentclass[11pt]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\def\N{{\mathbb N}}
+\def\NN{{\mathcal N}}
+\def\R{{\mathbb R}}
+\def\E{{\mathbb E}}
+\def\rank{{\mathrm{rank}}}
+\def\tr{{\mathrm{trace}}}
+\def\P{{\mathrm{Prob}}}
+\def\sign{{\mathrm{sign}}}
+\def\diag{{\mathrm{diag}}}
+
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.25 in}
+\setlength{\parskip}{0.1 in}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \setcounter{section}{0}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf Advanced Topics in Deep Learning \hfill #4} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: #2\hfill #3} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1}{#1}
+   \vspace*{4mm}
+}
+
+
+\begin{document}
+
+\lecture{Final Project. }{Yuan Yao}{Due: 23:59 Sunday 29 Nov/13 Dec?, 2020}{28 Oct, 2020}
+
+%The problem below marked by $^*$ is optional with bonus credits. % For the experimental problem, include the source codes which are runnable under standard settings. 
+%
+%\begin{enumerate}
+%
+%\item {\em Manifold Learning}: The following codes by Todd Wittman contain major manifold learning algorithms talked on class.
+%
+%\url{http://www.math.pku.edu.cn/teachers/yaoy/Spring2011/matlab/mani.m}
+%
+%Precisely, eight algorithms are implemented in the codes: MDS, PCA, ISOMAP, LLE, Hessian Eigenmap, Laplacian Eigenmap, Diffusion Map, and LTSA. 
+%The following nine examples are given to compare these methods,
+%\begin{enumerate}
+%\item Swiss roll;
+%\item Swiss hole;
+%\item Corner Planes;
+%\item Punctured Sphere;
+%\item Twin Peaks;
+%\item 3D Clusters;
+%\item Toroidal Helix;
+%\item Gaussian;
+%\item Occluded Disks.
+%\end{enumerate}
+%Run the codes for each of the nine examples, and analyze the phenomena you observed. 
+%
+%\end{enumerate}
+
+%\newpage
+
+
+\section{Requirement}
+
+This project as a warm-up aims to explore feature extractions using existing networks, such as pre-trained deep neural networks and scattering nets, in image classifications with traditional machine learning methods.
+\begin{enumerate}
+\item Pick up ONE (or more if you like) favourite dataset below to work. If you would like to work on a different problem outside the candidates we proposed, please email course instructor about your proposal.  
+\item Team work: we encourage you to form small team, up to FOUR persons per group, to work on the same problem. Each team must submit:
+\subitem(a) ONE report, \emph{with a clear remark on each person's contribution}. The report can be in the format of either a \emph{technical report within 8 pages}, e.g. NIPS conference style (preferred format) 
+\begin{center}
+\url{https://nips.cc/Conferences/2019/PaperInformation/StyleFiles} 
+\end{center}
+Python (Jupyter) Notebooks with a detailed documentation, or a \emph{poster}, e.g. 
+\begin{center}%\url{http://math.stanford.edu/~yuany/publications/poster_CleaveBioCPH2017_ForReview.pptx}
+\url{https://github.com/yuany-pku/2017_math6380/blob/master/project1/DongLoXia_poster.pptx}
+\end{center}
+\subitem(b) \emph{ONE short presentation video within 10 mins}, e.g. in Youtube or Bilibili link. You may submit your presentation slides together with the video link to help understanding. 
+\item In the report, show your proposed scientific questions to explore and main results with a careful analysis supporting the results toward answering your problems. Remember: scientific analysis and reasoning are more important than merely the performance tables. Separate source codes may be submitted through email as a zip file, GitHub link, or as an appendix if it is not large.    
+\item Submit your report by email or paper version no later than the deadline, to the following address (\href{mailto:deeplearning.math@gmail.com}{deeplearning.math@gmail.com}) with Title: \underline{Math 6380P: Project 2}. % (\href{mailto:datascience\_hw@126.com}{datascience\_hw@126.com}). 
+\end{enumerate}
+
+\section{Kaggle in-class Contest: Nexperia Image Classification II}
+Nexperia (\url{https://www.nexperia.com/}) is one of the biggest Semi-conductor company in the world. They produce billions of semi-conductors every year. Meanwhile, a lot of unqualified devices are mixed with the good ones. Mass production makes it difficult for human workers to examine all of the products. Therefore, we would like to use modern machine learning methods, particularly deep learning, to help Nexperia pick out as many defect devices as possible while preserving the good ones, thus improving their yield rate.
+
+Nexperia provided a dataset for Kaggle in-class contest that aims to classify images of semiconductor devices into two main classes, good and defect. For example, Fig. \ref{fig:nexperia} shows a good example and a bad example. The Nexperia image dataset in the Kaggle contest contain $34457$ train images ($27420$ good and $7039$ bad) and $3830$ test images with similar good-to-bad ratio. The key is to detect as many defect images as possible while not sacrificing too many passed ones. So on Kaggle contest, we adopt Area-Under-the-Curve (AUC) for ROC as the evaluation rule. Note that AUC values are in the range of $[0.5,1]$, the higher, the better.
+
+We note that this real world dataset may contain noisy labels, especially the images labeled as ``good" possibly being ``bad" ones in fact. We do not have ground truth on which labels are wrong, but you may pay additional attention to this issue. Bonus credits will be given to such explorations. 
+
+%There are in fact nine types of defects, so the task is essentially an image classification task among ten classes (including the good class). The data we obtain are quite imbalanced, with $30523$ passed images and $7799$ defect images. Moreover, among the nine defect classes, data are not evenly distributed. Some defect classes have as few as $5$ images in total, while the largest defect class contains 3681 images. In the assemble line of semiconductors, the proportion between passed and defect images are supposed to be even more skewed. For simplicity, we merge all defect classes into a single bad class. 
+
+%The Nexperia image dataset contains A small number of devices may have defects, 
+%Nexperia accumulated lots of image data using online digital camera and hoped that human based anomaly detection could be greatly improved by the state-of-the-art deep learning technique. So with the data they provide to us, we launch this in-class Kaggle contest in a purpose to test various machine learning methods, esp. deep learning, to solve this real world problem.\\
+%Because this is the first Nexperia image classification contest, we start from binary classification with only two classes of labels, one for bad semi-conductor and another for good. The aim of this simplified contest is to predict the type of each semi-conductor based on the image. We provide 30K and 3000 images for training and testing respectively.\\
+
+Checking the following Kaggle website for more details. 
+\begin{itemize}
+%	\item Kaggle: \url{https://www.kaggle.com/c/semi-conductor-image-classification-first}
+\item \url{https://www.kaggle.com/c/semi-conductor-image-classification-second-stage}
+\end{itemize}
+\noindent To participate the contest, you need to login your Kaggle account first, then open the following invitation link and accept the Kaggle contest rule to download the data: 
+
+\begin{center}
+%\url{https://www.kaggle.com/t/8cf20e3116d54a749766f9904a9e330a}
+\url{https://www.kaggle.com/t/5cbb376414c24ba5a9a9183ac73d648f}
+\end{center}
+
+%\noindent In the future, we may consider to launch another in-class Kaggle contest, while the current project is just for a warm-up. Beyond binary classification, you can do various explorations such as visualization in Fig. \ref{fig:nexperia} (right picture) and unsupervised abnormal outlier detection.
+
+\begin{figure}[htbp]
+\begin{centering}
+	\includegraphics[width=0.3\textwidth]{good.jpg}  \ \  \ \
+	\includegraphics[width=0.3\textwidth]{bad.jpg}  \ \ \ \ \
+	\includegraphics[width=0.3\textwidth]{heat.png}  
+	\caption{Examples of Nexperia image data. Left: a good example; Middle: a bad example; Right: a visualization based on heatmap}
+	\label{fig:nexperia}
+	\end{centering}
+\end{figure}
+%\begin{figure}[htbp]
+%\begin{centering}
+%	\caption{Sample Semi-conductor Visualization.}
+%	\label{fig:heatmap}
+%\end{centering}
+%\end{figure}
+
+%\section{Nexperia Kaggle in-class Contest}
+%Nexperia (\url{https://www.nexperia.com/}) is one of the biggest Semi-conductor company in the world. They will produce billions of semi-conductors every year. But unfortunately, they are facing a hard problem now which is anomaly detection of the semi-conductors. A small number of devices may have defects, e.g. Fig. \ref{fig:nexperia} shows a good example and a bad example. 
+%Nexperia accumulated lots of image data using online digital camera and hoped that human based anomaly detection could be greatly improved by the state-of-the-art deep learning technique. So with the data they provide to us, we launch this in-class Kaggle contest in a purpose to test various machine learning methods, esp. deep learning, to solve this real world problem.\\
+%Because this is the first Nexperia image classification contest, we start from binary classification with only two classes of labels, one for bad semi-conductor and another for good. The aim of this simplified contest is to predict the type of each semi-conductor based on the image. We provide 30K and 3000 images for training and testing respectively.\\
+%
+%Checking the following Kaggle website for more details. 
+%\begin{itemize}
+%	\item Kaggle: \url{https://www.kaggle.com/c/semi-conductor-image-classification-first}
+%\end{itemize}
+%\noindent To participate the contest, you need to login your Kaggle account first, then open the following invitation link and accept the Kaggle contest rule to download the data: 
+%
+%\begin{center}
+%\url{https://www.kaggle.com/t/8cf20e3116d54a749766f9904a9e330a}
+%\end{center}
+%
+%\noindent In the future, we may consider to launch another in-class Kaggle contest, while the current project is just for a warm-up. Beyond binary classification, you can do various explorations such as visualization in Fig. \ref{fig:nexperia} (right picture) and unsupervised abnormal outlier detection.
+%
+%\begin{figure}[htbp]
+%\begin{centering}
+%	\includegraphics[width=0.3\textwidth]{good.jpg}  \ \  \ \
+%	\includegraphics[width=0.3\textwidth]{bad.jpg}  \ \ \ \ \
+%	\includegraphics[width=0.15\textwidth]{heat.png}  
+%	\caption{Examples of Nexperia image data. Left: a good example; Middle: a bad example; Right: a visualization based on heatmap}
+%	\label{fig:nexperia}
+%	\end{centering}
+%\end{figure}
+%%\begin{figure}[htbp]
+%%\begin{centering}
+%%	\caption{Sample Semi-conductor Visualization.}
+%%	\label{fig:heatmap}
+%%\end{centering}
+%%\end{figure}
+
+%\section{China Equity Index Prediction Contest}
+%\subsection{Overview}
+%Asset Management is an area where traditional statistics are holding ground firmly and not losing to deep learning. Unlike the previous field such as playing go where too many possibilities and the computing power was the limitation; Asset management, on the contrary, has too little data and therefore easily gets over-fitting. Another argument will be that there are too many players, too many noises and no fundamental theory supporting that there actually is a robust relationship between any features and future asset returns. However, we believe in higher frequency field of asset management, where we have more data and also more micro-structure related features which are more robust, recent development in machine learning like deep neural networks might have its chance to win over traditional statistics. 
+%For this reason and also considering easier to start with not too large data set, equity index high frequency data is our choice for this contest. Later on, a much larger data set, equity data, which is thousands of times index data could be offered, if interested. 
+%
+%\subsection{Data}
+%The in-sample data we provided is 9 years of equity index snap shot data.  Trading time of each day is 4 hours and the frequency of the snap shot is 0.5s. The goal is to predict index return for the next 10 minutes, which is labeled “$y_{10m}$” in the csv files provided. We also provided around 80 features we found that have forecasting power, together with our linear prediction labeled “yhat1”, “yhat2” and “yhat3”. We kept some data as out-of-sample test. 
+%
+%You could download in-sample data here: \\
+%SFTP  \\
+%IP: 120.132.124.224 \\
+%Port: 22 \\
+%Username: testuser \\
+%Password: testuser \\
+%\\
+%data.csv: All-in-one file with features, y and our linear predictions yhat. \\
+%data.tar.gz: Compressed data.csv \\
+%IF.csv: Average of our linear prediction \\
+%y.csv: Index return to predict  \\
+%evaluation.py: A script to evaluate your prediction. See Evaluation for details. 
+%
+%
+%\subsection{Evaluation}
+%
+%\subsubsection{Standard}
+%Assume your forecast is ybar:
+%\begin{itemize}
+%\item Maximize $corr(ybar, y)$: note we calculate this correlation every 20 days, and then take average.
+%\item $corr(\text{ybar}, \text{our existed yhat}) < 0.3$: hopefully the new ybar could discover something linear model missed. 
+%\end{itemize}
+%
+%\subsubsection{Script}
+%Run \url{evaluation.py} after some configurations to automatically check the performance of your predictions.
+%For usage, please check out docstring of \url{evaluation.py} for details.
+%
+%\section{Reproducible Study of Training and Generalization Performance} 
+%
+%The following best award paper in ICLR 2017, 
+%
+%\emph{Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals, Understanding deep learning requires rethinking generalization.} \url{https://arxiv.org/abs/1611.03530}
+%
+%\noindent received lots of attention recently. Reproducibility is indispensable for scientific research. Can you reproduce some of their key experiments by yourself? The following are for examples. 
+%
+%1. Achieve ZERO training error in standard and randomized experiments. As shown in Figure~\ref{fig:Recht1}, you need to train some CNNs (e.g. ResNet, over-parametric) with Cifar10 dataset, where the labels are true or randomly permuted, and the pixels are original or random (shuffled, noise, etc.), toward zero training error (misclassification error) as epochs grow. During the training, you might turn on and off various regularization methods to see the effects. If you use loss functions such as cross-entropy or hinge, you may also plots the training loss with respect to the epochs. 
+%\begin{figure}
+%\begin{centering}
+%\includegraphics[width=0.5\textwidth]{Recht1.png}  
+%\caption{Overparametric models achieve zero \emph{training error} (or near zero \emph{training loss}) as SGD epochs grow, in standard and randomized experiments.}
+%\label{fig:Recht1}
+%\end{centering}
+%\end{figure}
+%
+%2. Non-overfitting of test error and overfitting of test loss when model complexity grows. Train several CNNs (ResNet) of different number of parameters, stop your SGD at certain large enough epochs (e.g. 1000) or zero \emph{training error (misclassification)} is reached. Then compare the \emph{test (validation) error} or \emph{test loss} as model complexity grows to see if you observe similar phenomenon in Figure~\ref{fig:Poggio1}: when \emph{training error} becomes zero, \emph{test error} (misclassification) does not overfit but \emph{test loss} (e.g. cross-entropy, exponential) shows overfitting as model complexity grows. This is for reproducing experiments in the following paper: 
+%
+%\emph{Tomaso Poggio, K. Kawaguchi, Q. Liao, B. Miranda, L. Rosasco, X. Biox, J. Hidary, and H. Mhaskar. Theory of Deep Learning III: the non-overfitting puzzle}. Jan 30, 2018. \url{http://cbmm.mit.edu/publications/theory-deep-learning-iii-explaining-non-overfitting-puzzle} 
+%
+%\begin{figure}
+%\begin{centering}
+%\includegraphics[width=0.9\textwidth]{Poggio1.png}  
+%\caption{When \emph{training error} becomes zero, \emph{test error} (misclassification) does not increase (resistance to overfitting) but \emph{test loss} (cross-entropy/hinge) increases showing overfitting as model complexity grows.}
+%\label{fig:Poggio1}
+%\end{centering}
+%\end{figure}
+%
+%3. There seems a double descent phenomemon in bias-variance trade-off: in traditional statistical learning, bias reduces and variance increases when model complexity grows, that leads to a bell shape of generalization (test) error; but in overparameterized models, generalization error seems always dropping as model complexity grows. For example, Fig. \ref{fig:doubledescent} is copied from the following paper:
+%
+%\emph{Mikhail Belkin, Daniel Hsu, Siyuan Ma, Soumik Mandal. Reconciling modern machine learning practice and the bias-variance trade-off. PNAS , 2019, 116 (32). }
+%
+%Can you reproduce it and extend your study with Cifar10 dataset? 
+%
+%\begin{figure}
+%\begin{centering}
+%\includegraphics[width=0.6\textwidth]{doubledescent.png}  
+%\caption{Double descent curves.}
+%\label{fig:doubledescent}
+%\end{centering}
+%\end{figure}
+%
+%4. Many works on generalization bounds learned in class (e.g. Peter Bartlett, Sasha Rakhlin, and our recent work \url{https://arxiv.org/abs/1810.03389} etc.) try to explain the mystery of good generalization performance of overparameterized models using Rademacher complexity based bounds,
+%\[ \text{test error} \leq \text{training error} + \frac{\text{complexity}}{\sqrt{n}} \]
+%where $n$ is the sample size and ``$\text{complexity}$" does not depend on the number of parameters of a network. Recently, Nagarajan and Kolter argued (\url{https://arxiv.org/abs/1902.04742}) that all these bounds are insufficient to explain the phenomenon. Can you give your own analysis or perspective?
+
+\section{Kaggle Contest: Home Credit Default Risk}
+
+Many people struggle to get loans due to insufficient or non-existent credit histories. And, unfortunately, this population is often taken advantage of by untrustworthy lenders.
+
+Home Credit strives to broaden financial inclusion for the unbanked population by providing a positive and safe borrowing experience. In order to make sure this underserved population has a positive loan experience, Home Credit makes use of a variety of alternative data--including telco and transactional information--to predict their clients' repayment abilities.
+
+While Home Credit is currently using various statistical and machine learning methods to make these predictions, they're challenging Kagglers to help them unlock the full potential of their data. Doing so will ensure that clients capable of repayment are not rejected and that loans are given with a principal, maturity, and repayment calendar that will empower their clients to be successful.
+
+Visit the following website to join the competition. 
+
+\url{https://www.kaggle.com/c/home-credit-default-risk/}
+
+
+\section{Challenge from Project 1}
+The basic challenge is 
+\begin{itemize}
+\item Feature extraction by scattering net with known invariants; 
+\item Feature extraction by pre-trained deep neural networks, e.g. VGG19, and resnet18, etc.;
+\item Visualize these features using classical unsupervised learning methods, e.g. PCA/MDS, Manifold Learning, t-SNE, etc.; 
+\item Compute the global mean of features $\Phi_i \in \R^p$ over all samples
+\[ \boldsymbol{\mu}_{G} \triangleq \underset{i, c}{\operatorname{Ave}}\left\{\boldsymbol{\Phi}_{i, c}\right\} \]
+class-means
+\[ \boldsymbol{\mu}_{c} \triangleq \underset{i}{\operatorname{Ave}}\left\{\boldsymbol{\Phi}_{i, c}\right\}, \quad c=1, \ldots, C \]
+total covariance matrix
+\[ \boldsymbol{\Sigma}_{T} \triangleq \underset{i, c}{\operatorname{Ave}}\left\{\left(\boldsymbol{\Phi}_{i, c}-\boldsymbol{\mu}_{G}\right)\left(\boldsymbol{\Phi}_{i, c}-\boldsymbol{\mu}_{G}\right)^{\top}\right\} \]
+between class covariance
+\[ \boldsymbol{\Sigma}_{B} \triangleq \underset{c}{\operatorname{Ave}}\left\{\left(\boldsymbol{\mu}_{c}-\boldsymbol{\mu}_{G}\right)\left(\boldsymbol{\mu}_{c}-\boldsymbol{\mu}_{G}\right)^{\top}\right\} \]
+and within class covariance
+\[ \boldsymbol{\Sigma}_{W} \triangleq \underset{i, c}{\operatorname{Ave}}\left\{\left(\boldsymbol{\Phi}_{i, c}-\boldsymbol{\mu}_{c}\right)\left(\boldsymbol{\Phi}_{i, c}-\boldsymbol{\mu}_{c}\right)^{\top}\right\} \]
+such that $\boldsymbol{\Sigma}_{T}=\boldsymbol{\Sigma}_{B}+\boldsymbol{\Sigma}_{W}$. Verify the contraction of within class variation (NC1), 
+\[ \operatorname{Tr}\left\{\boldsymbol{\Sigma}_{W} \boldsymbol{\Sigma}_{B}^{\dagger}\right\} / C; \]
+closeness to equal-norms of class-means
+\[ \operatorname{Std}_{c}\left(\left\|\boldsymbol{\mu}_{c}-\boldsymbol{\mu}_{G}\right\|_{2}\right) / \operatorname{Avg}_{c}\left(\left\|\boldsymbol{\mu}_{c}-\boldsymbol{\mu}_{G}\right\|_{2}\right), \] 
+equal-angularity, 
+\[ \operatorname{Std}_{c} \left(\operatorname{cos}_{\mu}\left(c, c^{\prime}\right)\right)=\operatorname{Std}_{c} [\left\langle\boldsymbol{\mu}_{c}-\boldsymbol{\mu}_{G}, \boldsymbol{\mu}_{c^{\prime}}-\boldsymbol{\mu}_{G}\right\rangle /\left(\left\|\boldsymbol{\mu}_{c}-\boldsymbol{\mu}_{G}\right\|_{2}\left\|\boldsymbol{\mu}_{c^{\prime}}-\boldsymbol{\mu}_{G}\right\|_{2}\right) ]\]
+closeness to maximal-angle equiangularity,
+\[ \operatorname{Avg}_{c, c^{\prime}}\left|\cos _{\mu}\left(c, c^{\prime}\right)+1 /(C-1)\right|\]
+\item Image classifications using traditional supervised learning methods based on the features extracted, e.g. LDA, logistic regression, SVM, random forests, etc.;
+\item *Train the last layer or fine-tune the deep neural networks in your choice; 
+\item Compare the results you obtained and give your own analysis on explaining the phenomena.
+\end{itemize}
+
+Below are two candidate datasets. Challenge marked by * above is only optional. 
+
+\subsection{MNIST dataset -- a Warmup}
+
+Yann LeCun's website contains original MNIST dataset of 60,000 training images and 10,000 test images. 
+
+\url{http://yann.lecun.com/exdb/mnist/}
+
+There are various ways to download and parse MNIST files. For example, Python users may refer to the following website:
+
+\url{https://github.com/datapythonista/mnist}
+
+\noindent or MXNET tutorial on mnist
+
+\url{https://mxnet.incubator.apache.org/tutorials/python/mnist.html}
+
+\subsection{Fashion-MNIST dataset}
+
+Zalando's Fashion-MNIST dataset of 60,000 training images and 10,000 test images, of size 28-by-28 in grayscale. 
+
+\url{https://github.com/zalandoresearch/fashion-mnist}
+
+%As a reference, here is Jason Wu, Peng Xu, and Nayeon Lee's exploration on the dataset in project 1:
+
+%\url{https://deeplearning-math.github.io/slides/Project1_WuXuLee.pdf}
+
+
+\subsection{Identification of Raphael's paintings from the forgeries}
+
+The following data, provided by Prof. Yang WANG from HKUST,
+
+\url{https://drive.google.com/folderview?id=0B-yDtwSjhaSCZ2FqN3AxQ3NJNTA&usp=sharing}
+
+\noindent contains a 28 digital paintings of Raphael or forgeries. Note that there are both jpeg and tiff files, so be careful with the bit depth in digitization. The following file
+
+\url{https://docs.google.com/document/d/1tMaaSIrYwNFZZ2cEJdx1DfFscIfERd5Dp2U7K1ekjTI/edit}
+
+\noindent contains the labels of such paintings, which are 
+\begin{enumerate}
+\item[1] Maybe Raphael - Disputed
+\item[2] Raphael
+\item[3] Raphael
+\item[4] Raphael
+\item[5] Raphael
+\item[6] Raphael
+\item[7] Maybe Raphael - Disputed
+\item[8] Raphael
+\item[9] Raphael
+\item[10] Maybe Raphael - Disputed
+\item[11] Not Raphael
+\item[12] Not Raphael
+\item[13] Not Raphael
+\item[14] Not Raphael
+\item[15] Not Raphael
+\item[16] Not Raphael
+\item[17] Not Raphael
+\item[18] Not Raphael
+\item[19] Not Raphael
+\item[20] My Drawing (Raphael?)
+\item[21] Raphael
+\item[22] Raphael
+\item[23] Maybe Raphael - Disputed
+\item[24] Raphael
+\item[25] Maybe Raphael - Disputed
+\item[26] Maybe Raphael - Disputed
+\item[27] Raphael
+\item[28] Raphael
+\end{enumerate}
+There are some pictures whose names are ended with alphabet like A's, which are irrelevant for the project. 
+
+The challenge of Raphael dataset is: can you exploit the known Raphael vs. Not Raphael data to predict the identity of those 6 disputed paintings (maybe Raphael)? Textures in these drawings may disclose the behaviour movements of artist in his work. One preliminary study in this project can be: \emph{take all the known Raphael and Non-Raphael drawings and use leave-one-out test to predict the identity of the left out image; you may break the images into many small patches and use the known identity as its class.}      
+
+The following student poster report seems a good exploration
+
+\url{https://github.com/yuany-pku/2017_CSIC5011/blob/master/project3/05.GuHuangSun_poster.pdf}
+%\url{http://math.stanford.edu/~yuany/course/2015.fall/poster/Raphael_LI\%2CYue_1300010601.pdf}
+
+The following paper by Haixia Liu, Raymond Chan, and me studies Van Gogh's paintings which might be a reference for you:
+
+\url{http://dx.doi.org/10.1016/j.acha.2015.11.005}
+
+
+\section{Self Proposals}
+%\subsection{Teacher-Student Network Project Proposal}
+%This proposal is made by Donghao Li, Jiamin Wu, Wenqi Zeng, Yang Cao.
+%
+%\subsubsection{Background} %Enter instruction text here
+%Although neural networks have made strong empirical progress in a diverse set of domains (e.g.,computer vision, speech recognition, natural language processing, and games), a number of fundamental questions still remain unsolved. For example, How can Stochastic Gradient Descent (SGD) find good solutions to a complicated non-convex optimization problem? Why do neural networks generalize? Why are flat minima related to good generalization? Why does over-parameterization lead to better generalization? Recently, some work focus on teacher student network setting and gives some insight about  the questions above. In this project, we would explore this topic, starting with reproduce some key results and then try to give some further analysis.
+%
+%
+%\subsubsection{Problem setting}
+%In teacher student framework, teacher is a fixed neural network and then we want to train a student network to fit the teacher network. Specifically, we sample $X$ from some distribution and then use the teacher network to produce label $Y$. We use $(X,Y)$ pair as data to train the student network.
+%
+%\subsubsection{Tasks}
+%\begin{itemize} 
+%\item Reproduce the experiments in \url{https://arxiv.org/pdf/1410.1141.pdf}, which first use teacher student setting to analysis over-parameterization benefits optimization problem.
+%\item Analysis in \url{https://arxiv.org/abs/1909.13458v4} and \url{https://arxiv.org/pdf/1905.13405.pdf} is inspired by "lottery tickets hypothesis", which states that "A randomly-initialized, dense neural network contains a subnetwork that is initialized such that—when trained in isolation—it can match the test accuracy of the original network after training for at most the same number of iterations." Can you reproduce the results to find the winning ticket? Further, can you extend the experiments and give some analysis?
+%\item After read and reproduce these papers, have you got some further insight inspired by this teacher student framework? It is still an open question, so any comments on this topic are welcomed.
+%\end{itemize}
+
+
+%\newpage
+%
+%\section*{Peer Review}
+%
+%In this exercise of open peer review, please write down your comments of the \emph{reports rather than of your own team} in the following format. Be considerate and careful with a precise description, avoiding offensive language. 
+%
+%Deadline is \emph{11:59pm Oct. 19, 2019}. Your review assignment can be found at
+%
+%{\centering{\url{https://deeplearning-math.github.io/2019/project1/project1review_assignment.pdf} }}
+%
+%\noindent where each student (SID) is randomly assigned with 5 group reports (excluding your own reports). You should submit reviews at least for these assignments, but more reviews are welcome with additional bonus credit. 
+%
+%You should put each review in a plain text separately with a title  comprising the corresponding group number (\textbf{not your own group}) and your name (e.g., \emph{\underline{rev1\_group03\_Ian\_Goodfellow.pdf}}). Submit all your reviews in a single zip file \textbf{using canvas}. Rebuttal is open afterwards.
+%
+%\begin{itemize}
+%\item Summary of the report.
+%\item Describe the strengths of the report. 
+%\item Describe the weaknesses of the report.
+%\item Evaluation on Clarity and quality of writing (1-5): Is the report clearly written? Is there a good use of examples and figures? Is it well organized? Are there problems with style and grammar? Are there issues with typos, formatting, references, etc.? Please make suggestions to improve the clarity of the paper, and provide details of typos.
+%\item Evaluation on Technical Quality (1-5): Are the results technically sound? Are there obvious flaws in the reasoning? Are claims well-supported by theoretical analysis or experimental results? Are the experiments well thought out and convincing? Will it be possible for other researchers to replicate these results? Is the evaluation appropriate? Did the authors clearly assess both the strengths and weaknesses of their approach? Are relevant papers cited, discussed, and compared to the presented work?
+%\item Overall rating: (5- My vote as the best-report. 4- A good report. 3- An average one. 2- below average. 1- a poorly written one). 
+%\item Confidence on your assessment (1-3)
+%(3- I have carefully read the paper and checked the results, 2- I just browse the paper without checking the details, 1- My assessment can be wrong)
+%\end{itemize}
+%
+%%Then please vote your top THREE favourite reports on Doodle: 
+%%\url{xxx}
+%
+%\newpage
+%
+%\section*{Rebuttal}
+%The rebuttal period starts from now, till \emph{11:59pm Oct 27, 2019}. Restrict the number of characters of your rebuttal within {\bf{5,000}}. Submit your rebuttal in PLAIN TEXT or PDF format to \textbf{canvas} with filename comprising the corresponding group number: e.g. \underline{rebuttal1\_group02.pdf}. %(\href{mailto:datascience.hw@gmail.com}{datascience.hw@gmail.com}) with Title: \underline{CSIC 5011: Project 1 Rebuttal}.
+%
+%The following tips of rebuttal might be helpful for you to follow:
+%
+%1. The main aim of the rebuttal is to answer any specific questions that the reviewers might have raised, or to clarify any misunderstanding of the technical content of the paper.
+%
+%2. Keep your rebuttal short, to-the-point, and specific. In our experience, such rebuttals have the maximum impact.
+%
+%3. Always be polite and professional. Refrain from name calling or rude comments, especially in response to negative reviews.
+%
+%4. Highlight the changes in your manuscripts had you made a simple revision.
+%
+%%
+
+\end{document}
+
+
