@@ -691,6 +691,126 @@ This is joint work with Chao Ma, Stephan Wojtowytsch and Lei Wu.
 <td></td>
 </tr>
 
+
+<tr>
+<td>11/25/2020, Wednesday</td>
+<td>Lecture 12: Mean Field Theory.	
+	<br>
+	<ul>[Title]: Mean Field Theory and Tangent Kernel Theory in Neural Networks.
+		[<a href="https://stats385.github.io/assets/lectures/MF_dynamics_Stanford.pdf"> slides </a>] 
+	</ul> 
+	<ul>[Speaker]: Song Mei, University of California at Berkeley.
+	</ul>
+	<ul>[Time]: 3:00-4:20pm </ul>
+	<ul>[Abstract]:
+	Deep neural networks trained with stochastic gradient algorithms often achieve near vanishing training error, and generalize well on test data. Such empirical success of optimization and generalization, however, is quite surprising from a theoretical point of view, mainly due to non-convexity and overparameterization of deep neural networks.
+	<br>
+	In this lecture, I will talk about the mean field theory and the tangent kernel theory on the training dynamics of neural networks, and discuss about their benefits and shortcomings in terms of both optimization and generalization.Then I will analyze the generalization error of linearized neural networks with two interesting phenomena: staircase and double-descent. Finally, I will propose challenges and open problems in analyzing deep neural networks.	</ul>
+	<ul>[Bio]:
+	</ul>
+<ul>[Reference]
+	<li> [<a href="https://www.youtube.com/watch?v=7vHr7f3byLc&feature=youtu.be"> video </a>]
+	</li>
+	<li> Mei, Montanari, and Nguyen. A mean field view of the landscape of two-layers neural networks. Proceedings of the National Academy of Sciences 115, E7665-E7671.
+	</li>
+	<li> Rotskoff and Vanden-Eijnden. Neural networks as interacting particle systems: Asymptotic convexity of the loss landscape and universal scaling of the approximation error. arXiv:1805.00915.
+	</li>
+	<li> Chizat and Bach. On the Global Convergence of Gradient Descent for Over-parameterized Models using Optimal Transport. Advances in neural information processing systems, 2018, pp. 3036–3046.
+	</li>
+	<li> Jacot, Gabriel, and Hongler. Neural Tangent Kernel: Convergence and Generalization in Neural Networks. Advances in neural information processing systems, 2018, pp. 8571–8580.
+	</li>
+	<li> Belkin, Hsu, Ma, and Mandal. Reconciling modern machine learning practice and the bias-variance trade-off. Proceedings of the National Academy of Sciences 116.32 (2019): 15849-15854.
+	</li>
+	<li> Bach. Breaking the Curse of Dimensionality with Convex Neural Networks. The Journal of Machine Learning Research 18 (2017), no. 1, 629–681.
+	</li>
+	<li> Ghorbani, Mei, Misiakiewicz, and Montanari. Linearized two-layers neural networks in high dimension. arXiv:1904.12191.
+	</li>
+	<li> Hastie, Montanari, Rosset, and Tibshirani. Surprises in High-Dimensional Ridgeless Least Squares Interpolation. arXiv:1903.08560.
+	</li>
+	<li> Mei and Montanari. The generalization error of random features regression: Precise asymptotics and double descent curve. arXiv:1904.12191.
+	</li>
+</ul>
+	<br>
+	
+	<ul>[Title]: A mean-field theory for certain deep neural networks
+	</ul>
+	<ul>[Speaker]: <a href="https://sites.google.com/view/roboliv">Roberto I. Oliveira</a>, IMPA.
+	</ul>
+	<ul>[Time]: 4:30-5:50pm </ul>
+	<ul>[Abstract]:
+		A natural approach to understand overparameterized deep neural networks is to ask if there is some kind of natural limiting behavior when the number of neurons diverges. We present a rigorous limit result of this kind for for networks with complete connections and "random-feature-style" first and last layers. Specifically, we show that network weights are approximated by certain "ideal particles" whose distribution and dependencies are described by McKean-Vlasov mean-field model. We will present the intuition behind our approach; sketch some of the key technical challenges along the way; and connect our results to some of the recent literature on the topic. 
+	</ul>
+	<ul>[Reference]
+		<li> [<a href="https://youtu.be/JiWhXpVtsm8"> video </a>] </li>
+		<li> Dyego Araújo, Roberto I. Oliveira, Daniel Yukimura. 
+			A mean-field limit for certain deep neural networks.
+			<a href="https://arxiv.org/abs/1906.00193">arXiv:1906.00193</a>.
+		</li>
+		<li>Jean-François Jabir, David Šiška, Łukasz Szpruch. 
+			Mean-Field Neural ODEs via Relaxed Optimal Control
+			<a href="https://arxiv.org/abs/1912.05475">arXiv:1912.05475</a>.
+		</li>
+		<li> Phan-Minh Nguyen, Huy Tuan Pham. 
+			A Rigorous Framework for the Mean Field Limit of Multilayer Neural Networks. 
+			<a href="https://arxiv.org/abs/2001.11443">arXiv:2001.11443</a>. 
+		</li>
+		<li> Weinan E, Stephan Wojtowytsch. 
+			On the Banach spaces associated with multi-layer ReLU networks: Function representation, approximation theory and gradient descent dynamics.
+			<a href="https://arxiv.org/abs/2007.15623">arXiv:2007.15263</a>.
+		</li>
+	</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>12/02/2020, Wednesday</td>
+<td>Lecture 13: seminars.	
+	<br>
+	<ul>[Title]: Learning assisted modeling of molecules and materials. 
+		[<a href=""> slides </a>] 
+	</ul> 
+	<ul>[Speaker]: Linfeng ZHANG, Beijing Institute of Big Data Research and Princeton University.
+	</ul>
+	<ul>[Time]: 3:00-4:20pm </ul>
+	<ul>[Abstract]:
+		In recent years, machine learning (ML) has emerged as a promising tool for dealing with the difficulty of representing high dimensional functions. This gives us an unprecedented opportunity to revisit theoretical foundations of various scientific fields and solve problems that were too complicated for conventional approaches to address. Here we identify a list of such problems in the context of multi-scale molecular and materials modeling and review ML-based strategies that boost simulations with ab initio accuracy to much larger scales than conventional approaches. Using examples at scales of many-electron Schrödinger equation, density functional theory, and molecular dynamics, we present two equally important principles: 1) ML-based models should respect important physical constraints in a faithful and adaptive way; 2) to build truly reliable models, efficient algorithms are needed to explore relevant physical space and construct optimal training data sets. Finally, we present our efforts on developing related software packages and high-performance computing schemes, which have now been widely used worldwide by experts and practitioners in the molecular and materials simulation community.
+	</ul>
+	<ul>[Bio]:
+Linfeng Zhang is temporarily working as a research scientist at the Beijing Institute of Big Data Research. In the May of 2020, he graduated from the Program in Applied and Computational Mathematics (PACM), Princeton University, working with Profs. Roberto Car and Weinan E. Linfeng has been focusing on developing machine learning based physical models for electronic structures, molecular dynamics, as well as enhanced sampling. He is one of the main developers of DeePMD-kit, a very popular deep learning based open-source software for molecular simulation in physics, chemistry, and materials science. He is a
+recipient of the 2020 ACM Gordon Bell Prize for their project, 
+		“Pushing the limit of molecular dynamics with ab initio accuracy to 100 million atoms with machine learning.”
+	</ul>
+<ul>[Reference]
+	<li> Weile Jia, Han Wang, Mohan Chen, Denghui Lu, Lin Lin, Roberto Car, Weinan E, Linfeng Zhang.
+		Pushing the limit of molecular dynamics with ab initio accuracy to 100 million atoms with machine learning.
+		<a href="https://arxiv.org/abs/2005.00223"> arXiv:2005.00223 </a>
+	</li>
+</ul>
+	<br>
+	
+	<ul>[Title]: Towards a mathematical understanding of supervised learning: What we know and what we don't know 
+		[<a href="https://github.com/deeplearning-math/deeplearning-math.github.io/blob/master/slides/E_One-world-1.pdf"> slides </a>]
+	</ul>
+		<ul>[Speaker]: Weinan E, Princeton University.
+	</ul>
+	<ul>[Time]: 4:30-5:50pm </ul>
+	<ul>[Abstract]:
+		Two of the biggest puzzles in machine learning are: Why is it so successful and why is it quite fragile?
+<br>
+This talk will present a framework for unraveling these puzzles from the perspective of approximating functions in high dimensions. We will discuss what's known and what's not known about the approximation generalization properties of neural network type of hypothesis space as well as the dynamics and generalization properties of the training process. We will also discuss the relative merits of shallow vs. deep neural network models and suggest ways to formulate more robust machine learning models.
+<br>
+This is joint work with Chao Ma, Stephan Wojtowytsch and Lei Wu.
+	</ul>
+	<ul>[Reference]
+		<li> [<a href="https://www.youtube.com/watch?v=Ixs45jX6Oq8"> video </a>] 
+		</li>
+	</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
 	
 	<!---
 <tr>
@@ -1009,37 +1129,6 @@ Pursuit and Dictionary Learning, IEEE Transactions on Signal Processing, vol. 66
 <td>Y.Y.</td>
 <td></td>
 </tr>
-	
-<tr>
-<td>10/15/2018, Mon</td>
-<td>Lecture 11: Seminar: Exponentially Weighted Imitation Learning for Batched Historical Data. 
-	<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture11a_WangNIPS18.pdf">[ slides ]</a>
-	<br>
-	<ul>[Speaker]: WANG, Qing, Tecent AI Lab.
-	</ul>
-	<ul>[Abstract]:
-		<li> We consider deep policy learning with only batched historical trajectories. 
-			The main challenge of this problem is that the learner no longer has a simulator or “environment 
-			oracle” as in most reinforcement learning settings. To solve this problem, we propose a monotonic 
-			advantage reweighted imitation learning strategy that is applicable to problems with complex 
-			nonlinear function approximation and works well with hybrid (discrete and continuous) action space. 
-			The method does not rely on the knowledge of the behavior policy, thus can be used to learn from 
-			data generated by an unknown policy. Under mild conditions, our algorithm, though surprisingly 
-			simple, has a policy improvement bound and outperforms most competing methods empirically. Thorough 
-			numerical results are also provided to demonstrate the efficacy of the proposed methodology.
-			
-			This is a joint work with Jiechao Xiong, Lei Han, Peng Sun, Han Liu, and Tong Zhang.
-		</li>
-	</ul>
-	<ul>[Team]: Huangshi Tian, Beijing Fang, Yunfei Yang (Group 3)
-		<li> Title: An In-Depth Look at Feature Transformation Ability of CNN 
-			<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture11b_Project1_Group3.pdf">[ slides ]</a>. 
-		</li>
-	</ul>
-</td>
-<td></td>
-<td></td>
-</tr>
 
 	
 	<tr>
@@ -1078,34 +1167,6 @@ Pursuit and Dictionary Learning, IEEE Transactions on Signal Processing, vol. 66
 <td></td>
 </tr>
 	
-<tr>
-<td>10/24/2018, Wed </td>
-<td>Lecture 13: Seminar 
-	<br>
-	<ul>[Speaker]: Baoyuan WU, Tencent AI Lab
-	</ul>
-	<ul>[Abstract]: In this talk, I will introduce three topics if time permitted.
-		<li> <b> Topic 1: Tencent ML-Images: large-scale visual representation learning.</b> [<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture13a-BaoyuanWu_Tencent_ML_Images.pptx"> slides (.pptx) </a>] 
-			The success of deep learning strongly depends on large-scale high-quality training data. Tencent ML-Images is an important open-source project, and it publishes a large-scale multi-label image database (including 18M images and 11K categories), the checkpoints with excellent capability of visual representation (80.73% top-1 accuracy on the validation set of ImageNet), as well as the complete codes. In this talk, I will introduce the construction of ML-Images and its main characteristics, the training of deep neural networks using large-scale image database, the transfer learning to single-label image classification on ImageNet, the feature extraction and image classification using the trained checkpoint. This project tries to give you a clear picture of the complete process of visual presentation learning based on deep neural networks. 
-Project address: <a href="https://github.com/Tencent/tencent-ml-images">https://github.com/Tencent/tencent-ml-images</a> 
-		</li>
-		<li> <b> Topic 2: Lp-Box ADMM: a versatile framework for integer programming. </b> [<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture13b-BaoyuanWu_Lp_box_ADMM_slides_global_convergence-brief.pptx"> slides (.pptx) </a>]
-			In this talk, we revisit the integer programming (IP) problem, which plays a fundamental role in many computer vision and machine learning applications. We propose a novel and versatile framework called Lp-box ADMM, which is based on two main ideas. (1) The discrete constraint is equivalently replaced by the intersection of a box and the Lp-ball. (2) We infuse this equivalence into the ADMM (Alternating Direction Method of Multipliers) framework to handle these continuous constraints separately and to harness its attractive properties. The proposed algorithm is theoretically guaranteed to converge to the epsilon-stationary point. We demonstrate the applicability of Lp-box ADMM on four important applications: MRF energy minimization, graph matching, clustering and model compression of convolutional neural networks. Results show that it outperforms generic IP solvers both in runtime and objective. It also achieves very competitive performance when compared to state-of-the-art methods that are specifically designed for these applications.
-			<a href="https://ieeexplore.ieee.org/document/8378001/">[ preprint ]</a> 
-		</li>
-		<li> <b> Topic 3: Multimedia AI: A brief introduction of researches and applications of Tencent AI Lab. </b>
-			Tencent AI Lab was established in Shenzhen in 2016 as a company-level strategic initiative and focuses on advancing fundamental and applied AI research. The research fields include computer vision, speech recognition, natural language processing and machine learning. The technologies of AI Lab have been applied in more than 100 Tencent products, including WeChat, QQ and news app Tian Tian Kuai Bao. In this talk, I will give a brief introduction of the researches about multimedia AI, 
-			including AI + image, video, audio and text, ranging from modeling, analysis, understanding to generation, etc. 
-			<a href="https://ai.tencent.com/ailab/">https://ai.tencent.com/ailab/</a>
-		</li>
-	</ul>
-	<ul>[Bio]: Baoyuan Wu is currently a Senior Research Scientist in Tencent AI Lab. He was Postdoc in IVUL lab at KAUST, working with Prof. Bernard Ghanem, from August 2014 to November 2016.  He received the PhD degree from the National Laboratory of Pattern Recognition, Chinese Academy of Sciences (CASIA) in 2014, supervised by Prof. Baogang Hu. His research interests are machine learning and computer vision, including probabilistic graphical models, structured output learning, multi-label learning and integer programming. His work has been published in TPAMI, IJCV, CVPR, ICCV, ECCV and AAAI, etc.
-	</ul>
-</td>
-<td>Y.Y.</td>
-<td></td>
-</tr>
-
 <tr>
 <td>10/29/2018, Mon</td>
 	<td>Lecture 14: Variational Inference and Deep Learning. [<a href="https://github.com/deeplearning-math/slides/blob/master/Lecture14_YangC_VAE.pdf"> slides </a>]
