@@ -1,0 +1,8 @@
+*.npy
+*.pth
+.venv
+.idea
+.ipynb_checkpoints
+results
+checkpoints
+logs
